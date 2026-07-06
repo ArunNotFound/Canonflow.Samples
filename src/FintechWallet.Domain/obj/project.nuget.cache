@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xb86JWURnEk=",
+  "success": true,
+  "projectFilePath": "/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/FintechWallet.Domain.fsproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/fsharp.core/10.1.301/fsharp.core.10.1.301.nupkg.sha512"
+  ],
+  "logs": []
+}

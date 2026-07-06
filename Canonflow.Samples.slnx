@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FintechWallet.Domain/FintechWallet.Domain.fsproj" />
+  </Folder>
+</Solution>

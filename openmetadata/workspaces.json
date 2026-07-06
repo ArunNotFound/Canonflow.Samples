@@ -1,0 +1,40 @@
+{
+    "name": "workspaces",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((plan_tier)::text = ANY ((ARRAY['FREE'::character varying, 'PRO'::character varying, 'ENTERPRISE'::character varying])::text[])))"]
+        },
+        { 
+            "name": "plan_tier", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((plan_tier)::text = ANY ((ARRAY['FREE'::character varying, 'PRO'::character varying, 'ENTERPRISE'::character varying])::text[])))"]
+        },
+        { 
+            "name": "created_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by id",
+            "query": "SELECT * FROM public.workspaces WHERE id = :id LIMIT 1"
+        }
+    ]
+}

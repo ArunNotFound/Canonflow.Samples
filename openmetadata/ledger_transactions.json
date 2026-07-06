@@ -1,0 +1,64 @@
+{
+    "name": "ledger_transactions",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "transaction_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "wallet_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((amount > (0)::numeric))"]
+        },
+        { 
+            "name": "currency", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((amount > (0)::numeric))"]
+        },
+        { 
+            "name": "direction", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((direction)::text = ANY ((ARRAY['CREDIT'::character varying, 'DEBIT'::character varying])::text[])))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((status)::text = ANY ((ARRAY['CREATED'::character varying, 'PENDING'::character varying, 'COMPLETED'::character varying, 'FAILED'::character varying, 'REVERSED'::character varying])::text[])))"]
+        },
+        { 
+            "name": "reference_id", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "created_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((direction)::text = ANY ((ARRAY['CREDIT'::character varying, 'DEBIT'::character varying])::text[])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by transaction_id",
+            "query": "SELECT * FROM public.ledger_transactions WHERE transaction_id = :id LIMIT 1"
+        }
+    ]
+}

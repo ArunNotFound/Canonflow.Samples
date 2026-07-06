@@ -1,0 +1,46 @@
+{
+    "name": "resources",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "workspace_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((capacity >= 1) AND (capacity <= 1000)))"]
+        },
+        { 
+            "name": "capacity", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((capacity >= 1) AND (capacity <= 1000)))"]
+        },
+        { 
+            "name": "hourly_rate", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((hourly_rate >= 0.00))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by id",
+            "query": "SELECT * FROM public.resources WHERE id = :id LIMIT 1"
+        }
+    ]
+}

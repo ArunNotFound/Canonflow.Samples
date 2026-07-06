@@ -1,0 +1,64 @@
+{
+    "name": "bookings",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "resource_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "user_email", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "start_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((end_time > start_time))"]
+        },
+        { 
+            "name": "end_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((end_time > start_time))"]
+        },
+        { 
+            "name": "attendee_count", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((attendee_count > 0))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'CONFIRMED'::character varying, 'CANCELLED'::character varying, 'COMPLETED'::character varying])::text[])))"]
+        },
+        { 
+            "name": "total_cost", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((total_cost >= 0.00))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by id",
+            "query": "SELECT * FROM public.bookings WHERE id = :id LIMIT 1"
+        }
+    ]
+}
