@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "+Sa89fXtBTU=",
+  "success": true,
+  "projectFilePath": "/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Api/FintechWallet.Api.fsproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/fsharp.core/10.1.301/fsharp.core.10.1.301.nupkg.sha512",
+    "/root/.nuget/packages/fsharp.systemtextjson/1.3.13/fsharp.systemtextjson.1.3.13.nupkg.sha512",
+    "/root/.nuget/packages/giraffe/8.2.0/giraffe.8.2.0.nupkg.sha512",
+    "/root/.nuget/packages/giraffe.viewengine/1.4.0/giraffe.viewengine.1.4.0.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.io.recyclablememorystream/3.0.1/microsoft.io.recyclablememorystream.3.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

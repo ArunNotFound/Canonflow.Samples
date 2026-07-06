@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="FintechWallet.Api">
+    <resource name="FSharpSignatureData.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpOptimizationData.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.FintechWallet.Api" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.FintechWallet.Api" action="remove"></resource>
+  </assembly>
+</linker>
