@@ -1,0 +1,38 @@
+# CanonFlow Theory Report: The Perfect Symbiosis of DB and DDD
+
+## The Foundational Premise
+Enterprise software architectures often fail by skewing too far in one direction:
+1. **The Database Monolith (The Stored Procedure Era):** Putting all workflows, side-effects, and limits into Database Triggers and Stored Procedures. This results in untestable code, silent failures, and a rigid, unscalable system.
+2. **The Pure DDD Monolith (The Code-First Era):** Putting all constraints into Application Code (using Refinement Types, ORMs, and Object mappers) while leaving the Database as a "dumb store." This results in massive performance hits when evaluating interconnected bounds, hallucinated data at the edges, and immense boilerplate generation.
+
+CanonFlow proposes the **Perfect Symbiosis**.
+
+## The Separation of Concerns
+In the CanonFlow methodology, responsibilities are ruthlessly divided:
+
+### 1. The Database owns the "Nouns" (Structural Physics)
+- **What it is:** Absolute constraints on the shape and existence of data.
+- **Examples:**
+  - Scale Limits: `amount > 0 AND amount <= 1000`
+  - Enums: `status IN ('ACTIVE', 'CLOSED')`
+  - Relational Reality: "A booked seat must exist on the specific aircraft assigned to a flight." (Composite Foreign Keys)
+- **Why it wins:** The database enforces these limits at the disk/page level in microseconds. It guarantees the absolute structural integrity of the reality being modeled without needing to pull massive entity graphs into memory.
+
+### 2. The Application owns the "Verbs" (Dynamic Behaviors)
+- **What it is:** Workflows, transitions, time-dependent logic, and side-effects.
+- **Examples:**
+  - Time logic: "Is the stock market open right now?"
+  - Historical Aggregates: "Has this account day-traded more than 3 times in the last 5 days?"
+  - External Side-Effects: "When a claim is adjudicated, fire an event to the ledger and email the patient."
+- **Why it wins:** Pure functional application code (e.g., F# DDD) is highly testable, easily handles timezones and external APIs, and isolates complex state transitions away from the dumb, rigid schema.
+
+## The Problem and The CanonFlow Solution
+**The Problem:** If you split responsibilities this perfectly, you face the "Sync Tax." The Frontend UI needs to know the database's limit (`amount > 0`) to show a validation error. The Application API needs to know the limit to return a 400 Bad Request. Historically, engineers had to handwrite these exact same constraints in SQL, then in C#, then in TypeScript Zod, leading to drift and bugs.
+
+**The CanonFlow Solution:**
+CanonFlow acts as the purely mathematical, stateless bridge. 
+By executing `canonflow --pg "$CONN" --contracts`, it inspects the exact, physical reality of the Database Nouns and transpiles them into perfect, native TypeScript validators, OpenAPI schemas, and OpenMetadata catalogs. 
+
+The API and Frontend gain complete, 100% accurate awareness of the structural physics of the system, costing exactly zero lines of boilerplate code. The developer is completely unburdened and free to focus solely on the high-value Verbs.
+
+This is the ultimate architectural standard.
