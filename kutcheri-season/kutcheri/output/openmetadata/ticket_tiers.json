@@ -1,0 +1,52 @@
+{
+    "name": "ticket_tiers",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "tier_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "kutcheri_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "price", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((price >= (0)::numeric))"]
+        },
+        { 
+            "name": "allocation", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((allocation >= 0))", "CHECK ((sold_count <= allocation))"]
+        },
+        { 
+            "name": "sold_count", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((sold_count <= allocation))", "CHECK ((sold_count >= 0))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by tier_id",
+            "query": "SELECT * FROM public.ticket_tiers WHERE tier_id = :id LIMIT 1"
+        }
+    ]
+}

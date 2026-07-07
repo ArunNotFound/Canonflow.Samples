@@ -1,0 +1,40 @@
+{
+    "name": "venues",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "venue_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "seating_capacity", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((seating_capacity > 0))"]
+        },
+        { 
+            "name": "address", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by venue_id",
+            "query": "SELECT * FROM public.venues WHERE venue_id = :id LIMIT 1"
+        }
+    ]
+}

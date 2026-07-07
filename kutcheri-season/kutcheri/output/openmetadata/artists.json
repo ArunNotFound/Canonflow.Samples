@@ -1,0 +1,46 @@
+{
+    "name": "artists",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "artist_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "form", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((form = ANY (ARRAY['Vocal'::text, 'Violin'::text, 'Veena'::text, 'Mridangam'::text, 'Flute'::text, 'Ensemble'::text])))"]
+        },
+        { 
+            "name": "contact", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "standard_fee_band", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((standard_fee_band >= (0)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by artist_id",
+            "query": "SELECT * FROM public.artists WHERE artist_id = :id LIMIT 1"
+        }
+    ]
+}

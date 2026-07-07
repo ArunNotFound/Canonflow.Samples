@@ -1,0 +1,64 @@
+{
+    "name": "kutcheris",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "kutcheri_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "artist_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "venue_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "start_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((end_time > start_time))"]
+        },
+        { 
+            "name": "end_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((end_time > start_time))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['draft'::text, 'on-sale'::text, 'confirmed'::text, 'sold-out'::text, 'on-hold'::text, 'completed'::text, 'cancelled'::text])))"]
+        },
+        { 
+            "name": "artist_fee", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((artist_fee >= (0)::numeric))"]
+        },
+        { 
+            "name": "venue_cost", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((venue_cost >= (0)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by kutcheri_id",
+            "query": "SELECT * FROM public.kutcheris WHERE kutcheri_id = :id LIMIT 1"
+        }
+    ]
+}
