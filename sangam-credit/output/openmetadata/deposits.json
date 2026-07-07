@@ -1,0 +1,52 @@
+{
+    "name": "deposits",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "deposit_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "member_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((amount)::numeric >= (500)::numeric))", "CHECK ((amount >= (100)::numeric))"]
+        },
+        { 
+            "name": "opened_on", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((maturity_date > opened_on))"]
+        },
+        { 
+            "name": "maturity_date", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((maturity_date > opened_on))"]
+        },
+        { 
+            "name": "rate_pct", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((rate_pct >= 3.5) AND (rate_pct <= 9.25)))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by deposit_id",
+            "query": "SELECT * FROM public.deposits WHERE deposit_id = :id LIMIT 1"
+        }
+    ]
+}

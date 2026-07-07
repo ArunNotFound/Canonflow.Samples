@@ -1,0 +1,52 @@
+{
+    "name": "payments",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "payment_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "student_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "batch_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((amount > (0)::numeric))"]
+        },
+        { 
+            "name": "method", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((method)::text = ANY ((ARRAY['upi'::character varying, 'card'::character varying, 'cash'::character varying])::text[])))"]
+        },
+        { 
+            "name": "paid_on", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by payment_id",
+            "query": "SELECT * FROM public.payments WHERE payment_id = :id LIMIT 1"
+        }
+    ]
+}

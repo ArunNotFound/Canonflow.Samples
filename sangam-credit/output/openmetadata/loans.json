@@ -1,0 +1,46 @@
+{
+    "name": "loans",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "loan_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "member_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "principal", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((principal >= (1000)::numeric) AND (principal <= (500000)::numeric)))"]
+        },
+        { 
+            "name": "tenure_months", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((tenure_months >= 3) AND (tenure_months <= 84)))"]
+        },
+        { 
+            "name": "interest_pct", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((interest_pct > (0)::numeric))", "CHECK ((interest_pct <= (24)::numeric))", "CHECK ((interest_pct <= (18)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by loan_id",
+            "query": "SELECT * FROM public.loans WHERE loan_id = :id LIMIT 1"
+        }
+    ]
+}

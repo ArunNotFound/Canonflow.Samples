@@ -1,0 +1,14 @@
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/bin/Debug/net10.0/FintechWallet.Domain.deps.json
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/bin/Debug/net10.0/FintechWallet.Domain.dll
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/bin/Debug/net10.0/FintechWallet.Domain.pdb
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/bin/Debug/net10.0/FintechWallet.Domain.xml
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/FintechWallet.Domain.fsproj.AssemblyReference.cache
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/FintechWallet.Domain.AssemblyInfoInputs.cache
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/FintechWallet.Domain.AssemblyInfo.fs
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/FintechWallet.Domain.fsproj.CoreCompileInputs.cache
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/FintechWallet.Domain.sourcelink.json
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/FintechWallet.Domain.dll
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/refint/FintechWallet.Domain.dll
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/FintechWallet.Domain.xml
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/FintechWallet.Domain.pdb
+/root/repos/github/fsharp/Canonflow.Samples/src/FintechWallet.Domain/obj/Debug/net10.0/ref/FintechWallet.Domain.dll

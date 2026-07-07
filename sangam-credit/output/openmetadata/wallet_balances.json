@@ -1,0 +1,40 @@
+{
+    "name": "wallet_balances",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "wallet_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "available_balance", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((available_balance >= (0)::numeric))"]
+        },
+        { 
+            "name": "locked_balance", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((locked_balance >= (0)::numeric))"]
+        },
+        { 
+            "name": "updated_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by wallet_id",
+            "query": "SELECT * FROM public.wallet_balances WHERE wallet_id = :id LIMIT 1"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "name": "gurus",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "guru_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "email", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "years_experience", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((years_experience > 0))"]
+        },
+        { 
+            "name": "specialization", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((specialization)::text = ANY ((ARRAY['vocal'::character varying, 'violin'::character varying, 'veena'::character varying, 'mridangam'::character varying, 'flute'::character varying])::text[])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by guru_id",
+            "query": "SELECT * FROM public.gurus WHERE guru_id = :id LIMIT 1"
+        }
+    ]
+}

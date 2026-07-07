@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FintechWallet.Domain</name></assembly>
+<members>
+<member name="T:FintechWallet.Domain.WalletBalance">
+<summary>
+ Balances are derived projections from the immutable ledger
+</summary>
+</member>
+<member name="T:FintechWallet.Domain.Wallet">
+<summary>
+ The Wallet acts as an aggregate root for balances
+</summary>
+</member>
+<member name="T:FintechWallet.Domain.LedgerTransaction">
+<summary>
+ Represents an immutable entry in the financial ledger
+</summary>
+</member>
+<member name="T:FintechWallet.Domain.TransactionStatus">
+<summary>
+ Explicit transaction states as required by the DDD model
+</summary>
+</member>
+<member name="M:FintechWallet.Domain.WalletRules.canDebit(FintechWallet.Domain.WalletBalance,System.Decimal)">
+<summary>
+ Ensure the wallet maintains a valid balance 
+</summary>
+</member>
+</members>
+</doc>

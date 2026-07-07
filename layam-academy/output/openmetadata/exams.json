@@ -1,0 +1,52 @@
+{
+    "name": "exams",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "exam_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "student_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "batch_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "marks", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((marks >= 0) AND (marks <= 100)))"]
+        },
+        { 
+            "name": "theory_marks", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((theory_marks + practical_marks) <= 100))"]
+        },
+        { 
+            "name": "practical_marks", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((theory_marks + practical_marks) <= 100))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by exam_id",
+            "query": "SELECT * FROM public.exams WHERE exam_id = :id LIMIT 1"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "name": "scholarships",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "scholarship_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "student_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "pct_waiver", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((pct_waiver > (0)::numeric) AND (pct_waiver <= (100)::numeric)))"]
+        },
+        { 
+            "name": "min_attendance_pct", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((min_attendance_pct > (90)::numeric))", "CHECK ((min_attendance_pct < (75)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by scholarship_id",
+            "query": "SELECT * FROM public.scholarships WHERE scholarship_id = :id LIMIT 1"
+        }
+    ]
+}

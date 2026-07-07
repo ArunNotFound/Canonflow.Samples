@@ -1,0 +1,52 @@
+{
+    "name": "students",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "student_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "email", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "phone", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length((phone)::text) = 10))"]
+        },
+        { 
+            "name": "age", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((age >= 5) AND (age <= 90)))"]
+        },
+        { 
+            "name": "enrolled_on", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by student_id",
+            "query": "SELECT * FROM public.students WHERE student_id = :id LIMIT 1"
+        }
+    ]
+}

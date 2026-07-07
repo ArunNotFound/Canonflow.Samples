@@ -1,0 +1,34 @@
+{
+    "name": "enrollments",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "student_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "batch_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "discount_pct", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((discount_pct >= (0)::numeric) AND (discount_pct <= (25)::numeric)))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by student_id",
+            "query": "SELECT * FROM public.enrollments WHERE student_id = :id LIMIT 1"
+        }
+    ]
+}
