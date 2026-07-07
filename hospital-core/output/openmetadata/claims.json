@@ -1,0 +1,58 @@
+{
+    "name": "claims",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "claim_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "bill_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "insurance_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "claimed_amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((approved_amount >= (0)::numeric) AND (approved_amount <= claimed_amount)))", "CHECK ((claimed_amount > (0)::numeric))"]
+        },
+        { 
+            "name": "approved_amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((approved_amount >= (0)::numeric) AND (approved_amount <= claimed_amount)))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['SUBMITTED'::text, 'UNDER_REVIEW'::text, 'APPROVED'::text, 'PARTIAL_APPROVED'::text, 'REJECTED'::text])))"]
+        },
+        { 
+            "name": "submitted_date", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by claim_id",
+            "query": "SELECT * FROM public.claims WHERE claim_id = :id LIMIT 1"
+        }
+    ]
+}

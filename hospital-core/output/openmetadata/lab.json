@@ -1,0 +1,64 @@
+{
+    "name": "lab",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "lab_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "visit_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "test_name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "result_value", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "is_abnormal", 
+            "dataType": "BOOLEAN",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "ordered_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((completed_time IS NULL) OR (completed_time >= ordered_time)))"]
+        },
+        { 
+            "name": "completed_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((completed_time IS NULL) OR (completed_time >= ordered_time)))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ORDERED'::text, 'IN_PROGRESS'::text, 'COMPLETED'::text, 'CANCELLED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by lab_id",
+            "query": "SELECT * FROM public.lab WHERE lab_id = :id LIMIT 1"
+        }
+    ]
+}

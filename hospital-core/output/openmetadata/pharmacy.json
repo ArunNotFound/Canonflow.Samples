@@ -1,0 +1,52 @@
+{
+    "name": "pharmacy",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "dispense_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "prescription_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "dispensed_date", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "quantity", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((quantity > 0))"]
+        },
+        { 
+            "name": "pharmacist_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['DISPENSED'::text, 'REJECTED_INTERACTION'::text, 'OUT_OF_STOCK'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by dispense_id",
+            "query": "SELECT * FROM public.pharmacy WHERE dispense_id = :id LIMIT 1"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "name": "doctor",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "doctor_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "license_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "specialty", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((specialty = ANY (ARRAY['GENERAL'::text, 'CARDIOLOGY'::text, 'NEUROLOGY'::text, 'PEDIATRICS'::text, 'ONCOLOGY'::text, 'SURGERY'::text])))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'ON_LEAVE'::text, 'RETIRED'::text, 'TERMINATED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by doctor_id",
+            "query": "SELECT * FROM public.doctor WHERE doctor_id = :id LIMIT 1"
+        }
+    ]
+}

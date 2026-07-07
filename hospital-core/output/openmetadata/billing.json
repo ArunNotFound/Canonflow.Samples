@@ -1,0 +1,52 @@
+{
+    "name": "billing",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "bill_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "visit_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "total_amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((total_amount = (patient_responsibility + insurance_responsibility)))", "CHECK ((total_amount >= (0)::numeric))"]
+        },
+        { 
+            "name": "patient_responsibility", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((patient_responsibility >= (0)::numeric))", "CHECK ((total_amount = (patient_responsibility + insurance_responsibility)))"]
+        },
+        { 
+            "name": "insurance_responsibility", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((insurance_responsibility >= (0)::numeric))", "CHECK ((total_amount = (patient_responsibility + insurance_responsibility)))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['DRAFT'::text, 'PENDING_INSURANCE'::text, 'PATIENT_DUE'::text, 'PAID'::text, 'OVERDUE'::text, 'WRITTEN_OFF'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by bill_id",
+            "query": "SELECT * FROM public.billing WHERE bill_id = :id LIMIT 1"
+        }
+    ]
+}

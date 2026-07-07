@@ -1,0 +1,64 @@
+{
+    "name": "insurance",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "insurance_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "patient_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "provider_name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "policy_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "coverage_limit", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((coverage_limit >= (0)::numeric))"]
+        },
+        { 
+            "name": "copay_percentage", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((copay_percentage >= 0) AND (copay_percentage <= 100)))"]
+        },
+        { 
+            "name": "valid_until", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'EXPIRED'::text, 'SUSPENDED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by insurance_id",
+            "query": "SELECT * FROM public.insurance WHERE insurance_id = :id LIMIT 1"
+        }
+    ]
+}

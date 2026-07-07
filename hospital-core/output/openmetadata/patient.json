@@ -1,0 +1,58 @@
+{
+    "name": "patient",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "patient_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "first_name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "last_name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "date_of_birth", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((date_of_birth <= CURRENT_DATE))"]
+        },
+        { 
+            "name": "gender", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((gender = ANY (ARRAY['M'::text, 'F'::text, 'O'::text])))"]
+        },
+        { 
+            "name": "blood_group", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((blood_group = ANY (ARRAY['A+'::text, 'A-'::text, 'B+'::text, 'B-'::text, 'O+'::text, 'O-'::text, 'AB+'::text, 'AB-'::text])))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['REGISTERED'::text, 'ADMITTED'::text, 'DISCHARGED'::text, 'DECEASED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by patient_id",
+            "query": "SELECT * FROM public.patient WHERE patient_id = :id LIMIT 1"
+        }
+    ]
+}
