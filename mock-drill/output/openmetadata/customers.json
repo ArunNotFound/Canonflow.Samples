@@ -1,0 +1,52 @@
+{
+    "name": "customers",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "customer_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "email", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "age", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((age >= 18) AND (age < 120)))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((status)::text = ANY ((ARRAY['ACTIVE'::character varying, 'SUSPENDED'::character varying, 'CLOSED'::character varying])::text[])))"]
+        },
+        { 
+            "name": "credit_limit", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((credit_limit >= (0)::numeric) AND (credit_limit <= (1000000)::numeric)))"]
+        },
+        { 
+            "name": "created_at", 
+            "dataType": "TIMESTAMP WITHOUT TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by customer_id",
+            "query": "SELECT * FROM public.customers WHERE customer_id = :id LIMIT 1"
+        }
+    ]
+}

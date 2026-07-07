@@ -1,0 +1,52 @@
+{
+    "name": "orders",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "order_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "customer_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((amount > (0)::numeric))"]
+        },
+        { 
+            "name": "currency", 
+            "dataType": "CHARACTER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((currency = ANY (ARRAY['INR'::bpchar, 'USD'::bpchar, 'EUR'::bpchar])))"]
+        },
+        { 
+            "name": "order_status", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((order_status)::text = ANY ((ARRAY['PLACED'::character varying, 'PAID'::character varying, 'CANCELLED'::character varying])::text[])))"]
+        },
+        { 
+            "name": "created_at", 
+            "dataType": "TIMESTAMP WITHOUT TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by order_id",
+            "query": "SELECT * FROM public.orders WHERE order_id = :id LIMIT 1"
+        }
+    ]
+}
