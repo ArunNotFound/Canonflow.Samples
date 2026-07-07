@@ -1,0 +1,40 @@
+{
+    "name": "loyalty",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "loyalty_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "passenger_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "tier", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((tier = ANY (ARRAY['BLUE'::text, 'SILVER'::text, 'GOLD'::text, 'PLATINUM'::text])))"]
+        },
+        { 
+            "name": "points", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((points >= 0))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by loyalty_id",
+            "query": "SELECT * FROM public.loyalty WHERE loyalty_id = :id LIMIT 1"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "name": "crew",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "crew_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "employee_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "role", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((role = ANY (ARRAY['PILOT'::text, 'COPILOT'::text, 'FLIGHT_ATTENDANT'::text, 'PURSER'::text])))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'REST'::text, 'ON_LEAVE'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by crew_id",
+            "query": "SELECT * FROM public.crew WHERE crew_id = :id LIMIT 1"
+        }
+    ]
+}

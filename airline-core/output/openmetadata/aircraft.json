@@ -1,0 +1,40 @@
+{
+    "name": "aircraft",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "aircraft_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "tail_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "model", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "max_capacity", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((max_capacity > 0))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by aircraft_id",
+            "query": "SELECT * FROM public.aircraft WHERE aircraft_id = :id LIMIT 1"
+        }
+    ]
+}

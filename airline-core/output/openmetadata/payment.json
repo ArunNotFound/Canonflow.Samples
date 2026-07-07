@@ -1,0 +1,52 @@
+{
+    "name": "payment",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "payment_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "booking_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((amount > (0)::numeric))"]
+        },
+        { 
+            "name": "currency", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length(currency) = 3))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['PENDING'::text, 'AUTHORIZED'::text, 'CAPTURED'::text, 'REFUNDED'::text, 'FAILED'::text])))"]
+        },
+        { 
+            "name": "timestamp", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by payment_id",
+            "query": "SELECT * FROM public.payment WHERE payment_id = :id LIMIT 1"
+        }
+    ]
+}

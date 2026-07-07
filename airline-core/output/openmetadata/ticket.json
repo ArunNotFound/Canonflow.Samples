@@ -1,0 +1,46 @@
+{
+    "name": "ticket",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "ticket_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "ticket_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length(ticket_number) = 13))"]
+        },
+        { 
+            "name": "booking_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "issue_date", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ISSUED'::text, 'USED'::text, 'VOID'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by ticket_id",
+            "query": "SELECT * FROM public.ticket WHERE ticket_id = :id LIMIT 1"
+        }
+    ]
+}

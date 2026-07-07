@@ -1,0 +1,34 @@
+{
+    "name": "seat",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "aircraft_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "seat_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "class", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((class = ANY (ARRAY['ECONOMY'::text, 'PREMIUM'::text, 'BUSINESS'::text, 'FIRST'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by aircraft_id",
+            "query": "SELECT * FROM public.seat WHERE aircraft_id = :id LIMIT 1"
+        }
+    ]
+}

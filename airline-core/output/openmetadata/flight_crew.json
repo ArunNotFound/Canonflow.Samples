@@ -1,0 +1,28 @@
+{
+    "name": "flight_crew",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "flight_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "crew_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by flight_id",
+            "query": "SELECT * FROM public.flight_crew WHERE flight_id = :id LIMIT 1"
+        }
+    ]
+}

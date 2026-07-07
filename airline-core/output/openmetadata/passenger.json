@@ -1,0 +1,46 @@
+{
+    "name": "passenger",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "passenger_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "passport_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "dob", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((dob < CURRENT_DATE))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'BANNED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by passenger_id",
+            "query": "SELECT * FROM public.passenger WHERE passenger_id = :id LIMIT 1"
+        }
+    ]
+}

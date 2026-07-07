@@ -1,0 +1,64 @@
+{
+    "name": "flight",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "flight_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "flight_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "aircraft_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "departure_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((arrival_time > departure_time))"]
+        },
+        { 
+            "name": "arrival_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((arrival_time > departure_time))"]
+        },
+        { 
+            "name": "origin", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length(origin) = 3))", "CHECK ((origin <> destination))"]
+        },
+        { 
+            "name": "destination", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length(destination) = 3))", "CHECK ((origin <> destination))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['SCHEDULED'::text, 'BOARDING'::text, 'DEPARTED'::text, 'ARRIVED'::text, 'CANCELLED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by flight_id",
+            "query": "SELECT * FROM public.flight WHERE flight_id = :id LIMIT 1"
+        }
+    ]
+}
