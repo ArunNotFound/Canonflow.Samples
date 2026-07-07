@@ -1,0 +1,34 @@
+{
+    "name": "account",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "owner_name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "cash_balance", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((cash_balance >= (0)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by account_id",
+            "query": "SELECT * FROM public.account WHERE account_id = :id LIMIT 1"
+        }
+    ]
+}

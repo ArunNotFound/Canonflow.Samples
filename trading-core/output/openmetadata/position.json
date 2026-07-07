@@ -1,0 +1,40 @@
+{
+    "name": "position",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "position_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "ticker", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((length(ticker) >= 1) AND (length(ticker) <= 5)))"]
+        },
+        { 
+            "name": "shares", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((shares >= 0))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by position_id",
+            "query": "SELECT * FROM public.position WHERE position_id = :id LIMIT 1"
+        }
+    ]
+}

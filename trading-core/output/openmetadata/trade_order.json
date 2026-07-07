@@ -1,0 +1,64 @@
+{
+    "name": "trade_order",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "order_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "ticker", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((length(ticker) >= 1) AND (length(ticker) <= 5)))"]
+        },
+        { 
+            "name": "side", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((side = ANY (ARRAY['BUY'::text, 'SELL'::text])))"]
+        },
+        { 
+            "name": "quantity", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((quantity > 0))"]
+        },
+        { 
+            "name": "limit_price", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((limit_price > (0)::numeric))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['PENDING'::text, 'FILLED'::text, 'REJECTED'::text])))"]
+        },
+        { 
+            "name": "submitted_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by order_id",
+            "query": "SELECT * FROM public.trade_order WHERE order_id = :id LIMIT 1"
+        }
+    ]
+}

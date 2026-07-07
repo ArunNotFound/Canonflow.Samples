@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: trade
+      POSTGRES_PASSWORD: trade
+      POSTGRES_DB: trade
+    ports:
+      - "5438:5432"
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
