@@ -1,0 +1,46 @@
+{
+    "name": "fixed_deposit",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "fd_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "principal", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((principal > (0)::numeric))"]
+        },
+        { 
+            "name": "maturity_date", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'MATURED'::text, 'BROKEN'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by fd_id",
+            "query": "SELECT * FROM public.fixed_deposit WHERE fd_id = :id LIMIT 1"
+        }
+    ]
+}

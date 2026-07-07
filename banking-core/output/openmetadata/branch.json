@@ -1,0 +1,40 @@
+{
+    "name": "branch",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "branch_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "branch_code", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length(branch_code) = 4))"]
+        },
+        { 
+            "name": "name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'CLOSED'::text, 'SUSPENDED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by branch_id",
+            "query": "SELECT * FROM public.branch WHERE branch_id = :id LIMIT 1"
+        }
+    ]
+}

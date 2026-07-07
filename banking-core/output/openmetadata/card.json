@@ -1,0 +1,46 @@
+{
+    "name": "card",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "card_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "card_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length(card_number) >= 16))"]
+        },
+        { 
+            "name": "card_type", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((card_type = ANY (ARRAY['DEBIT'::text, 'CREDIT'::text, 'PREPAID'::text])))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'BLOCKED'::text, 'EXPIRED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by card_id",
+            "query": "SELECT * FROM public.card WHERE card_id = :id LIMIT 1"
+        }
+    ]
+}

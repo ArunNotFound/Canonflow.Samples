@@ -1,0 +1,52 @@
+{
+    "name": "statement",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "statement_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "period_start", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((period_end > period_start))"]
+        },
+        { 
+            "name": "period_end", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((period_end > period_start))"]
+        },
+        { 
+            "name": "opening_balance", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "closing_balance", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by statement_id",
+            "query": "SELECT * FROM public.statement WHERE statement_id = :id LIMIT 1"
+        }
+    ]
+}

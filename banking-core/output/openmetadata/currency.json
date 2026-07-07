@@ -1,0 +1,28 @@
+{
+    "name": "currency",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "currency_code", 
+            "dataType": "TEXT",
+            "isPrimaryKey": true,
+            "verifiedConstraints": ["CHECK ((length(currency_code) = 3))"]
+        },
+        { 
+            "name": "name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by currency_code",
+            "query": "SELECT * FROM public.currency WHERE currency_code = :id LIMIT 1"
+        }
+    ]
+}

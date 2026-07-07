@@ -1,0 +1,40 @@
+{
+    "name": "interest_rate",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "rate_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_type", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "rate_percentage", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((rate_percentage >= (0)::numeric) AND (rate_percentage <= (100)::numeric)))"]
+        },
+        { 
+            "name": "effective_date", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by rate_id",
+            "query": "SELECT * FROM public.interest_rate WHERE rate_id = :id LIMIT 1"
+        }
+    ]
+}

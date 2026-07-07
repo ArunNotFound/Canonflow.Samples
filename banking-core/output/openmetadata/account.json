@@ -1,0 +1,58 @@
+{
+    "name": "account",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "customer_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "branch_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "currency", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_type", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((account_type = ANY (ARRAY['SAVINGS'::text, 'CURRENT'::text, 'LOAN'::text, 'FD'::text])))"]
+        },
+        { 
+            "name": "balance", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['OPEN'::text, 'CLOSED'::text, 'FROZEN'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by account_id",
+            "query": "SELECT * FROM public.account WHERE account_id = :id LIMIT 1"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "name": "loan",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "loan_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "principal_amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((principal_amount > (0)::numeric))"]
+        },
+        { 
+            "name": "outstanding_balance", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((outstanding_balance >= (0)::numeric))"]
+        },
+        { 
+            "name": "interest_rate", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((interest_rate >= (0)::numeric))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['DISBURSED'::text, 'CLOSED'::text, 'DEFAULTED'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by loan_id",
+            "query": "SELECT * FROM public.loan WHERE loan_id = :id LIMIT 1"
+        }
+    ]
+}

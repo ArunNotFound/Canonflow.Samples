@@ -1,0 +1,52 @@
+{
+    "name": "customer",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "customer_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "cif_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length(cif_number) = 8))"]
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "date_of_birth", 
+            "dataType": "DATE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((date_of_birth < CURRENT_DATE))"]
+        },
+        { 
+            "name": "risk_rating", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((risk_rating = ANY (ARRAY['LOW'::text, 'MEDIUM'::text, 'HIGH'::text])))"]
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'INACTIVE'::text, 'DORMANT'::text])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by customer_id",
+            "query": "SELECT * FROM public.customer WHERE customer_id = :id LIMIT 1"
+        }
+    ]
+}

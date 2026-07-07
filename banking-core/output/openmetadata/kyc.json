@@ -1,0 +1,46 @@
+{
+    "name": "kyc",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "kyc_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "customer_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "document_type", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((document_type = ANY (ARRAY['PASSPORT'::text, 'NATIONAL_ID'::text, 'DRIVERS_LICENSE'::text])))"]
+        },
+        { 
+            "name": "document_number", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "verified", 
+            "dataType": "BOOLEAN",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by kyc_id",
+            "query": "SELECT * FROM public.kyc WHERE kyc_id = :id LIMIT 1"
+        }
+    ]
+}

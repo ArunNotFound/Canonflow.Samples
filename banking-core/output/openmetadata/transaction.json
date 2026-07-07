@@ -1,0 +1,58 @@
+{
+    "name": "transaction",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "txn_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((amount <> (0)::numeric))"]
+        },
+        { 
+            "name": "txn_type", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((txn_type = ANY (ARRAY['CREDIT'::text, 'DEBIT'::text])))"]
+        },
+        { 
+            "name": "currency", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "timestamp", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "reference", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by txn_id",
+            "query": "SELECT * FROM public.transaction WHERE txn_id = :id LIMIT 1"
+        }
+    ]
+}

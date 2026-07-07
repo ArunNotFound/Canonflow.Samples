@@ -1,0 +1,40 @@
+{
+    "name": "limits",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "limit_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "account_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "daily_transfer_limit", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((daily_transfer_limit >= (0)::numeric))"]
+        },
+        { 
+            "name": "overdraft_limit", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((overdraft_limit >= (0)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by limit_id",
+            "query": "SELECT * FROM public.limits WHERE limit_id = :id LIMIT 1"
+        }
+    ]
+}

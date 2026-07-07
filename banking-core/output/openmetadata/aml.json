@@ -1,0 +1,40 @@
+{
+    "name": "aml",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "aml_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "customer_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "screening_status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((screening_status = ANY (ARRAY['CLEARED'::text, 'FLAGGED'::text, 'UNDER_REVIEW'::text])))"]
+        },
+        { 
+            "name": "last_screened", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by aml_id",
+            "query": "SELECT * FROM public.aml WHERE aml_id = :id LIMIT 1"
+        }
+    ]
+}

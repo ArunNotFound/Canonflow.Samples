@@ -1,0 +1,46 @@
+{
+    "name": "exchange_rate",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "rate_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "base_currency", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "target_currency", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "rate", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((rate > (0)::numeric))"]
+        },
+        { 
+            "name": "effective_date", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by rate_id",
+            "query": "SELECT * FROM public.exchange_rate WHERE rate_id = :id LIMIT 1"
+        }
+    ]
+}
