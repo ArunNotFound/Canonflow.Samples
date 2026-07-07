@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { validate_ledger_transactions } from './validators';
+import * as Validators from '../validators';
 
 export default function Ledger_transactionsForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -21,6 +21,7 @@ export default function Ledger_transactionsForm() {
           {...register('transaction_id')} 
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
+        {errors.transaction_id && <p className="text-red-500 text-xs mt-1">{(errors.transaction_id as any).message}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">wallet_id</label>
@@ -29,14 +30,16 @@ export default function Ledger_transactionsForm() {
           {...register('wallet_id')} 
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
+        {errors.wallet_id && <p className="text-red-500 text-xs mt-1">{(errors.wallet_id as any).message}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">amount</label>
         <input 
           type="number" 
-          {...register('amount')} 
+          {...register('amount', { validate: (v, formValues) => Validators.validate_ledger_transactions_amount(formValues) || 'Invalid value' })} 
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
+        {errors.amount && <p className="text-red-500 text-xs mt-1">{(errors.amount as any).message}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">currency</label>
@@ -45,22 +48,25 @@ export default function Ledger_transactionsForm() {
           {...register('currency')} 
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
+        {errors.currency && <p className="text-red-500 text-xs mt-1">{(errors.currency as any).message}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">direction</label>
         <input 
           type="text" 
-          {...register('direction')} 
+          {...register('direction', { validate: (v, formValues) => Validators.validate_ledger_transactions_direction(formValues) || 'Invalid value' })} 
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
+        {errors.direction && <p className="text-red-500 text-xs mt-1">{(errors.direction as any).message}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">status</label>
         <input 
           type="text" 
-          {...register('status')} 
+          {...register('status', { validate: (v, formValues) => Validators.validate_ledger_transactions_status(formValues) || 'Invalid value' })} 
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
+        {errors.status && <p className="text-red-500 text-xs mt-1">{(errors.status as any).message}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">reference_id</label>
@@ -69,6 +75,7 @@ export default function Ledger_transactionsForm() {
           {...register('reference_id')} 
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
+        {errors.reference_id && <p className="text-red-500 text-xs mt-1">{(errors.reference_id as any).message}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">created_at</label>
@@ -77,6 +84,7 @@ export default function Ledger_transactionsForm() {
           {...register('created_at')} 
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
+        {errors.created_at && <p className="text-red-500 text-xs mt-1">{(errors.created_at as any).message}</p>}
       </div>
       <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit</button>
     </form>
