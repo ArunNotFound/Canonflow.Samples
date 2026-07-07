@@ -1,0 +1,58 @@
+name: CanonFlow Drift Check
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: fintech
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 10.0.x
+        
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install CanonFlow Core (from sibling repo if mono-repo, or pull published tool)
+      # For demo purposes, we assume CanonFlow is accessible or installed.
+      # Since Canonflow.Samples is a separate repo, we might need to build it or fetch the CLI.
+      # For now, we simulate installing the canonflow CLI tool.
+      run: |
+        echo "Installing CanonFlow CLI..."
+        # dotnet tool install -g CanonFlow.Cli (if published)
+        # We will clone CanonFlow and build it since it's not on Nuget yet.
+        git clone https://github.com/ArunNotFound/CanonFlow.git /tmp/CanonFlow
+        dotnet build /tmp/CanonFlow/src/Canon.Cli/Canon.Cli.fsproj
+
+    - name: Initialize Database Schema
+      run: |
+        PGPASSWORD=password psql -h localhost -U postgres -d fintech -f schema.sql
+
+    - name: Run CanonFlow Verification
+      run: |
+        dotnet run --project /tmp/CanonFlow/src/Canon.Cli/Canon.Cli.fsproj -- --pg "Host=localhost;Database=fintech;Username=postgres;Password=password" --contracts --verify
