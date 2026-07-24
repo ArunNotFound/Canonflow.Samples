@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="trading_core.Tests">
+    <resource name="FSharpSignatureData.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.trading_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.trading_core.Tests" action="remove"></resource>
+  </assembly>
+</linker>

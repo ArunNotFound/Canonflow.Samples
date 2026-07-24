@@ -1,0 +1,510 @@
+{
+  "tables": [
+    {
+      "name": "aircraft",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "aircraft_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "tail_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "model",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "max_capacity",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((max_capacity \u003E 0))"
+          ],
+          "provenance": [
+            "CHECK ((max_capacity \u003E 0))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "booking",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "booking_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "passenger_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "flight_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "aircraft_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "seat_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "booking_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027HOLD\u0027::text, \u0027CONFIRMED\u0027::text, \u0027CANCELLED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027HOLD\u0027::text, \u0027CONFIRMED\u0027::text, \u0027CANCELLED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "crew",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "crew_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "employee_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "role",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((role = ANY (ARRAY[\u0027PILOT\u0027::text, \u0027COPILOT\u0027::text, \u0027FLIGHT_ATTENDANT\u0027::text, \u0027PURSER\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((role = ANY (ARRAY[\u0027PILOT\u0027::text, \u0027COPILOT\u0027::text, \u0027FLIGHT_ATTENDANT\u0027::text, \u0027PURSER\u0027::text])))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027REST\u0027::text, \u0027ON_LEAVE\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027REST\u0027::text, \u0027ON_LEAVE\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "flight",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "flight_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "flight_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "aircraft_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "departure_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [
+            "((arrival_time \u003E departure_time))"
+          ],
+          "provenance": [
+            "CHECK ((arrival_time \u003E departure_time))"
+          ]
+        },
+        {
+          "name": "arrival_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [
+            "((arrival_time \u003E departure_time))"
+          ],
+          "provenance": [
+            "CHECK ((arrival_time \u003E departure_time))"
+          ]
+        },
+        {
+          "name": "origin",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((length(origin) = 3))",
+            "((origin \u003C\u003E destination))"
+          ],
+          "provenance": [
+            "CHECK ((length(origin) = 3))",
+            "CHECK ((origin \u003C\u003E destination))"
+          ]
+        },
+        {
+          "name": "destination",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((length(destination) = 3))",
+            "((origin \u003C\u003E destination))"
+          ],
+          "provenance": [
+            "CHECK ((length(destination) = 3))",
+            "CHECK ((origin \u003C\u003E destination))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027SCHEDULED\u0027::text, \u0027BOARDING\u0027::text, \u0027DEPARTED\u0027::text, \u0027ARRIVED\u0027::text, \u0027CANCELLED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027SCHEDULED\u0027::text, \u0027BOARDING\u0027::text, \u0027DEPARTED\u0027::text, \u0027ARRIVED\u0027::text, \u0027CANCELLED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "flight_crew",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "flight_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "crew_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": false,
+      "isAppEnforced": true,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "loyalty",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "loyalty_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "passenger_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "tier",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((tier = ANY (ARRAY[\u0027BLUE\u0027::text, \u0027SILVER\u0027::text, \u0027GOLD\u0027::text, \u0027PLATINUM\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((tier = ANY (ARRAY[\u0027BLUE\u0027::text, \u0027SILVER\u0027::text, \u0027GOLD\u0027::text, \u0027PLATINUM\u0027::text])))"
+          ]
+        },
+        {
+          "name": "points",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((points \u003E= 0))"
+          ],
+          "provenance": [
+            "CHECK ((points \u003E= 0))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "passenger",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "passenger_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "passport_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "full_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "dob",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [
+            "((dob \u003C CURRENT_DATE))"
+          ],
+          "provenance": [
+            "CHECK ((dob \u003C CURRENT_DATE))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027BANNED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027BANNED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "payment",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "payment_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "booking_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((amount \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((amount \u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "currency",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((length(currency) = 3))"
+          ],
+          "provenance": [
+            "CHECK ((length(currency) = 3))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027PENDING\u0027::text, \u0027AUTHORIZED\u0027::text, \u0027CAPTURED\u0027::text, \u0027REFUNDED\u0027::text, \u0027FAILED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027PENDING\u0027::text, \u0027AUTHORIZED\u0027::text, \u0027CAPTURED\u0027::text, \u0027REFUNDED\u0027::text, \u0027FAILED\u0027::text])))"
+          ]
+        },
+        {
+          "name": "timestamp",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "seat",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "aircraft_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "seat_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "class",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((class = ANY (ARRAY[\u0027ECONOMY\u0027::text, \u0027PREMIUM\u0027::text, \u0027BUSINESS\u0027::text, \u0027FIRST\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((class = ANY (ARRAY[\u0027ECONOMY\u0027::text, \u0027PREMIUM\u0027::text, \u0027BUSINESS\u0027::text, \u0027FIRST\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "ticket",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "ticket_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "ticket_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((length(ticket_number) = 13))"
+          ],
+          "provenance": [
+            "CHECK ((length(ticket_number) = 13))"
+          ]
+        },
+        {
+          "name": "booking_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "issue_date",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ISSUED\u0027::text, \u0027USED\u0027::text, \u0027VOID\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ISSUED\u0027::text, \u0027USED\u0027::text, \u0027VOID\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

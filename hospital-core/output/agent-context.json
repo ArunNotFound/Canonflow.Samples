@@ -1,0 +1,627 @@
+{
+  "tables": [
+    {
+      "name": "billing",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "bill_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "visit_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "total_amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((total_amount = (patient_responsibility \u002B insurance_responsibility)))",
+            "((total_amount \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((total_amount = (patient_responsibility \u002B insurance_responsibility)))",
+            "CHECK ((total_amount \u003E= (0)::numeric))"
+          ]
+        },
+        {
+          "name": "patient_responsibility",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((patient_responsibility \u003E= (0)::numeric))",
+            "((total_amount = (patient_responsibility \u002B insurance_responsibility)))"
+          ],
+          "provenance": [
+            "CHECK ((patient_responsibility \u003E= (0)::numeric))",
+            "CHECK ((total_amount = (patient_responsibility \u002B insurance_responsibility)))"
+          ]
+        },
+        {
+          "name": "insurance_responsibility",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((insurance_responsibility \u003E= (0)::numeric))",
+            "((total_amount = (patient_responsibility \u002B insurance_responsibility)))"
+          ],
+          "provenance": [
+            "CHECK ((insurance_responsibility \u003E= (0)::numeric))",
+            "CHECK ((total_amount = (patient_responsibility \u002B insurance_responsibility)))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027DRAFT\u0027::text, \u0027PENDING_INSURANCE\u0027::text, \u0027PATIENT_DUE\u0027::text, \u0027PAID\u0027::text, \u0027OVERDUE\u0027::text, \u0027WRITTEN_OFF\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027DRAFT\u0027::text, \u0027PENDING_INSURANCE\u0027::text, \u0027PATIENT_DUE\u0027::text, \u0027PAID\u0027::text, \u0027OVERDUE\u0027::text, \u0027WRITTEN_OFF\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "claims",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "claim_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "bill_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "insurance_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "claimed_amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((approved_amount \u003E= (0)::numeric) AND (approved_amount \u003C= claimed_amount)))",
+            "((claimed_amount \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK (((approved_amount \u003E= (0)::numeric) AND (approved_amount \u003C= claimed_amount)))",
+            "CHECK ((claimed_amount \u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "approved_amount",
+          "dataType": "numeric",
+          "isNullable": true,
+          "constraints": [
+            "(((approved_amount \u003E= (0)::numeric) AND (approved_amount \u003C= claimed_amount)))"
+          ],
+          "provenance": [
+            "CHECK (((approved_amount \u003E= (0)::numeric) AND (approved_amount \u003C= claimed_amount)))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027SUBMITTED\u0027::text, \u0027UNDER_REVIEW\u0027::text, \u0027APPROVED\u0027::text, \u0027PARTIAL_APPROVED\u0027::text, \u0027REJECTED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027SUBMITTED\u0027::text, \u0027UNDER_REVIEW\u0027::text, \u0027APPROVED\u0027::text, \u0027PARTIAL_APPROVED\u0027::text, \u0027REJECTED\u0027::text])))"
+          ]
+        },
+        {
+          "name": "submitted_date",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "doctor",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "doctor_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "license_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "full_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "specialty",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((specialty = ANY (ARRAY[\u0027GENERAL\u0027::text, \u0027CARDIOLOGY\u0027::text, \u0027NEUROLOGY\u0027::text, \u0027PEDIATRICS\u0027::text, \u0027ONCOLOGY\u0027::text, \u0027SURGERY\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((specialty = ANY (ARRAY[\u0027GENERAL\u0027::text, \u0027CARDIOLOGY\u0027::text, \u0027NEUROLOGY\u0027::text, \u0027PEDIATRICS\u0027::text, \u0027ONCOLOGY\u0027::text, \u0027SURGERY\u0027::text])))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027ON_LEAVE\u0027::text, \u0027RETIRED\u0027::text, \u0027TERMINATED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027ON_LEAVE\u0027::text, \u0027RETIRED\u0027::text, \u0027TERMINATED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "insurance",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "insurance_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "patient_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "provider_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "policy_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "coverage_limit",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((coverage_limit \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((coverage_limit \u003E= (0)::numeric))"
+          ]
+        },
+        {
+          "name": "copay_percentage",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((copay_percentage \u003E= 0) AND (copay_percentage \u003C= 100)))"
+          ],
+          "provenance": [
+            "CHECK (((copay_percentage \u003E= 0) AND (copay_percentage \u003C= 100)))"
+          ]
+        },
+        {
+          "name": "valid_until",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027EXPIRED\u0027::text, \u0027SUSPENDED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027EXPIRED\u0027::text, \u0027SUSPENDED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "lab",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "lab_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "visit_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "test_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "result_value",
+          "dataType": "text",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "is_abnormal",
+          "dataType": "boolean",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "ordered_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [
+            "(((completed_time IS NULL) OR (completed_time \u003E= ordered_time)))"
+          ],
+          "provenance": [
+            "CHECK (((completed_time IS NULL) OR (completed_time \u003E= ordered_time)))"
+          ]
+        },
+        {
+          "name": "completed_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [
+            "(((completed_time IS NULL) OR (completed_time \u003E= ordered_time)))"
+          ],
+          "provenance": [
+            "CHECK (((completed_time IS NULL) OR (completed_time \u003E= ordered_time)))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ORDERED\u0027::text, \u0027IN_PROGRESS\u0027::text, \u0027COMPLETED\u0027::text, \u0027CANCELLED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ORDERED\u0027::text, \u0027IN_PROGRESS\u0027::text, \u0027COMPLETED\u0027::text, \u0027CANCELLED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "patient",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "patient_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "first_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "last_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "date_of_birth",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [
+            "((date_of_birth \u003C= CURRENT_DATE))"
+          ],
+          "provenance": [
+            "CHECK ((date_of_birth \u003C= CURRENT_DATE))"
+          ]
+        },
+        {
+          "name": "gender",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((gender = ANY (ARRAY[\u0027M\u0027::text, \u0027F\u0027::text, \u0027O\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((gender = ANY (ARRAY[\u0027M\u0027::text, \u0027F\u0027::text, \u0027O\u0027::text])))"
+          ]
+        },
+        {
+          "name": "blood_group",
+          "dataType": "text",
+          "isNullable": true,
+          "constraints": [
+            "((blood_group = ANY (ARRAY[\u0027A\u002B\u0027::text, \u0027A-\u0027::text, \u0027B\u002B\u0027::text, \u0027B-\u0027::text, \u0027O\u002B\u0027::text, \u0027O-\u0027::text, \u0027AB\u002B\u0027::text, \u0027AB-\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((blood_group = ANY (ARRAY[\u0027A\u002B\u0027::text, \u0027A-\u0027::text, \u0027B\u002B\u0027::text, \u0027B-\u0027::text, \u0027O\u002B\u0027::text, \u0027O-\u0027::text, \u0027AB\u002B\u0027::text, \u0027AB-\u0027::text])))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027REGISTERED\u0027::text, \u0027ADMITTED\u0027::text, \u0027DISCHARGED\u0027::text, \u0027DECEASED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027REGISTERED\u0027::text, \u0027ADMITTED\u0027::text, \u0027DISCHARGED\u0027::text, \u0027DECEASED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "pharmacy",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "dispense_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "prescription_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "dispensed_date",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "quantity",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((quantity \u003E 0))"
+          ],
+          "provenance": [
+            "CHECK ((quantity \u003E 0))"
+          ]
+        },
+        {
+          "name": "pharmacist_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027DISPENSED\u0027::text, \u0027REJECTED_INTERACTION\u0027::text, \u0027OUT_OF_STOCK\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027DISPENSED\u0027::text, \u0027REJECTED_INTERACTION\u0027::text, \u0027OUT_OF_STOCK\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "prescription",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "prescription_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "visit_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "doctor_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "medication_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "dosage",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "frequency",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "duration_days",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((duration_days \u003E 0) AND (duration_days \u003C= 365)))"
+          ],
+          "provenance": [
+            "CHECK (((duration_days \u003E 0) AND (duration_days \u003C= 365)))"
+          ]
+        },
+        {
+          "name": "is_controlled_substance",
+          "dataType": "boolean",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027FILLED\u0027::text, \u0027CANCELLED\u0027::text, \u0027EXPIRED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027FILLED\u0027::text, \u0027CANCELLED\u0027::text, \u0027EXPIRED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "visit",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "visit_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "patient_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "doctor_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "visit_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "type",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((type = ANY (ARRAY[\u0027OUTPATIENT\u0027::text, \u0027INPATIENT\u0027::text, \u0027EMERGENCY\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((type = ANY (ARRAY[\u0027OUTPATIENT\u0027::text, \u0027INPATIENT\u0027::text, \u0027EMERGENCY\u0027::text])))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027SCHEDULED\u0027::text, \u0027IN_PROGRESS\u0027::text, \u0027COMPLETED\u0027::text, \u0027CANCELLED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027SCHEDULED\u0027::text, \u0027IN_PROGRESS\u0027::text, \u0027COMPLETED\u0027::text, \u0027CANCELLED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

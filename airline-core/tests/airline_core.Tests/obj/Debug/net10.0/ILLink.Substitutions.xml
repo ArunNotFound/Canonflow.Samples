@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="airline_core.Tests">
+    <resource name="FSharpSignatureData.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.airline_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.airline_core.Tests" action="remove"></resource>
+  </assembly>
+</linker>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="hospital_core.Tests">
+    <resource name="FSharpSignatureData.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.hospital_core.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.hospital_core.Tests" action="remove"></resource>
+  </assembly>
+</linker>

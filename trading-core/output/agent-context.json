@@ -1,0 +1,168 @@
+{
+  "tables": [
+    {
+      "name": "account",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "owner_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "cash_balance",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((cash_balance \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((cash_balance \u003E= (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "position",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "position_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "ticker",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "(((length(ticker) \u003E= 1) AND (length(ticker) \u003C= 5)))"
+          ],
+          "provenance": [
+            "CHECK (((length(ticker) \u003E= 1) AND (length(ticker) \u003C= 5)))"
+          ]
+        },
+        {
+          "name": "shares",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((shares \u003E= 0))"
+          ],
+          "provenance": [
+            "CHECK ((shares \u003E= 0))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "trade_order",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "order_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "ticker",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "(((length(ticker) \u003E= 1) AND (length(ticker) \u003C= 5)))"
+          ],
+          "provenance": [
+            "CHECK (((length(ticker) \u003E= 1) AND (length(ticker) \u003C= 5)))"
+          ]
+        },
+        {
+          "name": "side",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((side = ANY (ARRAY[\u0027BUY\u0027::text, \u0027SELL\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((side = ANY (ARRAY[\u0027BUY\u0027::text, \u0027SELL\u0027::text])))"
+          ]
+        },
+        {
+          "name": "quantity",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((quantity \u003E 0))"
+          ],
+          "provenance": [
+            "CHECK ((quantity \u003E 0))"
+          ]
+        },
+        {
+          "name": "limit_price",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((limit_price \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((limit_price \u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027PENDING\u0027::text, \u0027FILLED\u0027::text, \u0027REJECTED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027PENDING\u0027::text, \u0027FILLED\u0027::text, \u0027REJECTED\u0027::text])))"
+          ]
+        },
+        {
+          "name": "submitted_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}
