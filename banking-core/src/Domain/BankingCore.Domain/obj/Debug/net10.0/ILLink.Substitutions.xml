@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="BankingCore.Domain">
+    <resource name="FSharpSignatureData.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationData.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.BankingCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.BankingCore.Domain" action="remove"></resource>
+  </assembly>
+</linker>

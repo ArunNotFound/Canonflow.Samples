@@ -5,10 +5,18 @@ open System
 // ==========================================
 // 1. Value Objects & Refinement Types
 // ==========================================
-// Surprise #1: Boilerplate validation in code for simple SQL constraints
+module Constants =
+    [<Literal>]
+    let CifLength = 8
+    [<Literal>]
+    let BranchCodeLength = 4
+    [<Literal>]
+    let CardMinLength = 16
+    [<Literal>]
+    let MaxPercentage = 100
+
 module ValueObjects =
     
-    // Equivalent to: CHECK (amount > 0)
     type PositiveAmount = private PositiveAmount of decimal
     module PositiveAmount =
         let create (v: decimal) = 
@@ -16,7 +24,6 @@ module ValueObjects =
             else Error "Amount must be strictly positive"
         let value (PositiveAmount v) = v
 
-    // Equivalent to: CHECK (amount >= 0)
     type NonNegativeAmount = private NonNegativeAmount of decimal
     module NonNegativeAmount =
         let create (v: decimal) = 
@@ -24,33 +31,52 @@ module ValueObjects =
             else Error "Amount cannot be negative"
         let value (NonNegativeAmount v) = v
 
-    // Equivalent to: CHECK (length(cif_number) = 8)
     type CifNumber = private CifNumber of string
     module CifNumber =
         let create (s: string) =
-            if s.Length = 8 then Ok (CifNumber s)
+            if s.Length = Constants.CifLength then Ok (CifNumber s)
             else Error "CIF must be exactly 8 characters"
         let value (CifNumber s) = s
+        
+    type BranchCode = private BranchCode of string
+    module BranchCode =
+        let create (s: string) =
+            if s.Length = Constants.BranchCodeLength then Ok (BranchCode s)
+            else Error "Branch code must be exactly 4 characters"
+        let value (BranchCode s) = s
 
-    // Equivalent to: CHECK (allocation_percentage > 0 AND allocation_percentage <= 100)
+    type CardNumber = private CardNumber of string
+    module CardNumber =
+        let create (s: string) =
+            if s.Length >= Constants.CardMinLength then Ok (CardNumber s)
+            else Error "Card number must be at least 16 characters"
+        let value (CardNumber s) = s
+
     type Percentage = private Percentage of int
     module Percentage =
         let create (v: int) =
-            if v > 0 && v <= 100 then Ok (Percentage v)
+            if v > 0 && v <= Constants.MaxPercentage then Ok (Percentage v)
             else Error "Percentage must be between 1 and 100"
         let value (Percentage v) = v
 
 // ==========================================
 // 2. Enums / Discriminated Unions
 // ==========================================
-// Surprise #2: F# DUs are behaviorally richer but don't map cleanly to raw SQL strings
-// without boilerplate mapping functions.
-type AccountStatus = 
-    | Open 
-    | Closed 
-    | Frozen of reason: string // SQL didn't capture the 'reason' cleanly without a separate column!
-
+type AccountStatus = Open | Closed | Frozen of reason: string
+type BranchStatus = Active | Closed | Suspended
+type EmployeeRole = Teller | Manager | Auditor | Officer
 type RiskRating = Low | Medium | High
+type CustomerStatus = Active | Inactive | Dormant
+type KycDocType = Passport | NationalId | DriversLicense
+type AmlScreeningStatus = Cleared | Flagged | UnderReview
+type FdStatus = Active | Matured | Broken
+type LoanStatus = Disbursed | Closed | Defaulted
+type CardType = Debit | Credit | Prepaid
+type CardStatus = Active | Blocked | Expired
+type EntryType = Dr | Cr
+type NotificationChannel = Sms | Email | Push
+type NotificationStatus = Pending | Sent | Failed
+
 type TransactionType = Credit | Debit
 
 // ==========================================
@@ -59,13 +85,66 @@ type TransactionType = Credit | Debit
 type CustomerId = CustomerId of Guid
 type AccountId = AccountId of Guid
 type TransactionId = TransactionId of Guid
+type BranchId = BranchId of Guid
+type EmployeeId = EmployeeId of Guid
+type CardId = CardId of Guid
+type LoanId = LoanId of Guid
+
+type Branch = {
+    Id: BranchId
+    Code: ValueObjects.BranchCode
+    Name: string
+    Status: BranchStatus
+}
 
 type Customer = {
     Id: CustomerId
     Cif: ValueObjects.CifNumber
     FullName: string
-    DateOfBirth: DateTime // Code must validate < DateTime.Today upon creation
+    DateOfBirth: DateTime
     RiskRating: RiskRating
+    Status: CustomerStatus
+}
+
+type Kyc = {
+    CustomerId: CustomerId
+    DocumentType: KycDocType
+    DocumentNumber: string
+    Verified: bool
+}
+
+type Aml = {
+    CustomerId: CustomerId
+    ScreeningStatus: AmlScreeningStatus
+    LastScreened: DateTime
+}
+
+type Account = {
+    Id: AccountId
+    CustomerId: CustomerId
+    BranchId: BranchId
+    Currency: string
+    AccountType: string
+    Balance: decimal 
+    OverdraftLimit: ValueObjects.NonNegativeAmount
+    Status: AccountStatus
+}
+
+type Loan = {
+    Id: LoanId
+    AccountId: AccountId
+    PrincipalAmount: ValueObjects.PositiveAmount
+    OutstandingBalance: ValueObjects.NonNegativeAmount
+    InterestRate: ValueObjects.NonNegativeAmount
+    Status: LoanStatus
+}
+
+type Card = {
+    Id: CardId
+    AccountId: AccountId
+    Number: ValueObjects.CardNumber
+    Type: CardType
+    Status: CardStatus
 }
 
 type Transaction = {
@@ -73,21 +152,14 @@ type Transaction = {
     AccountId: AccountId
     Amount: ValueObjects.PositiveAmount
     Type: TransactionType
+    Currency: string
     Timestamp: DateTime
-}
-
-type Account = {
-    Id: AccountId
-    CustomerId: CustomerId
-    Balance: decimal // Wait! Balance shouldn't just be decimal, but we can't restrict it easily if overdrafts are allowed.
-    OverdraftLimit: ValueObjects.NonNegativeAmount
-    Status: AccountStatus
+    Reference: string
 }
 
 // ==========================================
-// 4. Domain Behaviors (The real difference)
+// 4. Domain Behaviors
 // ==========================================
-// Surprise #3: Database was state-centric (CRUD). DDD is behavior-centric (Commands/Events).
 module AccountBehavior =
     type AccountCommand =
         | Deposit of amount: ValueObjects.PositiveAmount

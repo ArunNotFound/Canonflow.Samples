@@ -1,0 +1,14 @@
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/bin/Debug/net10.0/BankingCore.Domain.deps.json
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/bin/Debug/net10.0/BankingCore.Domain.dll
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/bin/Debug/net10.0/BankingCore.Domain.pdb
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/bin/Debug/net10.0/BankingCore.Domain.xml
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/BankingCore.Domain.fsproj.AssemblyReference.cache
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/BankingCore.Domain.AssemblyInfoInputs.cache
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/BankingCore.Domain.AssemblyInfo.fs
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/BankingCore.Domain.fsproj.CoreCompileInputs.cache
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/BankingCore.Domain.sourcelink.json
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/BankingCore.Domain.dll
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/refint/BankingCore.Domain.dll
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/BankingCore.Domain.xml
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/BankingCore.Domain.pdb
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/Debug/net10.0/ref/BankingCore.Domain.dll

@@ -2,6 +2,145 @@
   "version": 4,
   "targets": {
     "net10.0": {
+      "FsAssay.Analyzers/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Analyzers.SDK": "0.37.2",
+          "FSharp.Compiler.Service": "43.12.201",
+          "FSharp.Core": "10.1.201"
+        },
+        "compile": {
+          "lib/net10.0/FsAssay.Analyzers.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/FsAssay.Analyzers.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FSharp.Analyzers.SDK/0.37.2": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Compiler.Service": "43.12.201",
+          "FSharp.Core": "[10.1.201]",
+          "McMaster.NETCore.Plugins": "2.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "lib/net8.0/FSharp.Analyzers.SDK.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/FSharp.Analyzers.SDK.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FSharp.Compiler.Service/43.12.201": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "[10.1.201]"
+        },
+        "compile": {
+          "lib/netstandard2.0/FSharp.Compiler.Service.dll": {
+            "related": ".xml"
+          },
+          "lib/netstandard2.0/FSharp.DependencyManager.Nuget.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/FSharp.Compiler.Service.dll": {
+            "related": ".xml"
+          },
+          "lib/netstandard2.0/FSharp.DependencyManager.Nuget.dll": {
+            "related": ".xml"
+          }
+        },
+        "resource": {
+          "lib/netstandard2.0/cs/FSharp.Compiler.Service.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.0/cs/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.0/de/FSharp.Compiler.Service.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.0/de/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.0/es/FSharp.Compiler.Service.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.0/es/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.0/fr/FSharp.Compiler.Service.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.0/fr/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.0/it/FSharp.Compiler.Service.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.0/it/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.0/ja/FSharp.Compiler.Service.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.0/ja/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.0/ko/FSharp.Compiler.Service.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.0/ko/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.0/pl/FSharp.Compiler.Service.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.0/pl/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.0/pt-BR/FSharp.Compiler.Service.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.0/pt-BR/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.0/ru/FSharp.Compiler.Service.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.0/ru/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.0/tr/FSharp.Compiler.Service.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.0/tr/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.0/zh-Hans/FSharp.Compiler.Service.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.0/zh-Hans/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.0/zh-Hant/FSharp.Compiler.Service.resources.dll": {
+            "locale": "zh-Hant"
+          },
+          "lib/netstandard2.0/zh-Hant/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
       "FSharp.Core/10.1.301": {
         "type": "package",
         "compile": {
@@ -55,10 +194,108 @@
             "locale": "zh-Hant"
           }
         }
+      },
+      "McMaster.NETCore.Plugins/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/McMaster.NETCore.Plugins.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/McMaster.NETCore.Plugins.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
       }
     }
   },
   "libraries": {
+    "FsAssay.Analyzers/1.0.0": {
+      "sha512": "g8Ie8SrzLqjZBhTNedtSANwCl+Npfg3EbmkXka0Bs6gpXDaLCxwb0ciuBNiCWligC0MP/We5Qxru7oeaogDXQg==",
+      "type": "package",
+      "path": "fsassay.analyzers/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        "fsassay.analyzers.1.0.0.nupkg.sha512",
+        "fsassay.analyzers.nuspec",
+        "lib/net10.0/FsAssay.Analyzers.dll",
+        "lib/net10.0/FsAssay.Analyzers.xml"
+      ]
+    },
+    "FSharp.Analyzers.SDK/0.37.2": {
+      "sha512": "vO21YDtNZaSPPWrDC8/DbWl0FAYY5l/qzGAJaruajZSpLtVP8TilzSj5v7YkydD2kwaEjLkkmCCzJFr30/61pw==",
+      "type": "package",
+      "path": "fsharp.analyzers.sdk/0.37.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fsharp.analyzers.sdk.0.37.2.nupkg.sha512",
+        "fsharp.analyzers.sdk.nuspec",
+        "lib/net8.0/FSharp.Analyzers.SDK.dll",
+        "lib/net8.0/FSharp.Analyzers.SDK.xml"
+      ]
+    },
+    "FSharp.Compiler.Service/43.12.201": {
+      "sha512": "FkAR8qjDeOCPke7+JNKnrWrglmuM1CeSVyzfsgmRGZv4C1/VMWzDF5IweLRyN64s0HyHSq61d8JIfVNGyciwCA==",
+      "type": "package",
+      "path": "fsharp.compiler.service/43.12.201",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "fsharp.compiler.service.43.12.201.nupkg.sha512",
+        "fsharp.compiler.service.nuspec",
+        "lib/netstandard2.0/FSharp.Compiler.Service.dll",
+        "lib/netstandard2.0/FSharp.Compiler.Service.xml",
+        "lib/netstandard2.0/FSharp.DependencyManager.Nuget.dll",
+        "lib/netstandard2.0/FSharp.DependencyManager.Nuget.xml",
+        "lib/netstandard2.0/cs/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/cs/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/de/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/de/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/default.win32manifest",
+        "lib/netstandard2.0/es/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/es/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/fr/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/fr/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/it/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/it/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/ja/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/ja/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/ko/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/ko/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/pl/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/pl/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/pt-BR/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/pt-BR/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/ru/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/ru/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/tr/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/tr/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/zh-Hans/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/zh-Hans/FSharp.DependencyManager.Nuget.resources.dll",
+        "lib/netstandard2.0/zh-Hant/FSharp.Compiler.Service.resources.dll",
+        "lib/netstandard2.0/zh-Hant/FSharp.DependencyManager.Nuget.resources.dll"
+      ]
+    },
     "FSharp.Core/10.1.301": {
       "sha512": "FwQFuqOA1+qQnFl6Vqg6piS83ZRuKJqXJQxOM52M5tNarT2XQ/pMvw8fOOlnhcOYvdZyje2PJ8rK/J64ZI729Q==",
       "type": "package",
@@ -100,11 +337,78 @@
         "lib/netstandard2.1/zh-Hans/FSharp.Core.resources.dll",
         "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll"
       ]
+    },
+    "McMaster.NETCore.Plugins/2.0.0": {
+      "sha512": "pmmrI3qPE53xEJEcg575jQeDNPzMWfNJO8/SASlB9PLPrGVrsyVNFRrvfo+3BzcbQxfUBF1//gTOiJ82dOTlTw==",
+      "type": "package",
+      "path": "mcmaster.netcore.plugins/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net8.0/McMaster.NETCore.Plugins.dll",
+        "lib/net8.0/McMaster.NETCore.Plugins.xml",
+        "mcmaster.netcore.plugins.2.0.0.nupkg.sha512",
+        "mcmaster.netcore.plugins.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+      "sha512": "/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.abstractions/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/roslyn3.11/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn3.11/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn4.0/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "build/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "FSharp.Core >= 10.1.301"
+      "FSharp.Core >= 10.1.301",
+      "FsAssay.Analyzers >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -120,6 +424,7 @@
       "outputPath": "/root/repos/github/fsharp/Canonflow.Samples/banking-core/src/Domain/BankingCore.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+        "/root/repos/github/fsharp/Canonflow.Samples/banking-core/nuget.config",
         "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
@@ -127,6 +432,7 @@
       ],
       "sources": {
         "/root/.dotnet/sdk/10.0.301/FSharp/library-packs": {},
+        "/root/local-nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -152,6 +458,11 @@
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
             "target": "Package",
             "version": "[10.1.301, )",
+            "generatePathProperty": true
+          },
+          "FsAssay.Analyzers": {
+            "target": "Package",
+            "version": "[1.0.0, )",
             "generatePathProperty": true
           }
         },
@@ -448,5 +759,27 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: FSharp.Analyzers.SDK 0.37.2 requires FSharp.Core (= 10.1.201) but version FSharp.Core 10.1.301 was resolved.",
+      "libraryId": "FSharp.Core",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: FSharp.Compiler.Service 43.12.201 requires FSharp.Core (= 10.1.201) but version FSharp.Core 10.1.301 was resolved.",
+      "libraryId": "FSharp.Core",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

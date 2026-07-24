@@ -14,5 +14,6 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">/root/.nuget/packages/fsharp.core/10.1.301</PkgFSharp_Core>
+    <PkgFsAssay_Analyzers Condition=" '$(PkgFsAssay_Analyzers)' == '' ">/root/.nuget/packages/fsassay.analyzers/1.0.0</PkgFsAssay_Analyzers>
   </PropertyGroup>
 </Project>
