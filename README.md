@@ -18,3 +18,16 @@ This repository contains battle-tested architectural blueprints demonstrating th
 
 ### Running a Sample
 Every sample includes a `docker-compose.yml` and a `dogfood.sh` script to instantly spin up the Postgres database, run CanonFlow, and emit the contracts.
+
+## Validation & Property-Based Testing
+To guarantee that the **Structural Constraints** defined in Postgres perfectly match the generated application contracts, we are currently rolling out comprehensive validation across all samples:
+
+1. **FsCheck Property-Based Tests (F#)**: CanonFlow generates mathematical boundaries (Arbitraries) based directly on the SQL `CHECK` constraints (using the `--fscheck` flag). We run xUnit tests against these Arbitraries to prove they prevent invalid data.
+2. **Jest Validation (TypeScript)**: CanonFlow generates Zod schemas for the client. We run Jest test suites to prove the frontend validation logic matches the backend.
+
+### Implementation Status
+* **Completed (F# & TypeScript)**: `mock-drill`, `kutcheri-season`, `banking-core`
+* **Completed (F# Only)**: `hospital-core`, `airline-core`, `trading-core`
+* **Pending / Custom Implementations**: `migration-demo`, `arangetram-adversaries`, `layam-academy`, `sangam-credit`
+
+*Note: For the current progress checklist, see [list.md](list.md).*
