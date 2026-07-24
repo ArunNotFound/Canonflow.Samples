@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="GatepassCore.Domain">
+    <resource name="FSharpSignatureData.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationData.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.GatepassCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.GatepassCore.Domain" action="remove"></resource>
+  </assembly>
+</linker>

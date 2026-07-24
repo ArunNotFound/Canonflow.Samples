@@ -109,3 +109,8 @@
 /root/repos/github/fsharp/Canonflow.Samples/gatepass-core/tests/gatepass.Tests/obj/Debug/net10.0/gatepass.Tests.pdb
 /root/repos/github/fsharp/Canonflow.Samples/gatepass-core/tests/gatepass.Tests/obj/Debug/net10.0/gatepass.Tests.genruntimeconfig.cache
 /root/repos/github/fsharp/Canonflow.Samples/gatepass-core/tests/gatepass.Tests/obj/Debug/net10.0/ref/gatepass.Tests.dll
+/root/repos/github/fsharp/Canonflow.Samples/gatepass-core/tests/gatepass.Tests/bin/Debug/net10.0/.msCoverageSourceRootsMapping_gatepass.Tests
+/root/repos/github/fsharp/Canonflow.Samples/gatepass-core/tests/gatepass.Tests/bin/Debug/net10.0/CoverletSourceRootsMapping_gatepass.Tests
+/root/repos/github/fsharp/Canonflow.Samples/gatepass-core/tests/gatepass.Tests/bin/Debug/net10.0/GatepassCore.Domain.dll
+/root/repos/github/fsharp/Canonflow.Samples/gatepass-core/tests/gatepass.Tests/bin/Debug/net10.0/GatepassCore.Domain.pdb
+/root/repos/github/fsharp/Canonflow.Samples/gatepass-core/tests/gatepass.Tests/bin/Debug/net10.0/GatepassCore.Domain.xml

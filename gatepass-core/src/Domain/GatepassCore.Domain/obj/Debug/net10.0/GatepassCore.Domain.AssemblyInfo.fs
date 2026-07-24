@@ -7,11 +7,11 @@ open System
 open System.Reflection
 
 
-[<assembly: System.Reflection.AssemblyCompanyAttribute("gatepass.Tests")>]
+[<assembly: System.Reflection.AssemblyCompanyAttribute("GatepassCore.Domain")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
 [<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82c651a612082e75ad3951adb024a7c893389b62")>]
-[<assembly: System.Reflection.AssemblyProductAttribute("gatepass.Tests")>]
-[<assembly: System.Reflection.AssemblyTitleAttribute("gatepass.Tests")>]
+[<assembly: System.Reflection.AssemblyProductAttribute("GatepassCore.Domain")>]
+[<assembly: System.Reflection.AssemblyTitleAttribute("GatepassCore.Domain")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
 do()
