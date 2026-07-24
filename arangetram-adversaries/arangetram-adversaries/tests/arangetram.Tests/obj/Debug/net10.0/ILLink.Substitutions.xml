@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="arangetram.Tests">
+    <resource name="FSharpSignatureData.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.arangetram.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.arangetram.Tests" action="remove"></resource>
+  </assembly>
+</linker>

@@ -1,0 +1,40 @@
+{
+    "name": "users",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "user_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "email", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((status = ANY (ARRAY['ACTIVE'::text, 'BANNED'::text])))"]
+        },
+        { 
+            "name": "created_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by user_id",
+            "query": "SELECT * FROM public.users WHERE user_id = :id LIMIT 1"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "name": "batches",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "batch_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "guru_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "raga_focus", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "level", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((level >= 1) AND (level <= 8)))"]
+        },
+        { 
+            "name": "capacity", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((capacity > 0) AND (capacity <= 12)))"]
+        },
+        { 
+            "name": "fee_monthly", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((fee_monthly >= (500)::numeric) AND (fee_monthly <= (20000)::numeric)))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by batch_id",
+            "query": "SELECT * FROM public.batches WHERE batch_id = :id LIMIT 1"
+        }
+    ]
+}

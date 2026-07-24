@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="layam.Tests">
+    <resource name="FSharpSignatureData.layam.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.layam.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.layam.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.layam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.layam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.layam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.layam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.layam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.layam.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.layam.Tests" action="remove"></resource>
+  </assembly>
+</linker>

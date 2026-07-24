@@ -1,0 +1,5 @@
+/root/repos/github/fsharp/Canonflow.Samples/arangetram-adversaries/arangetram-adversaries/tests/arangetram.Tests/obj/Debug/net10.0/arangetram.Tests.fsproj.AssemblyReference.cache
+/root/repos/github/fsharp/Canonflow.Samples/arangetram-adversaries/arangetram-adversaries/tests/arangetram.Tests/obj/Debug/net10.0/arangetram.Tests.AssemblyInfoInputs.cache
+/root/repos/github/fsharp/Canonflow.Samples/arangetram-adversaries/arangetram-adversaries/tests/arangetram.Tests/obj/Debug/net10.0/arangetram.Tests.AssemblyInfo.fs
+/root/repos/github/fsharp/Canonflow.Samples/arangetram-adversaries/arangetram-adversaries/tests/arangetram.Tests/obj/Debug/net10.0/arangetram.Tests.fsproj.CoreCompileInputs.cache
+/root/repos/github/fsharp/Canonflow.Samples/arangetram-adversaries/arangetram-adversaries/tests/arangetram.Tests/obj/Debug/net10.0/arangetram.Tests.sourcelink.json

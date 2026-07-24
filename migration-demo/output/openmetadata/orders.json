@@ -1,0 +1,40 @@
+{
+    "name": "orders",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "order_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "user_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "total_amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((total_amount >= (0)::numeric))"]
+        },
+        { 
+            "name": "discount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((discount >= (0)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by order_id",
+            "query": "SELECT * FROM public.orders WHERE order_id = :id LIMIT 1"
+        }
+    ]
+}

@@ -48,25 +48,25 @@ This document tracks the tasks required to fully verify each sample using CanonF
 - [x] Duplicate Zod imports removed
 
 ### 7. Migration Engine Demo (`migration-demo`)
-- [ ] Generated `--fscheck` (FSA) in dogfood.sh
-- [ ] F# Tests (FsCheck property tests added)
-- [ ] TypeScript / Jest tests added
-- [ ] Duplicate Zod imports removed
+- [x] Generated `--fscheck` (FSA) in dogfood.sh
+- [x] F# Tests (FsCheck property tests added)
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed
 
 ### 8. Arangetram Adversaries (`arangetram-adversaries`)
-- [ ] Generated `--fscheck` (FSA) in dogfood.sh
-- [ ] F# Tests (FsCheck property tests added)
-- [ ] TypeScript / Jest tests added
-- [ ] Duplicate Zod imports removed
+- [x] Generated `--fscheck` (FSA) in dogfood.sh
+- [x] F# Tests (FsCheck property tests added)
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed
 
 ### 9. Layam Academy (`layam-academy`)
-- [ ] Generated `--fscheck` (FSA) in dogfood.sh
-- [ ] F# Tests (FsCheck property tests added)
-- [ ] TypeScript / Jest tests added
-- [ ] Duplicate Zod imports removed
+- [x] Generated `--fscheck` (FSA) in dogfood.sh
+- [x] F# Tests (FsCheck property tests added)
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed
 
 ### 10. Sangam Credit (`sangam-credit`)
-- [ ] Generated `--fscheck` (FSA) in dogfood.sh
-- [ ] F# Tests (FsCheck property tests added)
-- [ ] TypeScript / Jest tests added
-- [ ] Duplicate Zod imports removed
+- [x] Generated `--fscheck` (FSA) in dogfood.sh
+- [x] F# Tests (FsCheck property tests added)
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed

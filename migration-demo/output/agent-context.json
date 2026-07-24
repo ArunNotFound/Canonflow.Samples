@@ -1,0 +1,124 @@
+{
+  "tables": [
+    {
+      "name": "orders",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "order_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "user_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "total_amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((total_amount \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((total_amount \u003E= (0)::numeric))"
+          ]
+        },
+        {
+          "name": "discount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((discount \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((discount \u003E= (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "products",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "product_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "price",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((price \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((price \u003E= (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "users",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "user_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "email",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027BANNED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027BANNED\u0027::text])))"
+          ]
+        },
+        {
+          "name": "created_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

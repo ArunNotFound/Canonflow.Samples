@@ -1,0 +1,58 @@
+{
+    "name": "members",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "member_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "phone", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length((phone)::text) = 10))"]
+        },
+        { 
+            "name": "age", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((age >= 21) OR (guardian_member_id IS NOT NULL)))"]
+        },
+        { 
+            "name": "guardian_member_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((age >= 21) OR (guardian_member_id IS NOT NULL)))"]
+        },
+        { 
+            "name": "share_balance", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((share_balance >= (100)::numeric))"]
+        },
+        { 
+            "name": "riskGrade", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((("riskGrade")::text >= 'A'::text) AND (("riskGrade")::text <= 'E'::text)))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by member_id",
+            "query": "SELECT * FROM public.members WHERE member_id = :id LIMIT 1"
+        }
+    ]
+}

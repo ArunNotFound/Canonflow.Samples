@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="migration-demo.Tests">
+    <resource name="FSharpSignatureData.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.migration-demo.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.migration-demo.Tests" action="remove"></resource>
+  </assembly>
+</linker>

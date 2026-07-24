@@ -1,0 +1,381 @@
+{
+  "tables": [
+    {
+      "name": "batches",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "batch_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "guru_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "raga_focus",
+          "dataType": "character varying",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "level",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((level \u003E= 1) AND (level \u003C= 8)))"
+          ],
+          "provenance": [
+            "CHECK (((level \u003E= 1) AND (level \u003C= 8)))"
+          ]
+        },
+        {
+          "name": "capacity",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((capacity \u003E 0) AND (capacity \u003C= 12)))"
+          ],
+          "provenance": [
+            "CHECK (((capacity \u003E 0) AND (capacity \u003C= 12)))"
+          ]
+        },
+        {
+          "name": "fee_monthly",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((fee_monthly \u003E= (500)::numeric) AND (fee_monthly \u003C= (20000)::numeric)))"
+          ],
+          "provenance": [
+            "CHECK (((fee_monthly \u003E= (500)::numeric) AND (fee_monthly \u003C= (20000)::numeric)))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "enrollments",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "student_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "batch_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "discount_pct",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((discount_pct \u003E= (0)::numeric) AND (discount_pct \u003C= (25)::numeric)))"
+          ],
+          "provenance": [
+            "CHECK (((discount_pct \u003E= (0)::numeric) AND (discount_pct \u003C= (25)::numeric)))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "exams",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "exam_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "student_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "batch_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "marks",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((marks \u003E= 0) AND (marks \u003C= 100)))"
+          ],
+          "provenance": [
+            "CHECK (((marks \u003E= 0) AND (marks \u003C= 100)))"
+          ]
+        },
+        {
+          "name": "theory_marks",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((theory_marks \u002B practical_marks) \u003C= 100))"
+          ],
+          "provenance": [
+            "CHECK (((theory_marks \u002B practical_marks) \u003C= 100))"
+          ]
+        },
+        {
+          "name": "practical_marks",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((theory_marks \u002B practical_marks) \u003C= 100))"
+          ],
+          "provenance": [
+            "CHECK (((theory_marks \u002B practical_marks) \u003C= 100))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "gurus",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "guru_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "full_name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "email",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "years_experience",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((years_experience \u003E 0))"
+          ],
+          "provenance": [
+            "CHECK ((years_experience \u003E 0))"
+          ]
+        },
+        {
+          "name": "specialization",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((specialization)::text = ANY ((ARRAY[\u0027vocal\u0027::character varying, \u0027violin\u0027::character varying, \u0027veena\u0027::character varying, \u0027mridangam\u0027::character varying, \u0027flute\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((specialization)::text = ANY ((ARRAY[\u0027vocal\u0027::character varying, \u0027violin\u0027::character varying, \u0027veena\u0027::character varying, \u0027mridangam\u0027::character varying, \u0027flute\u0027::character varying])::text[])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "payments",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "payment_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "student_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "batch_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((amount \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((amount \u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "method",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((method)::text = ANY ((ARRAY[\u0027upi\u0027::character varying, \u0027card\u0027::character varying, \u0027cash\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((method)::text = ANY ((ARRAY[\u0027upi\u0027::character varying, \u0027card\u0027::character varying, \u0027cash\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "paid_on",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "scholarships",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "scholarship_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "student_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "pct_waiver",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((pct_waiver \u003E (0)::numeric) AND (pct_waiver \u003C= (100)::numeric)))"
+          ],
+          "provenance": [
+            "CHECK (((pct_waiver \u003E (0)::numeric) AND (pct_waiver \u003C= (100)::numeric)))"
+          ]
+        },
+        {
+          "name": "min_attendance_pct",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((min_attendance_pct \u003C (75)::numeric))",
+            "((min_attendance_pct \u003E (90)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((min_attendance_pct \u003C (75)::numeric))",
+            "CHECK ((min_attendance_pct \u003E (90)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "students",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "student_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "full_name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "email",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "phone",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "((length((phone)::text) = 10))"
+          ],
+          "provenance": [
+            "CHECK ((length((phone)::text) = 10))"
+          ]
+        },
+        {
+          "name": "age",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((age \u003E= 5) AND (age \u003C= 90)))"
+          ],
+          "provenance": [
+            "CHECK (((age \u003E= 5) AND (age \u003C= 90)))"
+          ]
+        },
+        {
+          "name": "enrolled_on",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "tables": [
+    {
+      "name": "deposits",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "deposit_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "member_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((amount \u003E= (100)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((amount \u003E= (100)::numeric))"
+          ]
+        },
+        {
+          "name": "opened_on",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [
+            "((maturity_date \u003E opened_on))"
+          ],
+          "provenance": [
+            "CHECK ((maturity_date \u003E opened_on))"
+          ]
+        },
+        {
+          "name": "maturity_date",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [
+            "((maturity_date \u003E opened_on))"
+          ],
+          "provenance": [
+            "CHECK ((maturity_date \u003E opened_on))"
+          ]
+        },
+        {
+          "name": "rate_pct",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((rate_pct \u003E= 3.5) AND (rate_pct \u003C= 9.25)))"
+          ],
+          "provenance": [
+            "CHECK (((rate_pct \u003E= 3.5) AND (rate_pct \u003C= 9.25)))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "guarantees",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "loan_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "guarantor_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "guarantor_share_pct",
+          "dataType": "numeric",
+          "isNullable": true,
+          "constraints": [
+            "((guarantor_share_pct \u003E= (10)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((guarantor_share_pct \u003E= (10)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "ledger",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "entry_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "member_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "entry_on",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "ledger_adjustment",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((ledger_adjustment \u003E= (\u0027-5000\u0027::integer)::numeric) AND (ledger_adjustment \u003C= (5000)::numeric)))"
+          ],
+          "provenance": [
+            "CHECK (((ledger_adjustment \u003E= (\u0027-5000\u0027::integer)::numeric) AND (ledger_adjustment \u003C= (5000)::numeric)))"
+          ]
+        },
+        {
+          "name": "method",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((method)::text = ANY ((ARRAY[\u0027cash\u0027::character varying, \u0027neft\u0027::character varying, \u0027upi\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((method)::text = ANY ((ARRAY[\u0027cash\u0027::character varying, \u0027neft\u0027::character varying, \u0027upi\u0027::character varying])::text[])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "loans",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "loan_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "member_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "principal",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((principal \u003E= (1000)::numeric) AND (principal \u003C= (750000)::numeric)))"
+          ],
+          "provenance": [
+            "CHECK (((principal \u003E= (1000)::numeric) AND (principal \u003C= (750000)::numeric)))"
+          ]
+        },
+        {
+          "name": "tenure_months",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((tenure_months \u003E= 3) AND (tenure_months \u003C= 84)))"
+          ],
+          "provenance": [
+            "CHECK (((tenure_months \u003E= 3) AND (tenure_months \u003C= 84)))"
+          ]
+        },
+        {
+          "name": "interest_pct",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((interest_pct \u003C= (18)::numeric))",
+            "((interest_pct \u003C= (24)::numeric))",
+            "((interest_pct \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((interest_pct \u003C= (18)::numeric))",
+            "CHECK ((interest_pct \u003C= (24)::numeric))",
+            "CHECK ((interest_pct \u003E (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "members",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "member_id",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "full_name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "phone",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "((length((phone)::text) = 10))"
+          ],
+          "provenance": [
+            "CHECK ((length((phone)::text) = 10))"
+          ]
+        },
+        {
+          "name": "age",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((age \u003E= 21) OR (guardian_member_id IS NOT NULL)))"
+          ],
+          "provenance": [
+            "CHECK (((age \u003E= 21) OR (guardian_member_id IS NOT NULL)))"
+          ]
+        },
+        {
+          "name": "guardian_member_id",
+          "dataType": "integer",
+          "isNullable": true,
+          "constraints": [
+            "(((age \u003E= 21) OR (guardian_member_id IS NOT NULL)))"
+          ],
+          "provenance": [
+            "CHECK (((age \u003E= 21) OR (guardian_member_id IS NOT NULL)))"
+          ]
+        },
+        {
+          "name": "share_balance",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((share_balance \u003E= (100)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((share_balance \u003E= (100)::numeric))"
+          ]
+        },
+        {
+          "name": "riskGrade",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "((((\u0022riskGrade\u0022)::text \u003E= \u0027A\u0027::text) AND ((\u0022riskGrade\u0022)::text \u003C= \u0027E\u0027::text)))"
+          ],
+          "provenance": [
+            "CHECK ((((\u0022riskGrade\u0022)::text \u003E= \u0027A\u0027::text) AND ((\u0022riskGrade\u0022)::text \u003C= \u0027E\u0027::text)))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

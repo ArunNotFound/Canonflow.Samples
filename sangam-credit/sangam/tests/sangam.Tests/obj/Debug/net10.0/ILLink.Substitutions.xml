@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="sangam.Tests">
+    <resource name="FSharpSignatureData.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.sangam.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.sangam.Tests" action="remove"></resource>
+  </assembly>
+</linker>

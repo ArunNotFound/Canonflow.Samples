@@ -1,0 +1,46 @@
+{
+    "name": "ledger",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "entry_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "member_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "entry_on", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "ledger_adjustment", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((ledger_adjustment >= ('-5000'::integer)::numeric) AND (ledger_adjustment <= (5000)::numeric)))"]
+        },
+        { 
+            "name": "method", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((method)::text = ANY ((ARRAY['cash'::character varying, 'neft'::character varying, 'upi'::character varying])::text[])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by entry_id",
+            "query": "SELECT * FROM public.ledger WHERE entry_id = :id LIMIT 1"
+        }
+    ]
+}

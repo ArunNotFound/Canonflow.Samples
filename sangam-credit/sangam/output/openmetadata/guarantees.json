@@ -1,0 +1,34 @@
+{
+    "name": "guarantees",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "loan_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "guarantor_id", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "guarantor_share_pct", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((guarantor_share_pct >= (10)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by loan_id",
+            "query": "SELECT * FROM public.guarantees WHERE loan_id = :id LIMIT 1"
+        }
+    ]
+}

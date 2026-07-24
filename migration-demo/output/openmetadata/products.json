@@ -1,0 +1,34 @@
+{
+    "name": "products",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "product_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "name", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "price", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((price >= (0)::numeric))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by product_id",
+            "query": "SELECT * FROM public.products WHERE product_id = :id LIMIT 1"
+        }
+    ]
+}
