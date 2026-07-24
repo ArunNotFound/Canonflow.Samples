@@ -1,0 +1,34 @@
+{
+    "name": "professional_services",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "professional_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "service_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "experience_years", 
+            "dataType": "INTEGER",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((experience_years >= 0) AND (experience_years <= 50)))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by professional_id",
+            "query": "SELECT * FROM public.professional_services WHERE professional_id = :id LIMIT 1"
+        }
+    ]
+}

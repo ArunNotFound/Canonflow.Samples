@@ -1,0 +1,252 @@
+{
+  "tables": [
+    {
+      "name": "bookings",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "booking_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "customer_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "professional_id",
+          "dataType": "uuid",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "service_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((status)::text = ANY ((ARRAY[\u0027PENDING\u0027::character varying, \u0027ACCEPTED\u0027::character varying, \u0027IN_PROGRESS\u0027::character varying, \u0027COMPLETED\u0027::character varying, \u0027CANCELLED\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((status)::text = ANY ((ARRAY[\u0027PENDING\u0027::character varying, \u0027ACCEPTED\u0027::character varying, \u0027IN_PROGRESS\u0027::character varying, \u0027COMPLETED\u0027::character varying, \u0027CANCELLED\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "scheduled_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [
+            "(((completed_at IS NULL) OR (completed_at \u003E= scheduled_time)))"
+          ],
+          "provenance": [
+            "CHECK (((completed_at IS NULL) OR (completed_at \u003E= scheduled_time)))"
+          ]
+        },
+        {
+          "name": "total_amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((total_amount \u003E= 0.0))"
+          ],
+          "provenance": [
+            "CHECK ((total_amount \u003E= 0.0))"
+          ]
+        },
+        {
+          "name": "created_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "completed_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [
+            "(((completed_at IS NULL) OR (completed_at \u003E= scheduled_time)))"
+          ],
+          "provenance": [
+            "CHECK (((completed_at IS NULL) OR (completed_at \u003E= scheduled_time)))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "professional_services",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "professional_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "service_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "experience_years",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((experience_years \u003E= 0) AND (experience_years \u003C= 50)))"
+          ],
+          "provenance": [
+            "CHECK (((experience_years \u003E= 0) AND (experience_years \u003C= 50)))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "services",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "service_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "category",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((category)::text = ANY ((ARRAY[\u0027CLEANING\u0027::character varying, \u0027PLUMBING\u0027::character varying, \u0027ELECTRICAL\u0027::character varying, \u0027SALON\u0027::character varying, \u0027APPLIANCE_REPAIR\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((category)::text = ANY ((ARRAY[\u0027CLEANING\u0027::character varying, \u0027PLUMBING\u0027::character varying, \u0027ELECTRICAL\u0027::character varying, \u0027SALON\u0027::character varying, \u0027APPLIANCE_REPAIR\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "base_price",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((base_price \u003E= 0.0))"
+          ],
+          "provenance": [
+            "CHECK ((base_price \u003E= 0.0))"
+          ]
+        },
+        {
+          "name": "is_active",
+          "dataType": "boolean",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "users",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "user_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "role",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((role)::text = ANY ((ARRAY[\u0027CUSTOMER\u0027::character varying, \u0027PROFESSIONAL\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((role)::text = ANY ((ARRAY[\u0027CUSTOMER\u0027::character varying, \u0027PROFESSIONAL\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "full_name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((length((full_name)::text) \u003E= 2) AND (length((full_name)::text) \u003C= 100)))"
+          ],
+          "provenance": [
+            "CHECK (((length((full_name)::text) \u003E= 2) AND (length((full_name)::text) \u003C= 100)))"
+          ]
+        },
+        {
+          "name": "phone_number",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((length((phone_number)::text) \u003E= 10) AND (length((phone_number)::text) \u003C= 15)))"
+          ],
+          "provenance": [
+            "CHECK (((length((phone_number)::text) \u003E= 10) AND (length((phone_number)::text) \u003C= 15)))"
+          ]
+        },
+        {
+          "name": "email",
+          "dataType": "character varying",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((status)::text = ANY ((ARRAY[\u0027ACTIVE\u0027::character varying, \u0027INACTIVE\u0027::character varying, \u0027BANNED\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((status)::text = ANY ((ARRAY[\u0027ACTIVE\u0027::character varying, \u0027INACTIVE\u0027::character varying, \u0027BANNED\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "created_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

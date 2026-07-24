@@ -1,0 +1,70 @@
+{
+    "name": "bookings",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "booking_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "customer_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "professional_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "service_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'ACCEPTED'::character varying, 'IN_PROGRESS'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying])::text[])))"]
+        },
+        { 
+            "name": "scheduled_time", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((completed_at IS NULL) OR (completed_at >= scheduled_time)))"]
+        },
+        { 
+            "name": "total_amount", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((total_amount >= 0.0))"]
+        },
+        { 
+            "name": "created_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "completed_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((completed_at IS NULL) OR (completed_at >= scheduled_time)))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by booking_id",
+            "query": "SELECT * FROM public.bookings WHERE booking_id = :id LIMIT 1"
+        }
+    ]
+}

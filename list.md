@@ -82,3 +82,9 @@ This document tracks the tasks required to fully verify each sample using CanonF
 - [x] Complex Chat DB Schema (Users, Groups, Messages)
 - [x] CanonFlow FSA Extraction
 - [x] FsAssay Property Tests for strict types
+
+### 13. UrbanClub App (`urbanclub-core`)
+- [x] SOTA Hybrid Approach (DB-First + FsAssay DDD)
+- [x] Home Services DB Schema (Users, Services, Bookings)
+- [x] CanonFlow FSA Extraction
+- [x] FsAssay Property Tests for strict types

@@ -1,0 +1,58 @@
+{
+    "name": "users",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "user_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "role", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((role)::text = ANY ((ARRAY['CUSTOMER'::character varying, 'PROFESSIONAL'::character varying])::text[])))"]
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((length((full_name)::text) >= 2) AND (length((full_name)::text) <= 100)))"]
+        },
+        { 
+            "name": "phone_number", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((length((phone_number)::text) >= 10) AND (length((phone_number)::text) <= 15)))"]
+        },
+        { 
+            "name": "email", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((status)::text = ANY ((ARRAY['ACTIVE'::character varying, 'INACTIVE'::character varying, 'BANNED'::character varying])::text[])))"]
+        },
+        { 
+            "name": "created_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by user_id",
+            "query": "SELECT * FROM public.users WHERE user_id = :id LIMIT 1"
+        }
+    ]
+}

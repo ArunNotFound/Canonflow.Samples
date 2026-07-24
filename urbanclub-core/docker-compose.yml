@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: urbanclub
+    ports:
+      - "5437:5432" # Use 5437 to avoid conflicts
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d

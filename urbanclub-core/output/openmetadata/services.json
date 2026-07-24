@@ -1,0 +1,46 @@
+{
+    "name": "services",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "service_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "category", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((category)::text = ANY ((ARRAY['CLEANING'::character varying, 'PLUMBING'::character varying, 'ELECTRICAL'::character varying, 'SALON'::character varying, 'APPLIANCE_REPAIR'::character varying])::text[])))"]
+        },
+        { 
+            "name": "name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "base_price", 
+            "dataType": "NUMERIC",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((base_price >= 0.0))"]
+        },
+        { 
+            "name": "is_active", 
+            "dataType": "BOOLEAN",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by service_id",
+            "query": "SELECT * FROM public.services WHERE service_id = :id LIMIT 1"
+        }
+    ]
+}

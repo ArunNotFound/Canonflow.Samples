@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="UrbanclubCore.Domain">
+    <resource name="FSharpSignatureData.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationData.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.UrbanclubCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.UrbanclubCore.Domain" action="remove"></resource>
+  </assembly>
+</linker>
