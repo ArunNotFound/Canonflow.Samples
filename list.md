@@ -24,10 +24,10 @@ This document tracks the tasks required to fully verify each sample using CanonF
 - [x] Duplicate Zod imports removed
 
 ### 3. Banking Core (`banking-core`)
-- [ ] Generated `--fscheck` (FSA) in dogfood.sh
-- [ ] F# Tests (FsCheck property tests added)
-- [ ] TypeScript / Jest tests added
-- [ ] Duplicate Zod imports removed
+- [x] Generated `--fscheck` (FSA) in dogfood.sh
+- [x] F# Tests (FsCheck property tests added)
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed
 
 ### 4. Hospital Core (`hospital-core`)
 - [ ] Generated `--fscheck` (FSA) in dogfood.sh

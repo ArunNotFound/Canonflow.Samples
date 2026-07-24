@@ -2,37 +2,36 @@
   "version": 4,
   "targets": {
     "net10.0": {
-      "Expecto/11.1.0": {
+      "Expecto/9.0.4": {
         "type": "package",
         "dependencies": {
-          "FSharp.Core": "7.0.200",
-          "Mono.Cecil": "[0.11.6, 1.0.0)"
+          "FSharp.Core": "4.6.0",
+          "Mono.Cecil": "0.11.3"
         },
         "compile": {
-          "lib/net8.0/Expecto.dll": {
+          "lib/netstandard2.0/Expecto.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net8.0/Expecto.dll": {
+          "lib/netstandard2.0/Expecto.dll": {
             "related": ".pdb;.xml"
           }
         }
       },
-      "Expecto.FsCheck/11.1.0": {
+      "Expecto.FsCheck/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Expecto": "11.1.0",
-          "FSharp.Core": "7.0.200",
-          "FsCheck": "3.0.0"
+          "Expecto": "9.0.4",
+          "FsCheck": "2.14.3"
         },
         "compile": {
-          "lib/net8.0/Expecto.FsCheck3.dll": {
+          "lib/netstandard2.0/Expecto.FsCheck.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net8.0/Expecto.FsCheck3.dll": {
+          "lib/netstandard2.0/Expecto.FsCheck.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -55,10 +54,10 @@
           }
         }
       },
-      "FsCheck/3.3.3": {
+      "FsCheck/2.16.6": {
         "type": "package",
         "dependencies": {
-          "FSharp.Core": "5.0.2"
+          "FSharp.Core": "4.2.3"
         },
         "compile": {
           "lib/netstandard2.0/FsCheck.dll": {
@@ -67,6 +66,23 @@
         },
         "runtime": {
           "lib/netstandard2.0/FsCheck.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FsCheck.Xunit/2.16.6": {
+        "type": "package",
+        "dependencies": {
+          "FsCheck": "[2.16.6]",
+          "xunit.extensibility.execution": "[2.2.0, 3.0.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/FsCheck.Xunit.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/FsCheck.Xunit.dll": {
             "related": ".xml"
           }
         }
@@ -275,7 +291,16 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "Mono.Cecil/0.11.6": {
+      "Microsoft.NETCore.Platforms/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "Mono.Cecil/0.11.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Mono.Cecil.Mdb.dll": {
@@ -306,6 +331,62 @@
           }
         }
       },
+      "NETStandard.Library/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1"
+        }
+      },
+      "xunit.abstractions/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/xunit.abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.0/xunit.abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "xunit.extensibility.core/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "xunit.abstractions": "2.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.1/xunit.core.dll": {
+            "related": ".dll.tdnet;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.1/xunit.core.dll": {
+            "related": ".dll.tdnet;.xml"
+          }
+        }
+      },
+      "xunit.extensibility.execution/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "xunit.extensibility.core": "[2.2.0]"
+        },
+        "compile": {
+          "lib/netstandard1.1/xunit.execution.dotnet.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.1/xunit.execution.dotnet.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "BankingCore.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -323,40 +404,40 @@
     }
   },
   "libraries": {
-    "Expecto/11.1.0": {
-      "sha512": "Bigdu4FzlS0wsS4jUADCSfAM8oiXr9ghswxvYha7ge66QN8VnUjOke38AaU2Qg3nS0lE73NKt+4QEWlaGxILLg==",
+    "Expecto/9.0.4": {
+      "sha512": "n/4a8T3FKDmm7DY97yJD+Tr7T8IOAQLfGjySChwATUo3HIr0Ah1zXXOvpLXrkCi7crPN4O2QmeDDelc7/dUzJw==",
       "type": "package",
-      "path": "expecto/11.1.0",
+      "path": "expecto/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "expecto-logo-small.png",
-        "expecto.11.1.0.nupkg.sha512",
+        "expecto.9.0.4.nupkg.sha512",
         "expecto.nuspec",
-        "lib/net8.0/Expecto.dll",
-        "lib/net8.0/Expecto.pdb",
-        "lib/net8.0/Expecto.xml",
+        "lib/net461/Expecto.dll",
+        "lib/net461/Expecto.pdb",
+        "lib/net461/Expecto.xml",
         "lib/netstandard2.0/Expecto.dll",
         "lib/netstandard2.0/Expecto.pdb",
         "lib/netstandard2.0/Expecto.xml"
       ]
     },
-    "Expecto.FsCheck/11.1.0": {
-      "sha512": "DLX1YSS+7TwlhSG/6lPqa7Ijwe7msri2BIbVVRXms+C3I7wYTDAvyx56so7X2McqnlhljF06FIm0W2AlYtQFEQ==",
+    "Expecto.FsCheck/9.0.4": {
+      "sha512": "x8/FGkwXmdu3Qf+C6cYte7y63/8Jy6FrzVQcmArwM5+0jQbimXPZxsfkUrF7aR+t4hsZlsR66E6/6gIDbPl8Bw==",
       "type": "package",
-      "path": "expecto.fscheck/11.1.0",
+      "path": "expecto.fscheck/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "expecto-logo-small.png",
-        "expecto.fscheck.11.1.0.nupkg.sha512",
+        "expecto.fscheck.9.0.4.nupkg.sha512",
         "expecto.fscheck.nuspec",
-        "lib/net8.0/Expecto.FsCheck3.dll",
-        "lib/net8.0/Expecto.FsCheck3.pdb",
-        "lib/net8.0/Expecto.FsCheck3.xml",
-        "lib/netstandard2.0/Expecto.FsCheck3.dll",
-        "lib/netstandard2.0/Expecto.FsCheck3.pdb",
-        "lib/netstandard2.0/Expecto.FsCheck3.xml"
+        "lib/net461/Expecto.FsCheck.dll",
+        "lib/net461/Expecto.FsCheck.pdb",
+        "lib/net461/Expecto.FsCheck.xml",
+        "lib/netstandard2.0/Expecto.FsCheck.dll",
+        "lib/netstandard2.0/Expecto.FsCheck.pdb",
+        "lib/netstandard2.0/Expecto.FsCheck.xml"
       ]
     },
     "FsAssay.Analyzers/1.0.0": {
@@ -371,18 +452,40 @@
         "lib/net10.0/FsAssay.Analyzers.xml"
       ]
     },
-    "FsCheck/3.3.3": {
-      "sha512": "FtJSNzekCwoVTJPLZwK2In1cr9PhIo6WAX/RSM7BL/jQERgnO0111+hdcN14pcog9BByJmqehBrMbjjKpHZULg==",
+    "FsCheck/2.16.6": {
+      "sha512": "8yQlt7HgoigIXIoe7ZouNh551rypxp4WtQnqBlpB9a7gf4IkpdMSnEzsnJS/gFmeNtIf9hEJ37celeCq/6FuHA==",
       "type": "package",
-      "path": "fscheck/3.3.3",
+      "path": "fscheck/2.16.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "fscheck.3.3.3.nupkg.sha512",
+        "fscheck.2.16.6.nupkg.sha512",
         "fscheck.nuspec",
+        "lib/net452/FsCheck.dll",
+        "lib/net452/FsCheck.xml",
+        "lib/netstandard1.0/FsCheck.dll",
+        "lib/netstandard1.0/FsCheck.xml",
+        "lib/netstandard1.6/FsCheck.dll",
+        "lib/netstandard1.6/FsCheck.xml",
         "lib/netstandard2.0/FsCheck.dll",
-        "lib/netstandard2.0/FsCheck.xml",
-        "logo.png"
+        "lib/netstandard2.0/FsCheck.xml"
+      ]
+    },
+    "FsCheck.Xunit/2.16.6": {
+      "sha512": "Gd8xOmsHCfi5NR3tDWTia8VGc81jgA+ca7n8RCzdPnYUlG1/WbAy2WG9PGM9DFP4ft23JeO7+9xpE/7kqujVBw==",
+      "type": "package",
+      "path": "fscheck.xunit/2.16.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fscheck.xunit.2.16.6.nupkg.sha512",
+        "fscheck.xunit.nuspec",
+        "lib/net452/FsCheck.Xunit.dll",
+        "lib/net452/FsCheck.Xunit.xml",
+        "lib/netstandard1.6/FsCheck.Xunit.dll",
+        "lib/netstandard1.6/FsCheck.Xunit.xml",
+        "lib/netstandard2.0/FsCheck.Xunit.dll",
+        "lib/netstandard2.0/FsCheck.Xunit.xml"
       ]
     },
     "FSharp.Analyzers.SDK/0.37.2": {
@@ -550,10 +653,25 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Mono.Cecil/0.11.6": {
-      "sha512": "f33RkDtZO8VlGXCtmQIviOtxgnUdym9xx/b1p9h91CRGOsJFxCFOFK1FDbVt1OCf1aWwYejUFa2MOQyFWTFjbA==",
+    "Microsoft.NETCore.Platforms/1.0.1": {
+      "sha512": "2G6OjjJzwBfNOO8myRV/nFrbTw5iA+DEm0N+qUqhrOmaVtn4pC77h38I1jsXGw5VH55+dPfQsqHD0We9sCl9FQ==",
       "type": "package",
-      "path": "mono.cecil/0.11.6",
+      "path": "microsoft.netcore.platforms/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.0/_._",
+        "microsoft.netcore.platforms.1.0.1.nupkg.sha512",
+        "microsoft.netcore.platforms.nuspec",
+        "runtime.json"
+      ]
+    },
+    "Mono.Cecil/0.11.3": {
+      "sha512": "DNYE+io5XfEE8+E+5padThTPHJARJHbz1mhbhMPNrrWGKVKKqj/KEeLvbawAmbIcT73NuxLV7itHZaYCZcVWGg==",
+      "type": "package",
+      "path": "mono.cecil/0.11.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -573,8 +691,67 @@
         "lib/netstandard2.0/Mono.Cecil.Rocks.pdb",
         "lib/netstandard2.0/Mono.Cecil.dll",
         "lib/netstandard2.0/Mono.Cecil.pdb",
-        "mono.cecil.0.11.6.nupkg.sha512",
+        "mono.cecil.0.11.3.nupkg.sha512",
         "mono.cecil.nuspec"
+      ]
+    },
+    "NETStandard.Library/1.6.0": {
+      "sha512": "ypsCvIdCZ4IoYASJHt6tF2fMo7N30NLgV1EbmC+snO490OMl9FvVxmumw14rhReWU3j3g7BYudG6YCrchwHJlA==",
+      "type": "package",
+      "path": "netstandard.library/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "netstandard.library.1.6.0.nupkg.sha512",
+        "netstandard.library.nuspec"
+      ]
+    },
+    "xunit.abstractions/2.0.1": {
+      "sha512": "bDm/zdG5rnRDsobKuKwrvL4HccBdC0uvT12be6fG12P3d1U7u9Wkvfoq/PM2GeyIeb0Dtcmm/7k2oaawiqQ2Dg==",
+      "type": "package",
+      "path": "xunit.abstractions/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/xunit.abstractions.dll",
+        "lib/net35/xunit.abstractions.xml",
+        "lib/netstandard1.0/xunit.abstractions.dll",
+        "lib/netstandard1.0/xunit.abstractions.xml",
+        "xunit.abstractions.2.0.1.nupkg.sha512",
+        "xunit.abstractions.nuspec"
+      ]
+    },
+    "xunit.extensibility.core/2.2.0": {
+      "sha512": "2bT3sG8obWbRm45NewcV+Sr2K1whj88LnjQT7szJx1DcydgKR86ggV5rIZ5NccCWo2ctZMRb0QMYttVrhrG9Gw==",
+      "type": "package",
+      "path": "xunit.extensibility.core/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard1.1/xunit.core.dll",
+        "lib/netstandard1.1/xunit.core.dll.tdnet",
+        "lib/netstandard1.1/xunit.core.xml",
+        "lib/netstandard1.1/xunit.runner.tdnet.dll",
+        "lib/netstandard1.1/xunit.runner.utility.net452.dll",
+        "xunit.extensibility.core.2.2.0.nupkg.sha512",
+        "xunit.extensibility.core.nuspec"
+      ]
+    },
+    "xunit.extensibility.execution/2.2.0": {
+      "sha512": "4gjTrSUd/F6/pdsMsf+a1f1tcaUQnr59JvZQulmF8VwQbCh34ifie3iqriYyKyLmTQDUEJ/ZTPeZEDh0pxpTLA==",
+      "type": "package",
+      "path": "xunit.extensibility.execution/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/xunit.execution.desktop.dll",
+        "lib/net452/xunit.execution.desktop.xml",
+        "lib/netstandard1.1/xunit.execution.dotnet.dll",
+        "lib/netstandard1.1/xunit.execution.dotnet.xml",
+        "xunit.extensibility.execution.2.2.0.nupkg.sha512",
+        "xunit.extensibility.execution.nuspec"
       ]
     },
     "BankingCore.Domain/1.0.0": {
@@ -586,10 +763,11 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "BankingCore.Domain >= 1.0.0",
-      "Expecto >= 11.1.0",
-      "Expecto.FsCheck >= 11.1.0",
+      "Expecto >= 9.0.4",
+      "Expecto.FsCheck >= 9.0.4",
       "FSharp.Core >= 10.1.301",
-      "FsCheck >= 3.3.3"
+      "FsCheck >= 2.16.6",
+      "FsCheck.Xunit >= 2.16.6"
     ]
   },
   "packageFolders": {
@@ -641,12 +819,12 @@
         "dependencies": {
           "Expecto": {
             "target": "Package",
-            "version": "[11.1.0, )",
+            "version": "[9.0.4, )",
             "generatePathProperty": true
           },
           "Expecto.FsCheck": {
             "target": "Package",
-            "version": "[11.1.0, )",
+            "version": "[9.0.4, )",
             "generatePathProperty": true
           },
           "FSharp.Core": {
@@ -657,7 +835,12 @@
           },
           "FsCheck": {
             "target": "Package",
-            "version": "[3.3.3, )",
+            "version": "[2.16.6, )",
+            "generatePathProperty": true
+          },
+          "FsCheck.Xunit": {
+            "target": "Package",
+            "version": "[2.16.6, )",
             "generatePathProperty": true
           }
         },

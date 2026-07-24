@@ -396,12 +396,12 @@
           "dependencies": {
             "Expecto": {
               "target": "Package",
-              "version": "[11.1.0, )",
+              "version": "[9.0.4, )",
               "generatePathProperty": true
             },
             "Expecto.FsCheck": {
               "target": "Package",
-              "version": "[11.1.0, )",
+              "version": "[9.0.4, )",
               "generatePathProperty": true
             },
             "FSharp.Core": {
@@ -412,7 +412,12 @@
             },
             "FsCheck": {
               "target": "Package",
-              "version": "[3.3.3, )",
+              "version": "[2.16.6, )",
+              "generatePathProperty": true
+            },
+            "FsCheck.Xunit": {
+              "target": "Package",
+              "version": "[2.16.6, )",
               "generatePathProperty": true
             }
           },

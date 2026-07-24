@@ -9,37 +9,37 @@
       "BankingCore.Tests/1.0.0": {
         "dependencies": {
           "BankingCore.Domain": "1.0.0",
-          "Expecto": "11.1.0",
-          "Expecto.FsCheck": "11.1.0",
+          "Expecto": "9.0.4",
+          "Expecto.FsCheck": "9.0.4",
           "FSharp.Core": "10.1.301",
-          "FsCheck": "3.3.3"
+          "FsCheck": "2.16.6",
+          "FsCheck.Xunit": "2.16.6"
         },
         "runtime": {
           "BankingCore.Tests.dll": {}
         }
       },
-      "Expecto/11.1.0": {
+      "Expecto/9.0.4": {
         "dependencies": {
           "FSharp.Core": "10.1.301",
-          "Mono.Cecil": "0.11.6"
+          "Mono.Cecil": "0.11.3"
         },
         "runtime": {
-          "lib/net8.0/Expecto.dll": {
-            "assemblyVersion": "11.1.0.0",
-            "fileVersion": "11.1.0.0"
+          "lib/netstandard2.0/Expecto.dll": {
+            "assemblyVersion": "9.0.4.0",
+            "fileVersion": "9.0.4.0"
           }
         }
       },
-      "Expecto.FsCheck/11.1.0": {
+      "Expecto.FsCheck/9.0.4": {
         "dependencies": {
-          "Expecto": "11.1.0",
-          "FSharp.Core": "10.1.301",
-          "FsCheck": "3.3.3"
+          "Expecto": "9.0.4",
+          "FsCheck": "2.16.6"
         },
         "runtime": {
-          "lib/net8.0/Expecto.FsCheck3.dll": {
-            "assemblyVersion": "11.1.0.0",
-            "fileVersion": "11.1.0.0"
+          "lib/netstandard2.0/Expecto.FsCheck.dll": {
+            "assemblyVersion": "9.0.4.0",
+            "fileVersion": "9.0.4.0"
           }
         }
       },
@@ -56,14 +56,26 @@
           }
         }
       },
-      "FsCheck/3.3.3": {
+      "FsCheck/2.16.6": {
         "dependencies": {
           "FSharp.Core": "10.1.301"
         },
         "runtime": {
           "lib/netstandard2.0/FsCheck.dll": {
-            "assemblyVersion": "3.3.3.0",
-            "fileVersion": "3.3.3.0"
+            "assemblyVersion": "2.16.6.0",
+            "fileVersion": "2.16.6.0"
+          }
+        }
+      },
+      "FsCheck.Xunit/2.16.6": {
+        "dependencies": {
+          "FsCheck": "2.16.6",
+          "xunit.extensibility.execution": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FsCheck.Xunit.dll": {
+            "assemblyVersion": "2.16.6.0",
+            "fileVersion": "2.16.6.0"
           }
         }
       },
@@ -241,23 +253,53 @@
           }
         }
       },
-      "Mono.Cecil/0.11.6": {
+      "Mono.Cecil/0.11.3": {
         "runtime": {
           "lib/netstandard2.0/Mono.Cecil.Mdb.dll": {
-            "assemblyVersion": "0.11.6.0",
-            "fileVersion": "0.11.6.0"
+            "assemblyVersion": "0.11.3.0",
+            "fileVersion": "0.11.3.0"
           },
           "lib/netstandard2.0/Mono.Cecil.Pdb.dll": {
-            "assemblyVersion": "0.11.6.0",
-            "fileVersion": "0.11.6.0"
+            "assemblyVersion": "0.11.3.0",
+            "fileVersion": "0.11.3.0"
           },
           "lib/netstandard2.0/Mono.Cecil.Rocks.dll": {
-            "assemblyVersion": "0.11.6.0",
-            "fileVersion": "0.11.6.0"
+            "assemblyVersion": "0.11.3.0",
+            "fileVersion": "0.11.3.0"
           },
           "lib/netstandard2.0/Mono.Cecil.dll": {
-            "assemblyVersion": "0.11.6.0",
-            "fileVersion": "0.11.6.0"
+            "assemblyVersion": "0.11.3.0",
+            "fileVersion": "0.11.3.0"
+          }
+        }
+      },
+      "xunit.abstractions/2.0.1": {
+        "runtime": {
+          "lib/netstandard1.0/xunit.abstractions.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "xunit.extensibility.core/2.2.0": {
+        "dependencies": {
+          "xunit.abstractions": "2.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.1/xunit.core.dll": {
+            "assemblyVersion": "2.2.0.3545",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "xunit.extensibility.execution/2.2.0": {
+        "dependencies": {
+          "xunit.extensibility.core": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard1.1/xunit.execution.dotnet.dll": {
+            "assemblyVersion": "2.2.0.3545",
+            "fileVersion": "2.2.0.0"
           }
         }
       },
@@ -281,19 +323,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Expecto/11.1.0": {
+    "Expecto/9.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Bigdu4FzlS0wsS4jUADCSfAM8oiXr9ghswxvYha7ge66QN8VnUjOke38AaU2Qg3nS0lE73NKt+4QEWlaGxILLg==",
-      "path": "expecto/11.1.0",
-      "hashPath": "expecto.11.1.0.nupkg.sha512"
+      "sha512": "sha512-n/4a8T3FKDmm7DY97yJD+Tr7T8IOAQLfGjySChwATUo3HIr0Ah1zXXOvpLXrkCi7crPN4O2QmeDDelc7/dUzJw==",
+      "path": "expecto/9.0.4",
+      "hashPath": "expecto.9.0.4.nupkg.sha512"
     },
-    "Expecto.FsCheck/11.1.0": {
+    "Expecto.FsCheck/9.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-DLX1YSS+7TwlhSG/6lPqa7Ijwe7msri2BIbVVRXms+C3I7wYTDAvyx56so7X2McqnlhljF06FIm0W2AlYtQFEQ==",
-      "path": "expecto.fscheck/11.1.0",
-      "hashPath": "expecto.fscheck.11.1.0.nupkg.sha512"
+      "sha512": "sha512-x8/FGkwXmdu3Qf+C6cYte7y63/8Jy6FrzVQcmArwM5+0jQbimXPZxsfkUrF7aR+t4hsZlsR66E6/6gIDbPl8Bw==",
+      "path": "expecto.fscheck/9.0.4",
+      "hashPath": "expecto.fscheck.9.0.4.nupkg.sha512"
     },
     "FsAssay.Analyzers/1.0.0": {
       "type": "package",
@@ -302,12 +344,19 @@
       "path": "fsassay.analyzers/1.0.0",
       "hashPath": "fsassay.analyzers.1.0.0.nupkg.sha512"
     },
-    "FsCheck/3.3.3": {
+    "FsCheck/2.16.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FtJSNzekCwoVTJPLZwK2In1cr9PhIo6WAX/RSM7BL/jQERgnO0111+hdcN14pcog9BByJmqehBrMbjjKpHZULg==",
-      "path": "fscheck/3.3.3",
-      "hashPath": "fscheck.3.3.3.nupkg.sha512"
+      "sha512": "sha512-8yQlt7HgoigIXIoe7ZouNh551rypxp4WtQnqBlpB9a7gf4IkpdMSnEzsnJS/gFmeNtIf9hEJ37celeCq/6FuHA==",
+      "path": "fscheck/2.16.6",
+      "hashPath": "fscheck.2.16.6.nupkg.sha512"
+    },
+    "FsCheck.Xunit/2.16.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Gd8xOmsHCfi5NR3tDWTia8VGc81jgA+ca7n8RCzdPnYUlG1/WbAy2WG9PGM9DFP4ft23JeO7+9xpE/7kqujVBw==",
+      "path": "fscheck.xunit/2.16.6",
+      "hashPath": "fscheck.xunit.2.16.6.nupkg.sha512"
     },
     "FSharp.Analyzers.SDK/0.37.2": {
       "type": "package",
@@ -344,12 +393,33 @@
       "path": "microsoft.extensions.logging.abstractions/6.0.0",
       "hashPath": "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
     },
-    "Mono.Cecil/0.11.6": {
+    "Mono.Cecil/0.11.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-f33RkDtZO8VlGXCtmQIviOtxgnUdym9xx/b1p9h91CRGOsJFxCFOFK1FDbVt1OCf1aWwYejUFa2MOQyFWTFjbA==",
-      "path": "mono.cecil/0.11.6",
-      "hashPath": "mono.cecil.0.11.6.nupkg.sha512"
+      "sha512": "sha512-DNYE+io5XfEE8+E+5padThTPHJARJHbz1mhbhMPNrrWGKVKKqj/KEeLvbawAmbIcT73NuxLV7itHZaYCZcVWGg==",
+      "path": "mono.cecil/0.11.3",
+      "hashPath": "mono.cecil.0.11.3.nupkg.sha512"
+    },
+    "xunit.abstractions/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bDm/zdG5rnRDsobKuKwrvL4HccBdC0uvT12be6fG12P3d1U7u9Wkvfoq/PM2GeyIeb0Dtcmm/7k2oaawiqQ2Dg==",
+      "path": "xunit.abstractions/2.0.1",
+      "hashPath": "xunit.abstractions.2.0.1.nupkg.sha512"
+    },
+    "xunit.extensibility.core/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2bT3sG8obWbRm45NewcV+Sr2K1whj88LnjQT7szJx1DcydgKR86ggV5rIZ5NccCWo2ctZMRb0QMYttVrhrG9Gw==",
+      "path": "xunit.extensibility.core/2.2.0",
+      "hashPath": "xunit.extensibility.core.2.2.0.nupkg.sha512"
+    },
+    "xunit.extensibility.execution/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4gjTrSUd/F6/pdsMsf+a1f1tcaUQnr59JvZQulmF8VwQbCh34ifie3iqriYyKyLmTQDUEJ/ZTPeZEDh0pxpTLA==",
+      "path": "xunit.extensibility.execution/2.2.0",
+      "hashPath": "xunit.extensibility.execution.2.2.0.nupkg.sha512"
     },
     "BankingCore.Domain/1.0.0": {
       "type": "project",

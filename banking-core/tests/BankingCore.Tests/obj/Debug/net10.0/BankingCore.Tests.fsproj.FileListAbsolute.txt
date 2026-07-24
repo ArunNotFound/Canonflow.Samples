@@ -4,7 +4,6 @@
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/BankingCore.Tests.dll
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/BankingCore.Tests.pdb
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/Expecto.dll
-/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/Expecto.FsCheck3.dll
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/FsAssay.Analyzers.dll
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/FsCheck.dll
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/FSharp.Analyzers.SDK.dll
@@ -70,3 +69,8 @@
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/obj/Debug/net10.0/BankingCore.Tests.pdb
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/obj/Debug/net10.0/BankingCore.Tests.genruntimeconfig.cache
 /root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/obj/Debug/net10.0/ref/BankingCore.Tests.dll
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/Expecto.FsCheck.dll
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/FsCheck.Xunit.dll
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/xunit.abstractions.dll
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/xunit.core.dll
+/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/bin/Debug/net10.0/xunit.execution.dotnet.dll

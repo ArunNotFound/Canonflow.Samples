@@ -14,8 +14,9 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">/root/.nuget/packages/fsharp.core/10.1.301</PkgFSharp_Core>
-    <PkgFsCheck Condition=" '$(PkgFsCheck)' == '' ">/root/.nuget/packages/fscheck/3.3.3</PkgFsCheck>
-    <PkgExpecto Condition=" '$(PkgExpecto)' == '' ">/root/.nuget/packages/expecto/11.1.0</PkgExpecto>
-    <PkgExpecto_FsCheck Condition=" '$(PkgExpecto_FsCheck)' == '' ">/root/.nuget/packages/expecto.fscheck/11.1.0</PkgExpecto_FsCheck>
+    <PkgFsCheck Condition=" '$(PkgFsCheck)' == '' ">/root/.nuget/packages/fscheck/2.16.6</PkgFsCheck>
+    <PkgFsCheck_Xunit Condition=" '$(PkgFsCheck_Xunit)' == '' ">/root/.nuget/packages/fscheck.xunit/2.16.6</PkgFsCheck_Xunit>
+    <PkgExpecto Condition=" '$(PkgExpecto)' == '' ">/root/.nuget/packages/expecto/9.0.4</PkgExpecto>
+    <PkgExpecto_FsCheck Condition=" '$(PkgExpecto_FsCheck)' == '' ">/root/.nuget/packages/expecto.fscheck/9.0.4</PkgExpecto_FsCheck>
   </PropertyGroup>
 </Project>

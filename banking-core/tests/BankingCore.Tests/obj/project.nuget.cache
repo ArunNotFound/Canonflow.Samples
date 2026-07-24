@@ -1,19 +1,25 @@
 {
   "version": 2,
-  "dgSpecHash": "4jhlZN0Q+z8=",
+  "dgSpecHash": "wA/WL0VSZBI=",
   "success": true,
   "projectFilePath": "/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/BankingCore.Tests.fsproj",
   "expectedPackageFiles": [
-    "/root/.nuget/packages/expecto/11.1.0/expecto.11.1.0.nupkg.sha512",
-    "/root/.nuget/packages/expecto.fscheck/11.1.0/expecto.fscheck.11.1.0.nupkg.sha512",
+    "/root/.nuget/packages/expecto/9.0.4/expecto.9.0.4.nupkg.sha512",
+    "/root/.nuget/packages/expecto.fscheck/9.0.4/expecto.fscheck.9.0.4.nupkg.sha512",
     "/root/.nuget/packages/fsassay.analyzers/1.0.0/fsassay.analyzers.1.0.0.nupkg.sha512",
-    "/root/.nuget/packages/fscheck/3.3.3/fscheck.3.3.3.nupkg.sha512",
+    "/root/.nuget/packages/fscheck/2.16.6/fscheck.2.16.6.nupkg.sha512",
+    "/root/.nuget/packages/fscheck.xunit/2.16.6/fscheck.xunit.2.16.6.nupkg.sha512",
     "/root/.nuget/packages/fsharp.analyzers.sdk/0.37.2/fsharp.analyzers.sdk.0.37.2.nupkg.sha512",
     "/root/.nuget/packages/fsharp.compiler.service/43.12.201/fsharp.compiler.service.43.12.201.nupkg.sha512",
     "/root/.nuget/packages/fsharp.core/10.1.301/fsharp.core.10.1.301.nupkg.sha512",
     "/root/.nuget/packages/mcmaster.netcore.plugins/2.0.0/mcmaster.netcore.plugins.2.0.0.nupkg.sha512",
     "/root/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
-    "/root/.nuget/packages/mono.cecil/0.11.6/mono.cecil.0.11.6.nupkg.sha512"
+    "/root/.nuget/packages/microsoft.netcore.platforms/1.0.1/microsoft.netcore.platforms.1.0.1.nupkg.sha512",
+    "/root/.nuget/packages/mono.cecil/0.11.3/mono.cecil.0.11.3.nupkg.sha512",
+    "/root/.nuget/packages/netstandard.library/1.6.0/netstandard.library.1.6.0.nupkg.sha512",
+    "/root/.nuget/packages/xunit.abstractions/2.0.1/xunit.abstractions.2.0.1.nupkg.sha512",
+    "/root/.nuget/packages/xunit.extensibility.core/2.2.0/xunit.extensibility.core.2.2.0.nupkg.sha512",
+    "/root/.nuget/packages/xunit.extensibility.execution/2.2.0/xunit.extensibility.execution.2.2.0.nupkg.sha512"
   ],
   "logs": [
     {

@@ -1,0 +1,1032 @@
+{
+  "tables": [
+    {
+      "name": "account",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "customer_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "branch_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "currency",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_type",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((account_type = ANY (ARRAY[\u0027SAVINGS\u0027::text, \u0027CURRENT\u0027::text, \u0027LOAN\u0027::text, \u0027FD\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((account_type = ANY (ARRAY[\u0027SAVINGS\u0027::text, \u0027CURRENT\u0027::text, \u0027LOAN\u0027::text, \u0027FD\u0027::text])))"
+          ]
+        },
+        {
+          "name": "balance",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027OPEN\u0027::text, \u0027CLOSED\u0027::text, \u0027FROZEN\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027OPEN\u0027::text, \u0027CLOSED\u0027::text, \u0027FROZEN\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "aml",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "aml_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "customer_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "screening_status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((screening_status = ANY (ARRAY[\u0027CLEARED\u0027::text, \u0027FLAGGED\u0027::text, \u0027UNDER_REVIEW\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((screening_status = ANY (ARRAY[\u0027CLEARED\u0027::text, \u0027FLAGGED\u0027::text, \u0027UNDER_REVIEW\u0027::text])))"
+          ]
+        },
+        {
+          "name": "last_screened",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "audit",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "audit_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "table_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "record_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "action",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((action = ANY (ARRAY[\u0027INSERT\u0027::text, \u0027UPDATE\u0027::text, \u0027DELETE\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((action = ANY (ARRAY[\u0027INSERT\u0027::text, \u0027UPDATE\u0027::text, \u0027DELETE\u0027::text])))"
+          ]
+        },
+        {
+          "name": "timestamp",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "actor_id",
+          "dataType": "uuid",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "branch",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "branch_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "branch_code",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((length(branch_code) = 4))"
+          ],
+          "provenance": [
+            "CHECK ((length(branch_code) = 4))"
+          ]
+        },
+        {
+          "name": "name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027CLOSED\u0027::text, \u0027SUSPENDED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027CLOSED\u0027::text, \u0027SUSPENDED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "card",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "card_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "card_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((length(card_number) \u003E= 16))"
+          ],
+          "provenance": [
+            "CHECK ((length(card_number) \u003E= 16))"
+          ]
+        },
+        {
+          "name": "card_type",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((card_type = ANY (ARRAY[\u0027DEBIT\u0027::text, \u0027CREDIT\u0027::text, \u0027PREPAID\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((card_type = ANY (ARRAY[\u0027DEBIT\u0027::text, \u0027CREDIT\u0027::text, \u0027PREPAID\u0027::text])))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027BLOCKED\u0027::text, \u0027EXPIRED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027BLOCKED\u0027::text, \u0027EXPIRED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "charges",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "charge_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "txn_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "charge_type",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((charge_type = ANY (ARRAY[\u0027FEE\u0027::text, \u0027TAX\u0027::text, \u0027PENALTY\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((charge_type = ANY (ARRAY[\u0027FEE\u0027::text, \u0027TAX\u0027::text, \u0027PENALTY\u0027::text])))"
+          ]
+        },
+        {
+          "name": "amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((amount \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((amount \u003E (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "currency",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "currency_code",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((length(currency_code) = 3))"
+          ],
+          "provenance": [
+            "CHECK ((length(currency_code) = 3))"
+          ]
+        },
+        {
+          "name": "name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "customer",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "customer_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "cif_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((length(cif_number) = 8))"
+          ],
+          "provenance": [
+            "CHECK ((length(cif_number) = 8))"
+          ]
+        },
+        {
+          "name": "full_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "date_of_birth",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [
+            "((date_of_birth \u003C CURRENT_DATE))"
+          ],
+          "provenance": [
+            "CHECK ((date_of_birth \u003C CURRENT_DATE))"
+          ]
+        },
+        {
+          "name": "risk_rating",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((risk_rating = ANY (ARRAY[\u0027LOW\u0027::text, \u0027MEDIUM\u0027::text, \u0027HIGH\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((risk_rating = ANY (ARRAY[\u0027LOW\u0027::text, \u0027MEDIUM\u0027::text, \u0027HIGH\u0027::text])))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027INACTIVE\u0027::text, \u0027DORMANT\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027INACTIVE\u0027::text, \u0027DORMANT\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "employee",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "employee_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "branch_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "role",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((role = ANY (ARRAY[\u0027TELLER\u0027::text, \u0027MANAGER\u0027::text, \u0027AUDITOR\u0027::text, \u0027OFFICER\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((role = ANY (ARRAY[\u0027TELLER\u0027::text, \u0027MANAGER\u0027::text, \u0027AUDITOR\u0027::text, \u0027OFFICER\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "exchange_rate",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "rate_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "base_currency",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "target_currency",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "rate",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((rate \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((rate \u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "effective_date",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "fixed_deposit",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "fd_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "principal",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((principal \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((principal \u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "maturity_date",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027MATURED\u0027::text, \u0027BROKEN\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027ACTIVE\u0027::text, \u0027MATURED\u0027::text, \u0027BROKEN\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "interest_rate",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "rate_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_type",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "rate_percentage",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((rate_percentage \u003E= (0)::numeric) AND (rate_percentage \u003C= (100)::numeric)))"
+          ],
+          "provenance": [
+            "CHECK (((rate_percentage \u003E= (0)::numeric) AND (rate_percentage \u003C= (100)::numeric)))"
+          ]
+        },
+        {
+          "name": "effective_date",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "kyc",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "kyc_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "customer_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "document_type",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((document_type = ANY (ARRAY[\u0027PASSPORT\u0027::text, \u0027NATIONAL_ID\u0027::text, \u0027DRIVERS_LICENSE\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((document_type = ANY (ARRAY[\u0027PASSPORT\u0027::text, \u0027NATIONAL_ID\u0027::text, \u0027DRIVERS_LICENSE\u0027::text])))"
+          ]
+        },
+        {
+          "name": "document_number",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "verified",
+          "dataType": "boolean",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "ledger",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "ledger_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "txn_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "gl_account",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "entry_type",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((entry_type = ANY (ARRAY[\u0027DR\u0027::text, \u0027CR\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((entry_type = ANY (ARRAY[\u0027DR\u0027::text, \u0027CR\u0027::text])))"
+          ]
+        },
+        {
+          "name": "amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((amount \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((amount \u003E (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "limits",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "limit_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "daily_transfer_limit",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((daily_transfer_limit \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((daily_transfer_limit \u003E= (0)::numeric))"
+          ]
+        },
+        {
+          "name": "overdraft_limit",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((overdraft_limit \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((overdraft_limit \u003E= (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "loan",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "loan_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "principal_amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((principal_amount \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((principal_amount \u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "outstanding_balance",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((outstanding_balance \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((outstanding_balance \u003E= (0)::numeric))"
+          ]
+        },
+        {
+          "name": "interest_rate",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((interest_rate \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((interest_rate \u003E= (0)::numeric))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027DISBURSED\u0027::text, \u0027CLOSED\u0027::text, \u0027DEFAULTED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027DISBURSED\u0027::text, \u0027CLOSED\u0027::text, \u0027DEFAULTED\u0027::text])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "nominee",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "nominee_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "full_name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "relationship",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "allocation_percentage",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((allocation_percentage \u003E 0) AND (allocation_percentage \u003C= 100)))"
+          ],
+          "provenance": [
+            "CHECK (((allocation_percentage \u003E 0) AND (allocation_percentage \u003C= 100)))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "notifications",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "notification_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "customer_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "channel",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((channel = ANY (ARRAY[\u0027SMS\u0027::text, \u0027EMAIL\u0027::text, \u0027PUSH\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((channel = ANY (ARRAY[\u0027SMS\u0027::text, \u0027EMAIL\u0027::text, \u0027PUSH\u0027::text])))"
+          ]
+        },
+        {
+          "name": "message",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027PENDING\u0027::text, \u0027SENT\u0027::text, \u0027FAILED\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027PENDING\u0027::text, \u0027SENT\u0027::text, \u0027FAILED\u0027::text])))"
+          ]
+        },
+        {
+          "name": "created_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "statement",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "statement_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "period_start",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [
+            "((period_end \u003E period_start))"
+          ],
+          "provenance": [
+            "CHECK ((period_end \u003E period_start))"
+          ]
+        },
+        {
+          "name": "period_end",
+          "dataType": "date",
+          "isNullable": false,
+          "constraints": [
+            "((period_end \u003E period_start))"
+          ],
+          "provenance": [
+            "CHECK ((period_end \u003E period_start))"
+          ]
+        },
+        {
+          "name": "opening_balance",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "closing_balance",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "transaction",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "txn_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "account_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((amount \u003C\u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((amount \u003C\u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "txn_type",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((txn_type = ANY (ARRAY[\u0027CREDIT\u0027::text, \u0027DEBIT\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((txn_type = ANY (ARRAY[\u0027CREDIT\u0027::text, \u0027DEBIT\u0027::text])))"
+          ]
+        },
+        {
+          "name": "currency",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "timestamp",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "reference",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

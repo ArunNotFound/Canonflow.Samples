@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("BankingCore.Tests")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cec8f0dc586b824a55510f8a415f09a758f325b5")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d6dc91e3e0676392d17ecc3404aee9e565a9a29")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("BankingCore.Tests")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("BankingCore.Tests")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

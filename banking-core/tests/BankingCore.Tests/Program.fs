@@ -92,5 +92,5 @@ module Tests =
 
 [<EntryPoint>]
 let main argv =
-    let tests = testList "BankingCore Domain Tests" [ Tests.legacyTests; Tests.fsAssayTests ]
+    let tests = testList "BankingCore Domain Tests" [ Tests.legacyTests; Tests.fsAssayTests; BankingCore.Tests.properties ]
     runTestsWithCLIArgs [] argv tests
