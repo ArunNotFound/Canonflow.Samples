@@ -1,0 +1,130 @@
+{
+  "tables": [
+    {
+      "name": "customers",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "customer_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "email",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "age",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "(((age \u003E= 18) AND (age \u003C 120)))"
+          ],
+          "provenance": [
+            "CHECK (((age \u003E= 18) AND (age \u003C 120)))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((status)::text = ANY ((ARRAY[\u0027ACTIVE\u0027::character varying, \u0027SUSPENDED\u0027::character varying, \u0027CLOSED\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((status)::text = ANY ((ARRAY[\u0027ACTIVE\u0027::character varying, \u0027SUSPENDED\u0027::character varying, \u0027CLOSED\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "credit_limit",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "(((credit_limit \u003E= (0)::numeric) AND (credit_limit \u003C= (1000000)::numeric)))"
+          ],
+          "provenance": [
+            "CHECK (((credit_limit \u003E= (0)::numeric) AND (credit_limit \u003C= (1000000)::numeric)))"
+          ]
+        },
+        {
+          "name": "created_at",
+          "dataType": "timestamp without time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "orders",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "order_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "customer_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "amount",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((amount \u003E (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((amount \u003E (0)::numeric))"
+          ]
+        },
+        {
+          "name": "currency",
+          "dataType": "character",
+          "isNullable": false,
+          "constraints": [
+            "((currency = ANY (ARRAY[\u0027INR\u0027::bpchar, \u0027USD\u0027::bpchar, \u0027EUR\u0027::bpchar])))"
+          ],
+          "provenance": [
+            "CHECK ((currency = ANY (ARRAY[\u0027INR\u0027::bpchar, \u0027USD\u0027::bpchar, \u0027EUR\u0027::bpchar])))"
+          ]
+        },
+        {
+          "name": "order_status",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((order_status)::text = ANY ((ARRAY[\u0027PLACED\u0027::character varying, \u0027PAID\u0027::character varying, \u0027CANCELLED\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((order_status)::text = ANY ((ARRAY[\u0027PLACED\u0027::character varying, \u0027PAID\u0027::character varying, \u0027CANCELLED\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "created_at",
+          "dataType": "timestamp without time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}
