@@ -1,0 +1,288 @@
+{
+  "tables": [
+    {
+      "name": "group_members",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "group_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "user_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "role",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((role)::text = ANY ((ARRAY[\u0027ADMIN\u0027::character varying, \u0027MODERATOR\u0027::character varying, \u0027MEMBER\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((role)::text = ANY ((ARRAY[\u0027ADMIN\u0027::character varying, \u0027MODERATOR\u0027::character varying, \u0027MEMBER\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "joined_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "groups",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "group_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((length((name)::text) \u003E= 1) AND (length((name)::text) \u003C= 100)))"
+          ],
+          "provenance": [
+            "CHECK (((length((name)::text) \u003E= 1) AND (length((name)::text) \u003C= 100)))"
+          ]
+        },
+        {
+          "name": "description",
+          "dataType": "character varying",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "created_by",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "created_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "messages",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "message_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "sender_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "receiver_id",
+          "dataType": "uuid",
+          "isNullable": true,
+          "constraints": [
+            "((((receiver_id IS NOT NULL) AND (group_id IS NULL)) OR ((receiver_id IS NULL) AND (group_id IS NOT NULL))))"
+          ],
+          "provenance": [
+            "CHECK ((((receiver_id IS NOT NULL) AND (group_id IS NULL)) OR ((receiver_id IS NULL) AND (group_id IS NOT NULL))))"
+          ]
+        },
+        {
+          "name": "group_id",
+          "dataType": "uuid",
+          "isNullable": true,
+          "constraints": [
+            "((((receiver_id IS NOT NULL) AND (group_id IS NULL)) OR ((receiver_id IS NULL) AND (group_id IS NOT NULL))))"
+          ],
+          "provenance": [
+            "CHECK ((((receiver_id IS NOT NULL) AND (group_id IS NULL)) OR ((receiver_id IS NULL) AND (group_id IS NOT NULL))))"
+          ]
+        },
+        {
+          "name": "content",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "(((length(content) \u003E 0) AND (length(content) \u003C= 4000)))"
+          ],
+          "provenance": [
+            "CHECK (((length(content) \u003E 0) AND (length(content) \u003C= 4000)))"
+          ]
+        },
+        {
+          "name": "message_type",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((message_type)::text = ANY ((ARRAY[\u0027TEXT\u0027::character varying, \u0027IMAGE\u0027::character varying, \u0027VIDEO\u0027::character varying, \u0027AUDIO\u0027::character varying, \u0027FILE\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((message_type)::text = ANY ((ARRAY[\u0027TEXT\u0027::character varying, \u0027IMAGE\u0027::character varying, \u0027VIDEO\u0027::character varying, \u0027AUDIO\u0027::character varying, \u0027FILE\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "sent_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [
+            "(((read_at IS NULL) OR (read_at \u003E= sent_at)))"
+          ],
+          "provenance": [
+            "CHECK (((read_at IS NULL) OR (read_at \u003E= sent_at)))"
+          ]
+        },
+        {
+          "name": "read_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [
+            "(((read_at IS NULL) OR (read_at \u003E= sent_at)))"
+          ],
+          "provenance": [
+            "CHECK (((read_at IS NULL) OR (read_at \u003E= sent_at)))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "user_profiles",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "user_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "bio",
+          "dataType": "character varying",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "avatar_url",
+          "dataType": "character varying",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "privacy_setting",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((privacy_setting)::text = ANY ((ARRAY[\u0027EVERYONE\u0027::character varying, \u0027CONTACTS\u0027::character varying, \u0027NOBODY\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((privacy_setting)::text = ANY ((ARRAY[\u0027EVERYONE\u0027::character varying, \u0027CONTACTS\u0027::character varying, \u0027NOBODY\u0027::character varying])::text[])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "users",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "user_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "username",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((length((username)::text) \u003E= 3) AND (length((username)::text) \u003C= 50)))",
+            "(((username)::text ~ \u0027^[a-zA-Z0-9_]\u002B$\u0027::text))"
+          ],
+          "provenance": [
+            "CHECK (((length((username)::text) \u003E= 3) AND (length((username)::text) \u003C= 50)))",
+            "CHECK (((username)::text ~ \u0027^[a-zA-Z0-9_]\u002B$\u0027::text))"
+          ]
+        },
+        {
+          "name": "display_name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "phone_number",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((length((phone_number)::text) \u003E= 10) AND (length((phone_number)::text) \u003C= 15)))"
+          ],
+          "provenance": [
+            "CHECK (((length((phone_number)::text) \u003E= 10) AND (length((phone_number)::text) \u003C= 15)))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((status)::text = ANY ((ARRAY[\u0027ACTIVE\u0027::character varying, \u0027INACTIVE\u0027::character varying, \u0027BANNED\u0027::character varying, \u0027DELETED\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((status)::text = ANY ((ARRAY[\u0027ACTIVE\u0027::character varying, \u0027INACTIVE\u0027::character varying, \u0027BANNED\u0027::character varying, \u0027DELETED\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "created_at",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

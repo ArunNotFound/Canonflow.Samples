@@ -1,0 +1,40 @@
+{
+    "name": "user_profiles",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "user_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "bio", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "avatar_url", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "privacy_setting", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((privacy_setting)::text = ANY ((ARRAY['EVERYONE'::character varying, 'CONTACTS'::character varying, 'NOBODY'::character varying])::text[])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by user_id",
+            "query": "SELECT * FROM public.user_profiles WHERE user_id = :id LIMIT 1"
+        }
+    ]
+}

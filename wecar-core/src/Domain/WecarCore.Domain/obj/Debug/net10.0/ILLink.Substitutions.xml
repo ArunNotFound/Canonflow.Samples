@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="WecarCore.Domain">
+    <resource name="FSharpSignatureData.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationData.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.WecarCore.Domain" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.WecarCore.Domain" action="remove"></resource>
+  </assembly>
+</linker>

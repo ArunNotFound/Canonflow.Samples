@@ -1,0 +1,46 @@
+{
+    "name": "groups",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "group_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((length((name)::text) >= 1) AND (length((name)::text) <= 100)))"]
+        },
+        { 
+            "name": "description", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "created_by", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "created_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by group_id",
+            "query": "SELECT * FROM public.groups WHERE group_id = :id LIMIT 1"
+        }
+    ]
+}

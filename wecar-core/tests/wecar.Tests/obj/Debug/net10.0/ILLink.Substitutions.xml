@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="wecar.Tests">
+    <resource name="FSharpSignatureData.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.wecar.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.wecar.Tests" action="remove"></resource>
+  </assembly>
+</linker>

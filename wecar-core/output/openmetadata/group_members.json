@@ -1,0 +1,40 @@
+{
+    "name": "group_members",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "group_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "user_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "role", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((role)::text = ANY ((ARRAY['ADMIN'::character varying, 'MODERATOR'::character varying, 'MEMBER'::character varying])::text[])))"]
+        },
+        { 
+            "name": "joined_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by group_id",
+            "query": "SELECT * FROM public.group_members WHERE group_id = :id LIMIT 1"
+        }
+    ]
+}

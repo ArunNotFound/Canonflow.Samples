@@ -1,0 +1,64 @@
+{
+    "name": "messages",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "message_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "sender_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "receiver_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((((receiver_id IS NOT NULL) AND (group_id IS NULL)) OR ((receiver_id IS NULL) AND (group_id IS NOT NULL))))"]
+        },
+        { 
+            "name": "group_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((((receiver_id IS NOT NULL) AND (group_id IS NULL)) OR ((receiver_id IS NULL) AND (group_id IS NOT NULL))))"]
+        },
+        { 
+            "name": "content", 
+            "dataType": "TEXT",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((length(content) > 0) AND (length(content) <= 4000)))"]
+        },
+        { 
+            "name": "message_type", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((message_type)::text = ANY ((ARRAY['TEXT'::character varying, 'IMAGE'::character varying, 'VIDEO'::character varying, 'AUDIO'::character varying, 'FILE'::character varying])::text[])))"]
+        },
+        { 
+            "name": "sent_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((read_at IS NULL) OR (read_at >= sent_at)))"]
+        },
+        { 
+            "name": "read_at", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((read_at IS NULL) OR (read_at >= sent_at)))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by message_id",
+            "query": "SELECT * FROM public.messages WHERE message_id = :id LIMIT 1"
+        }
+    ]
+}

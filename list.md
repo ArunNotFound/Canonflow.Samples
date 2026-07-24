@@ -76,3 +76,9 @@ This document tracks the tasks required to fully verify each sample using CanonF
 - [x] F# Tests (FsCheck property tests added for Resident/Visitor flows)
 - [x] TypeScript / Jest tests added
 - [x] Duplicate Zod imports removed
+
+### 12. Wecar App (`wecar-core`)
+- [x] SOTA Hybrid Approach (DB-First + FsAssay DDD)
+- [x] Complex Chat DB Schema (Users, Groups, Messages)
+- [x] CanonFlow FSA Extraction
+- [x] FsAssay Property Tests for strict types

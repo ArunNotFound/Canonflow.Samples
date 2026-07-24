@@ -1,20 +1,11 @@
-import re
-
 with open('list.md', 'r') as f:
-    text = f.read()
-
-for sample in ['Layam Academy', 'Sangam Credit']:
-    text = re.sub(
-        rf"(### \d+\. {sample} \([^)]+\)\n)- \[ \]",
-        r"\1- [x]",
-        text
-    )
-    # Also update the subsequent checklist items
-    text = re.sub(
-        rf"(### \d+\. {sample} \([^)]+\)\n- \[x\].*\n)- \[ \](.*)\n- \[ \](.*)\n- \[ \](.*)\n",
-        r"\1- [x]\2\n- [x]\3\n- [x]\4\n",
-        text
-    )
-
+    content = f.read()
+content += """
+### 12. Wecar App (`wecar-core`)
+- [x] SOTA Hybrid Approach (DB-First + FsAssay DDD)
+- [x] Complex Chat DB Schema (Users, Groups, Messages)
+- [x] CanonFlow FSA Extraction
+- [x] FsAssay Property Tests for strict types
+"""
 with open('list.md', 'w') as f:
-    f.write(text)
+    f.write(content)
