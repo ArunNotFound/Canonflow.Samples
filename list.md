@@ -32,20 +32,20 @@ This document tracks the tasks required to fully verify each sample using CanonF
 ### 4. Hospital Core (`hospital-core`)
 - [x] Generated `--fscheck` (FSA) in dogfood.sh
 - [x] F# Tests (FsCheck property tests added)
-- [ ] TypeScript / Jest tests added
-- [ ] Duplicate Zod imports removed
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed
 
 ### 5. Airline Core (`airline-core`)
 - [x] Generated `--fscheck` (FSA) in dogfood.sh
 - [x] F# Tests (FsCheck property tests added)
-- [ ] TypeScript / Jest tests added
-- [ ] Duplicate Zod imports removed
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed
 
 ### 6. Trading Core (`trading-core`)
 - [x] Generated `--fscheck` (FSA) in dogfood.sh
 - [x] F# Tests (FsCheck property tests added)
-- [ ] TypeScript / Jest tests added
-- [ ] Duplicate Zod imports removed
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed
 
 ### 7. Migration Engine Demo (`migration-demo`)
 - [ ] Generated `--fscheck` (FSA) in dogfood.sh
