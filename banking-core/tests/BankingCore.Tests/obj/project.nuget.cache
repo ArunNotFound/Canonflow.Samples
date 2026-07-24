@@ -1,0 +1,44 @@
+{
+  "version": 2,
+  "dgSpecHash": "4jhlZN0Q+z8=",
+  "success": true,
+  "projectFilePath": "/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/BankingCore.Tests.fsproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/expecto/11.1.0/expecto.11.1.0.nupkg.sha512",
+    "/root/.nuget/packages/expecto.fscheck/11.1.0/expecto.fscheck.11.1.0.nupkg.sha512",
+    "/root/.nuget/packages/fsassay.analyzers/1.0.0/fsassay.analyzers.1.0.0.nupkg.sha512",
+    "/root/.nuget/packages/fscheck/3.3.3/fscheck.3.3.3.nupkg.sha512",
+    "/root/.nuget/packages/fsharp.analyzers.sdk/0.37.2/fsharp.analyzers.sdk.0.37.2.nupkg.sha512",
+    "/root/.nuget/packages/fsharp.compiler.service/43.12.201/fsharp.compiler.service.43.12.201.nupkg.sha512",
+    "/root/.nuget/packages/fsharp.core/10.1.301/fsharp.core.10.1.301.nupkg.sha512",
+    "/root/.nuget/packages/mcmaster.netcore.plugins/2.0.0/mcmaster.netcore.plugins.2.0.0.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "/root/.nuget/packages/mono.cecil/0.11.6/mono.cecil.0.11.6.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "message": "Detected package version outside of dependency constraint: FSharp.Analyzers.SDK 0.37.2 requires FSharp.Core (= 10.1.201) but version FSharp.Core 10.1.301 was resolved.",
+      "projectPath": "/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/BankingCore.Tests.fsproj",
+      "warningLevel": 1,
+      "filePath": "/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/BankingCore.Tests.fsproj",
+      "libraryId": "FSharp.Core",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "message": "Detected package version outside of dependency constraint: FSharp.Compiler.Service 43.12.201 requires FSharp.Core (= 10.1.201) but version FSharp.Core 10.1.301 was resolved.",
+      "projectPath": "/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/BankingCore.Tests.fsproj",
+      "warningLevel": 1,
+      "filePath": "/root/repos/github/fsharp/Canonflow.Samples/banking-core/tests/BankingCore.Tests/BankingCore.Tests.fsproj",
+      "libraryId": "FSharp.Core",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

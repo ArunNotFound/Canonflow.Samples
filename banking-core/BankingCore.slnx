@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Domain/">
+    <Project Path="src/Domain/BankingCore.Domain/BankingCore.Domain.fsproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BankingCore.Tests/BankingCore.Tests.fsproj" />
+  </Folder>
+</Solution>

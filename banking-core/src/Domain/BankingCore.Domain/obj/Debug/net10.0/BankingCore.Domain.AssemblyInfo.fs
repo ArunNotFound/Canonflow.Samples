@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("BankingCore.Domain")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+926ba9340da5ed6419f383768929bbda23f71bba")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74087080897325bff47239774b2398c368c88828")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("BankingCore.Domain")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("BankingCore.Domain")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

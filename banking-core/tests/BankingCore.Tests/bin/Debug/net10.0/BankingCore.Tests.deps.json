@@ -1,0 +1,360 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "BankingCore.Tests/1.0.0": {
+        "dependencies": {
+          "BankingCore.Domain": "1.0.0",
+          "Expecto": "11.1.0",
+          "Expecto.FsCheck": "11.1.0",
+          "FSharp.Core": "10.1.301",
+          "FsCheck": "3.3.3"
+        },
+        "runtime": {
+          "BankingCore.Tests.dll": {}
+        }
+      },
+      "Expecto/11.1.0": {
+        "dependencies": {
+          "FSharp.Core": "10.1.301",
+          "Mono.Cecil": "0.11.6"
+        },
+        "runtime": {
+          "lib/net8.0/Expecto.dll": {
+            "assemblyVersion": "11.1.0.0",
+            "fileVersion": "11.1.0.0"
+          }
+        }
+      },
+      "Expecto.FsCheck/11.1.0": {
+        "dependencies": {
+          "Expecto": "11.1.0",
+          "FSharp.Core": "10.1.301",
+          "FsCheck": "3.3.3"
+        },
+        "runtime": {
+          "lib/net8.0/Expecto.FsCheck3.dll": {
+            "assemblyVersion": "11.1.0.0",
+            "fileVersion": "11.1.0.0"
+          }
+        }
+      },
+      "FsAssay.Analyzers/1.0.0": {
+        "dependencies": {
+          "FSharp.Analyzers.SDK": "0.37.2",
+          "FSharp.Compiler.Service": "43.12.201",
+          "FSharp.Core": "10.1.301"
+        },
+        "runtime": {
+          "lib/net10.0/FsAssay.Analyzers.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "FsCheck/3.3.3": {
+        "dependencies": {
+          "FSharp.Core": "10.1.301"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FsCheck.dll": {
+            "assemblyVersion": "3.3.3.0",
+            "fileVersion": "3.3.3.0"
+          }
+        }
+      },
+      "FSharp.Analyzers.SDK/0.37.2": {
+        "dependencies": {
+          "FSharp.Compiler.Service": "43.12.201",
+          "FSharp.Core": "10.1.301",
+          "McMaster.NETCore.Plugins": "2.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/FSharp.Analyzers.SDK.dll": {
+            "assemblyVersion": "0.37.2.0",
+            "fileVersion": "0.37.2.0"
+          }
+        }
+      },
+      "FSharp.Compiler.Service/43.12.201": {
+        "dependencies": {
+          "FSharp.Core": "10.1.301"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FSharp.Compiler.Service.dll": {
+            "assemblyVersion": "43.12.201.0",
+            "fileVersion": "43.1202.126.15422"
+          },
+          "lib/netstandard2.0/FSharp.DependencyManager.Nuget.dll": {
+            "assemblyVersion": "10.1.201.0",
+            "fileVersion": "10.102.126.15422"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.0/cs/FSharp.Compiler.Service.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.0/cs/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.0/de/FSharp.Compiler.Service.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.0/de/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.0/es/FSharp.Compiler.Service.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.0/es/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.0/fr/FSharp.Compiler.Service.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.0/fr/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.0/it/FSharp.Compiler.Service.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.0/it/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.0/ja/FSharp.Compiler.Service.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.0/ja/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.0/ko/FSharp.Compiler.Service.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.0/ko/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.0/pl/FSharp.Compiler.Service.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.0/pl/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.0/pt-BR/FSharp.Compiler.Service.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.0/pt-BR/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.0/ru/FSharp.Compiler.Service.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.0/ru/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.0/tr/FSharp.Compiler.Service.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.0/tr/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.0/zh-Hans/FSharp.Compiler.Service.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.0/zh-Hans/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.0/zh-Hant/FSharp.Compiler.Service.resources.dll": {
+            "locale": "zh-Hant"
+          },
+          "lib/netstandard2.0/zh-Hant/FSharp.DependencyManager.Nuget.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "FSharp.Core/10.1.301": {
+        "runtime": {
+          "lib/netstandard2.1/FSharp.Core.dll": {
+            "assemblyVersion": "10.1.0.0",
+            "fileVersion": "10.103.126.27133"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.1/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard2.1/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.1/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.1/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.1/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.1/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.1/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.1/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard2.1/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.1/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.1/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard2.1/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.1/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "McMaster.NETCore.Plugins/2.0.0": {
+        "runtime": {
+          "lib/net8.0/McMaster.NETCore.Plugins.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Mono.Cecil/0.11.6": {
+        "runtime": {
+          "lib/netstandard2.0/Mono.Cecil.Mdb.dll": {
+            "assemblyVersion": "0.11.6.0",
+            "fileVersion": "0.11.6.0"
+          },
+          "lib/netstandard2.0/Mono.Cecil.Pdb.dll": {
+            "assemblyVersion": "0.11.6.0",
+            "fileVersion": "0.11.6.0"
+          },
+          "lib/netstandard2.0/Mono.Cecil.Rocks.dll": {
+            "assemblyVersion": "0.11.6.0",
+            "fileVersion": "0.11.6.0"
+          },
+          "lib/netstandard2.0/Mono.Cecil.dll": {
+            "assemblyVersion": "0.11.6.0",
+            "fileVersion": "0.11.6.0"
+          }
+        }
+      },
+      "BankingCore.Domain/1.0.0": {
+        "dependencies": {
+          "FSharp.Core": "10.1.301",
+          "FsAssay.Analyzers": "1.0.0"
+        },
+        "runtime": {
+          "BankingCore.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BankingCore.Tests/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Expecto/11.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Bigdu4FzlS0wsS4jUADCSfAM8oiXr9ghswxvYha7ge66QN8VnUjOke38AaU2Qg3nS0lE73NKt+4QEWlaGxILLg==",
+      "path": "expecto/11.1.0",
+      "hashPath": "expecto.11.1.0.nupkg.sha512"
+    },
+    "Expecto.FsCheck/11.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DLX1YSS+7TwlhSG/6lPqa7Ijwe7msri2BIbVVRXms+C3I7wYTDAvyx56so7X2McqnlhljF06FIm0W2AlYtQFEQ==",
+      "path": "expecto.fscheck/11.1.0",
+      "hashPath": "expecto.fscheck.11.1.0.nupkg.sha512"
+    },
+    "FsAssay.Analyzers/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g8Ie8SrzLqjZBhTNedtSANwCl+Npfg3EbmkXka0Bs6gpXDaLCxwb0ciuBNiCWligC0MP/We5Qxru7oeaogDXQg==",
+      "path": "fsassay.analyzers/1.0.0",
+      "hashPath": "fsassay.analyzers.1.0.0.nupkg.sha512"
+    },
+    "FsCheck/3.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FtJSNzekCwoVTJPLZwK2In1cr9PhIo6WAX/RSM7BL/jQERgnO0111+hdcN14pcog9BByJmqehBrMbjjKpHZULg==",
+      "path": "fscheck/3.3.3",
+      "hashPath": "fscheck.3.3.3.nupkg.sha512"
+    },
+    "FSharp.Analyzers.SDK/0.37.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vO21YDtNZaSPPWrDC8/DbWl0FAYY5l/qzGAJaruajZSpLtVP8TilzSj5v7YkydD2kwaEjLkkmCCzJFr30/61pw==",
+      "path": "fsharp.analyzers.sdk/0.37.2",
+      "hashPath": "fsharp.analyzers.sdk.0.37.2.nupkg.sha512"
+    },
+    "FSharp.Compiler.Service/43.12.201": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FkAR8qjDeOCPke7+JNKnrWrglmuM1CeSVyzfsgmRGZv4C1/VMWzDF5IweLRyN64s0HyHSq61d8JIfVNGyciwCA==",
+      "path": "fsharp.compiler.service/43.12.201",
+      "hashPath": "fsharp.compiler.service.43.12.201.nupkg.sha512"
+    },
+    "FSharp.Core/10.1.301": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FwQFuqOA1+qQnFl6Vqg6piS83ZRuKJqXJQxOM52M5tNarT2XQ/pMvw8fOOlnhcOYvdZyje2PJ8rK/J64ZI729Q==",
+      "path": "fsharp.core/10.1.301",
+      "hashPath": "fsharp.core.10.1.301.nupkg.sha512"
+    },
+    "McMaster.NETCore.Plugins/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pmmrI3qPE53xEJEcg575jQeDNPzMWfNJO8/SASlB9PLPrGVrsyVNFRrvfo+3BzcbQxfUBF1//gTOiJ82dOTlTw==",
+      "path": "mcmaster.netcore.plugins/2.0.0",
+      "hashPath": "mcmaster.netcore.plugins.2.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
+      "path": "microsoft.extensions.logging.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Mono.Cecil/0.11.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f33RkDtZO8VlGXCtmQIviOtxgnUdym9xx/b1p9h91CRGOsJFxCFOFK1FDbVt1OCf1aWwYejUFa2MOQyFWTFjbA==",
+      "path": "mono.cecil/0.11.6",
+      "hashPath": "mono.cecil.0.11.6.nupkg.sha512"
+    },
+    "BankingCore.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
