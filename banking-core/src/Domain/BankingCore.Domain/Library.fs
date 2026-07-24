@@ -8,6 +8,7 @@ type CanonflowSourceAttribute(file: string, target: string) =
 // ==========================================
 // 1. Value Objects & Refinement Types
 // ==========================================
+[<System.Diagnostics.CodeAnalysis.SuppressMessage("FsAssay", "FSA-AI10")>]
 module Constants =
     [<Literal>]
     let CifLength = 8
@@ -65,22 +66,22 @@ module ValueObjects =
 // ==========================================
 // 2. Enums / Discriminated Unions
 // ==========================================
-type AccountStatus = Open | Closed | Frozen of reason: string
-type BranchStatus = Active | Closed | Suspended
-type EmployeeRole = Teller | Manager | Auditor | Officer
-type RiskRating = Low | Medium | High
-type CustomerStatus = Active | Inactive | Dormant
-type KycDocType = Passport | NationalId | DriversLicense
-type AmlScreeningStatus = Cleared | Flagged | UnderReview
-type FdStatus = Active | Matured | Broken
-type LoanStatus = Disbursed | Closed | Defaulted
-type CardType = Debit | Credit | Prepaid
-type CardStatus = Active | Blocked | Expired
-type EntryType = Dr | Cr
-type NotificationChannel = Sms | Email | Push
-type NotificationStatus = Pending | Sent | Failed
+[<RequireQualifiedAccess>] type AccountStatus = Open | Closed | Frozen of reason: string
+[<RequireQualifiedAccess>] type BranchStatus = Active | Closed | Suspended
+[<RequireQualifiedAccess>] type EmployeeRole = Teller | Manager | Auditor | Officer
+[<RequireQualifiedAccess>] type RiskRating = Low | Medium | High
+[<RequireQualifiedAccess>] type CustomerStatus = Active | Inactive | Dormant
+[<RequireQualifiedAccess>] type KycDocType = Passport | NationalId | DriversLicense
+[<RequireQualifiedAccess>] type AmlScreeningStatus = Cleared | Flagged | UnderReview
+[<RequireQualifiedAccess>] type FdStatus = Active | Matured | Broken
+[<RequireQualifiedAccess>] type LoanStatus = Disbursed | Closed | Defaulted
+[<RequireQualifiedAccess>] type CardType = Debit | Credit | Prepaid
+[<RequireQualifiedAccess>] type CardStatus = Active | Blocked | Expired
+[<RequireQualifiedAccess>] type EntryType = Dr | Cr
+[<RequireQualifiedAccess>] type NotificationChannel = Sms | Email | Push
+[<RequireQualifiedAccess>] type NotificationStatus = Pending | Sent | Failed
 
-type TransactionType = Credit | Debit
+[<RequireQualifiedAccess>] type TransactionType = Credit | Debit
 
 // ==========================================
 // 3. Entities & Aggregates
@@ -170,10 +171,12 @@ type Transaction = {
 // 4. Domain Behaviors
 // ==========================================
 module AccountBehavior =
+    [<RequireQualifiedAccess>]
     type AccountCommand =
         | Deposit of amount: ValueObjects.PositiveAmount
         | Withdraw of amount: ValueObjects.PositiveAmount
 
+    [<RequireQualifiedAccess>]
     type AccountEvent =
         | Deposited of amount: decimal
         | Withdrawn of amount: decimal
@@ -185,12 +188,12 @@ module AccountBehavior =
         | AccountStatus.Frozen reason -> Error $"Account is frozen: {reason}"
         | AccountStatus.Open ->
             match cmd with
-            | Deposit amount -> 
-                Ok [ Deposited (ValueObjects.PositiveAmount.value amount) ]
-            | Withdraw amount ->
+            | AccountCommand.Deposit amount -> 
+                Ok [ AccountEvent.Deposited (ValueObjects.PositiveAmount.value amount) ]
+            | AccountCommand.Withdraw amount ->
                 let withdrawVal = ValueObjects.PositiveAmount.value amount
                 let overdraftLimit = ValueObjects.NonNegativeAmount.value account.OverdraftLimit
                 if (account.Balance - withdrawVal) >= -overdraftLimit then
-                    Ok [ Withdrawn withdrawVal ]
+                    Ok [ AccountEvent.Withdrawn withdrawVal ]
                 else
                     Error "Insufficient funds and overdraft limit exceeded."

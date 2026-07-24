@@ -75,7 +75,7 @@ module Tests =
                         Status = AccountStatus.Open 
                     }
                     
-                    let cmd = AccountBehavior.Withdraw positiveAmt
+                    let cmd = AccountBehavior.AccountCommand.Withdraw positiveAmt
                     let res = AccountBehavior.execute cmd account
                     
                     let withdrawVal = ValueObjects.PositiveAmount.value positiveAmt
