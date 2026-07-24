@@ -1,0 +1,40 @@
+{
+    "name": "visitors",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "visitor_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "phone", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((length((phone)::text) >= 10) AND (length((phone)::text) <= 15)))"]
+        },
+        { 
+            "name": "id_proof_type", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((id_proof_type)::text = ANY ((ARRAY['AADHAAR'::character varying, 'PAN'::character varying, 'PASSPORT'::character varying, 'DRIVING_LICENSE'::character varying, 'OTHER'::character varying])::text[])))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by visitor_id",
+            "query": "SELECT * FROM public.visitors WHERE visitor_id = :id LIMIT 1"
+        }
+    ]
+}

@@ -70,3 +70,9 @@ This document tracks the tasks required to fully verify each sample using CanonF
 - [x] F# Tests (FsCheck property tests added)
 - [x] TypeScript / Jest tests added
 - [x] Duplicate Zod imports removed
+
+### 11. Gatepass App (`gatepass-core`)
+- [x] Generated `--fscheck` (FSA) in dogfood.sh
+- [x] F# Tests (FsCheck property tests added for Resident/Visitor flows)
+- [x] TypeScript / Jest tests added
+- [x] Duplicate Zod imports removed

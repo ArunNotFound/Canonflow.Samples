@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="gatepass.Tests">
+    <resource name="FSharpSignatureData.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.gatepass.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.gatepass.Tests" action="remove"></resource>
+  </assembly>
+</linker>

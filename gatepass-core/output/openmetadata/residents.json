@@ -1,0 +1,52 @@
+{
+    "name": "residents",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "resident_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "full_name", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "unit_number", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK ((length((unit_number)::text) > 0))"]
+        },
+        { 
+            "name": "phone", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((length((phone)::text) >= 10) AND (length((phone)::text) <= 15)))"]
+        },
+        { 
+            "name": "email", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "is_active", 
+            "dataType": "BOOLEAN",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by resident_id",
+            "query": "SELECT * FROM public.residents WHERE resident_id = :id LIMIT 1"
+        }
+    ]
+}

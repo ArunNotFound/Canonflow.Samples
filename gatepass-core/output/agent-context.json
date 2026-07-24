@@ -1,0 +1,191 @@
+{
+  "tables": [
+    {
+      "name": "gatepasses",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "pass_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "resident_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "visitor_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "status",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((status)::text = ANY ((ARRAY[\u0027PENDING\u0027::character varying, \u0027APPROVED\u0027::character varying, \u0027DECLINED\u0027::character varying, \u0027ENTERED\u0027::character varying, \u0027EXITED\u0027::character varying, \u0027EXPIRED\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((status)::text = ANY ((ARRAY[\u0027PENDING\u0027::character varying, \u0027APPROVED\u0027::character varying, \u0027DECLINED\u0027::character varying, \u0027ENTERED\u0027::character varying, \u0027EXITED\u0027::character varying, \u0027EXPIRED\u0027::character varying])::text[])))"
+          ]
+        },
+        {
+          "name": "purpose",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "expected_arrival",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [
+            "(((actual_arrival IS NULL) OR (actual_arrival \u003E= (expected_arrival - \u002701:00:00\u0027::interval))))"
+          ],
+          "provenance": [
+            "CHECK (((actual_arrival IS NULL) OR (actual_arrival \u003E= (expected_arrival - \u002701:00:00\u0027::interval))))"
+          ]
+        },
+        {
+          "name": "actual_arrival",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [
+            "(((actual_arrival IS NULL) OR (actual_arrival \u003E= (expected_arrival - \u002701:00:00\u0027::interval))))",
+            "(((actual_departure IS NULL) OR ((actual_arrival IS NOT NULL) AND (actual_departure \u003E= actual_arrival))))"
+          ],
+          "provenance": [
+            "CHECK (((actual_arrival IS NULL) OR (actual_arrival \u003E= (expected_arrival - \u002701:00:00\u0027::interval))))",
+            "CHECK (((actual_departure IS NULL) OR ((actual_arrival IS NOT NULL) AND (actual_departure \u003E= actual_arrival))))"
+          ]
+        },
+        {
+          "name": "actual_departure",
+          "dataType": "timestamp with time zone",
+          "isNullable": true,
+          "constraints": [
+            "(((actual_departure IS NULL) OR ((actual_arrival IS NOT NULL) AND (actual_departure \u003E= actual_arrival))))"
+          ],
+          "provenance": [
+            "CHECK (((actual_departure IS NULL) OR ((actual_arrival IS NOT NULL) AND (actual_departure \u003E= actual_arrival))))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "residents",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "resident_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "full_name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "unit_number",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "((length((unit_number)::text) \u003E 0))"
+          ],
+          "provenance": [
+            "CHECK ((length((unit_number)::text) \u003E 0))"
+          ]
+        },
+        {
+          "name": "phone",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((length((phone)::text) \u003E= 10) AND (length((phone)::text) \u003C= 15)))"
+          ],
+          "provenance": [
+            "CHECK (((length((phone)::text) \u003E= 10) AND (length((phone)::text) \u003C= 15)))"
+          ]
+        },
+        {
+          "name": "email",
+          "dataType": "character varying",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "is_active",
+          "dataType": "boolean",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "visitors",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "visitor_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "full_name",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "phone",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((length((phone)::text) \u003E= 10) AND (length((phone)::text) \u003C= 15)))"
+          ],
+          "provenance": [
+            "CHECK (((length((phone)::text) \u003E= 10) AND (length((phone)::text) \u003C= 15)))"
+          ]
+        },
+        {
+          "name": "id_proof_type",
+          "dataType": "character varying",
+          "isNullable": false,
+          "constraints": [
+            "(((id_proof_type)::text = ANY ((ARRAY[\u0027AADHAAR\u0027::character varying, \u0027PAN\u0027::character varying, \u0027PASSPORT\u0027::character varying, \u0027DRIVING_LICENSE\u0027::character varying, \u0027OTHER\u0027::character varying])::text[])))"
+          ],
+          "provenance": [
+            "CHECK (((id_proof_type)::text = ANY ((ARRAY[\u0027AADHAAR\u0027::character varying, \u0027PAN\u0027::character varying, \u0027PASSPORT\u0027::character varying, \u0027DRIVING_LICENSE\u0027::character varying, \u0027OTHER\u0027::character varying])::text[])))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

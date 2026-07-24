@@ -1,0 +1,64 @@
+{
+    "name": "gatepasses",
+    "databaseSchema": "public",
+    "columns": [
+        { 
+            "name": "pass_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": true,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "resident_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "visitor_id", 
+            "dataType": "UUID",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "status", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'APPROVED'::character varying, 'DECLINED'::character varying, 'ENTERED'::character varying, 'EXITED'::character varying, 'EXPIRED'::character varying])::text[])))"]
+        },
+        { 
+            "name": "purpose", 
+            "dataType": "CHARACTER VARYING",
+            "isPrimaryKey": false,
+            "verifiedConstraints": []
+        },
+        { 
+            "name": "expected_arrival", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((actual_arrival IS NULL) OR (actual_arrival >= (expected_arrival - '01:00:00'::interval))))"]
+        },
+        { 
+            "name": "actual_arrival", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((actual_arrival IS NULL) OR (actual_arrival >= (expected_arrival - '01:00:00'::interval))))", "CHECK (((actual_departure IS NULL) OR ((actual_arrival IS NOT NULL) AND (actual_departure >= actual_arrival))))"]
+        },
+        { 
+            "name": "actual_departure", 
+            "dataType": "TIMESTAMP WITH TIME ZONE",
+            "isPrimaryKey": false,
+            "verifiedConstraints": ["CHECK (((actual_departure IS NULL) OR ((actual_arrival IS NOT NULL) AND (actual_departure >= actual_arrival))))"]
+        }
+    ],
+    "aiLineage": {
+        "source": "Database Truth (Postgres)",
+        "grade": "Exact"
+    },
+    "safeQueries": [
+        {
+            "name": "Lookup by pass_id",
+            "query": "SELECT * FROM public.gatepasses WHERE pass_id = :id LIMIT 1"
+        }
+    ]
+}
