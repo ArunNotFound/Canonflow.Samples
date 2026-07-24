@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="Kutcheri.Tests">
+    <resource name="FSharpSignatureData.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.Kutcheri.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.Kutcheri.Tests" action="remove"></resource>
+  </assembly>
+</linker>

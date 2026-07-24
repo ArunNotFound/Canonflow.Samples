@@ -1,0 +1,297 @@
+{
+  "tables": [
+    {
+      "name": "artists",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "artist_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "form",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((form = ANY (ARRAY[\u0027Vocal\u0027::text, \u0027Violin\u0027::text, \u0027Veena\u0027::text, \u0027Mridangam\u0027::text, \u0027Flute\u0027::text, \u0027Ensemble\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((form = ANY (ARRAY[\u0027Vocal\u0027::text, \u0027Violin\u0027::text, \u0027Veena\u0027::text, \u0027Mridangam\u0027::text, \u0027Flute\u0027::text, \u0027Ensemble\u0027::text])))"
+          ]
+        },
+        {
+          "name": "contact",
+          "dataType": "text",
+          "isNullable": true,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "standard_fee_band",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((standard_fee_band \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((standard_fee_band \u003E= (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "bookings",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "booking_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "tier_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "quantity",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((quantity \u003E 0))"
+          ],
+          "provenance": [
+            "CHECK ((quantity \u003E 0))"
+          ]
+        },
+        {
+          "name": "channel",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "timestamp",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "kutcheris",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "kutcheri_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "artist_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "venue_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "start_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [
+            "((end_time \u003E start_time))"
+          ],
+          "provenance": [
+            "CHECK ((end_time \u003E start_time))"
+          ]
+        },
+        {
+          "name": "end_time",
+          "dataType": "timestamp with time zone",
+          "isNullable": false,
+          "constraints": [
+            "((end_time \u003E start_time))"
+          ],
+          "provenance": [
+            "CHECK ((end_time \u003E start_time))"
+          ]
+        },
+        {
+          "name": "status",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [
+            "((status = ANY (ARRAY[\u0027draft\u0027::text, \u0027on-sale\u0027::text, \u0027confirmed\u0027::text, \u0027sold-out\u0027::text, \u0027on-hold\u0027::text, \u0027completed\u0027::text, \u0027cancelled\u0027::text])))"
+          ],
+          "provenance": [
+            "CHECK ((status = ANY (ARRAY[\u0027draft\u0027::text, \u0027on-sale\u0027::text, \u0027confirmed\u0027::text, \u0027sold-out\u0027::text, \u0027on-hold\u0027::text, \u0027completed\u0027::text, \u0027cancelled\u0027::text])))"
+          ]
+        },
+        {
+          "name": "artist_fee",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((artist_fee \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((artist_fee \u003E= (0)::numeric))"
+          ]
+        },
+        {
+          "name": "venue_cost",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((venue_cost \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((venue_cost \u003E= (0)::numeric))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "ticket_tiers",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "tier_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "kutcheri_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "price",
+          "dataType": "numeric",
+          "isNullable": false,
+          "constraints": [
+            "((price \u003E= (0)::numeric))"
+          ],
+          "provenance": [
+            "CHECK ((price \u003E= (0)::numeric))"
+          ]
+        },
+        {
+          "name": "allocation",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((allocation \u003E= 0))",
+            "((sold_count \u003C= allocation))"
+          ],
+          "provenance": [
+            "CHECK ((allocation \u003E= 0))",
+            "CHECK ((sold_count \u003C= allocation))"
+          ]
+        },
+        {
+          "name": "sold_count",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((sold_count \u003C= allocation))",
+            "((sold_count \u003E= 0))"
+          ],
+          "provenance": [
+            "CHECK ((sold_count \u003C= allocation))",
+            "CHECK ((sold_count \u003E= 0))"
+          ]
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    },
+    {
+      "name": "venues",
+      "schema": "public",
+      "columns": [
+        {
+          "name": "venue_id",
+          "dataType": "uuid",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "name",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        },
+        {
+          "name": "seating_capacity",
+          "dataType": "integer",
+          "isNullable": false,
+          "constraints": [
+            "((seating_capacity \u003E 0))"
+          ],
+          "provenance": [
+            "CHECK ((seating_capacity \u003E 0))"
+          ]
+        },
+        {
+          "name": "address",
+          "dataType": "text",
+          "isNullable": false,
+          "constraints": [],
+          "provenance": []
+        }
+      ],
+      "isDBEnforced": true,
+      "isAppEnforced": false,
+      "isUnenforcedMasterData": false
+    }
+  ]
+}

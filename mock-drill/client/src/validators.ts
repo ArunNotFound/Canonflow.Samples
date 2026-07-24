@@ -9,7 +9,7 @@ export function validate_customers_age(value: any): boolean {
     return customers_ageSchema.safeParse(value).success;
 }
 // Fidelity: Exact
-
+import { z } from "zod";
 
 // Provenance: (((status)::text = ANY ((ARRAY['ACTIVE'::character varying, 'SUSPENDED'::character varying, 'CLOSED'::character varying])::text[])))
 export const customers_statusSchema = z.object({ status: z.enum(["ACTIVE", "SUSPENDED", "CLOSED"]) });
@@ -18,7 +18,7 @@ export function validate_customers_status(value: any): boolean {
     return customers_statusSchema.safeParse(value).success;
 }
 // Fidelity: Exact
-
+import { z } from "zod";
 
 // Provenance: (((credit_limit >= (0)::numeric) AND (credit_limit <= (1000000)::numeric)))
 export const customers_credit_limitSchema = z.object({ credit_limit: z.number().gte(0) }).and(z.object({ credit_limit: z.number().lte(1000000) }));
@@ -27,7 +27,7 @@ export function validate_customers_credit_limit(value: any): boolean {
     return customers_credit_limitSchema.safeParse(value).success;
 }
 // Fidelity: Exact
-
+import { z } from "zod";
 
 // Provenance: ((amount > (0)::numeric))
 export const orders_amountSchema = z.object({ amount: z.number().gt(0) });
@@ -36,7 +36,7 @@ export function validate_orders_amount(value: any): boolean {
     return orders_amountSchema.safeParse(value).success;
 }
 // Fidelity: Exact
-
+import { z } from "zod";
 
 // Provenance: ((currency = ANY (ARRAY['INR'::bpchar, 'USD'::bpchar, 'EUR'::bpchar])))
 export const orders_currencySchema = z.object({ currency: z.enum(["INR", "USD", "EUR"]) });
@@ -45,7 +45,7 @@ export function validate_orders_currency(value: any): boolean {
     return orders_currencySchema.safeParse(value).success;
 }
 // Fidelity: Exact
-
+import { z } from "zod";
 
 // Provenance: (((order_status)::text = ANY ((ARRAY['PLACED'::character varying, 'PAID'::character varying, 'CANCELLED'::character varying])::text[])))
 export const orders_order_statusSchema = z.object({ order_status: z.enum(["PLACED", "PAID", "CANCELLED"]) });

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="MockDrill.Tests">
+    <resource name="FSharpSignatureData.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.MockDrill.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.MockDrill.Tests" action="remove"></resource>
+  </assembly>
+</linker>
