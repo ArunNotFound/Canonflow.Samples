@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: webuy_postgres
+    environment:
+      POSTGRES_USER: webuy
+      POSTGRES_PASSWORD: webuy_password
+      POSTGRES_DB: webuy
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+    restart: unless-stopped
