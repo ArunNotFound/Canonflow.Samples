@@ -1,0 +1,71 @@
+export type GeoCoord = { lat: number; lng: number };
+export type PhoneNumber = string;
+export type Pincode = string;
+export type Email = string;
+export type GSTIN = string;
+export type FSSAI = string;
+export type SKU = string;
+export type Barcode = string;
+export type NonEmptyString = string;
+
+export type Product = {
+  Id: string;
+  SKU: SKU;
+  Barcode?: Barcode;
+  Name: NonEmptyString;
+  Category: string;
+  SubCategory: string;
+  Brand: NonEmptyString;
+  MRP: number;
+  SellingPrice: number;
+  Discount: number;
+  Unit: string;
+  Weight?: number;
+  Images: string[];
+  Description: string;
+  Expiry?: Date;
+};
+
+export type OrderItem = {
+  ProductId: string;
+  SKU: SKU;
+  Name: NonEmptyString;
+  Quantity: number;
+  UnitPrice: number;
+  TotalPrice: number;
+  Weight?: number;
+  StorageTemp?: number;
+  Substitution: string;
+};
+
+export type Order = {
+  Id: string;
+  ONDC_txn_id: string;
+  ONDC_message_id: string;
+  ConsumerId: string;
+  StoreId: string;
+  StoreLocation: GeoCoord;
+  PartnerId?: string;
+  Items: OrderItem[];
+  SubTotal: number;
+  DeliveryFee: number;
+  SurgeFee: number;
+  Discount: number;
+  TotalFare: number;
+  PaymentMethod: "UPI" | "CARD" | "COD" | "WALLET";
+  PaymentStatus: "Initiated" | "Captured" | "Failed";
+  Status: "Created" | "Accepted" | "Packed" | "PickedUp" | "InTransit" | "Delivered" | "Cancelled" | "Returned" | "Refunded";
+  OTP: string;
+  DeliveryAddress: string;
+  DeliveryLocation: GeoCoord;
+  DeliveryETA: number;
+  Distance: number;
+  CreatedAt: Date;
+  ConfirmedAt?: Date;
+  PackedAt?: Date;
+  PickedUpAt?: Date;
+  InTransitAt?: Date;
+  DeliveredAt?: Date;
+  CancelledAt?: Date;
+  CancellationReason?: string;
+};

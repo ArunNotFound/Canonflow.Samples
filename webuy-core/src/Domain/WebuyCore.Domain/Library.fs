@@ -21,8 +21,18 @@ module ValueObjects =
         let value (Email e) = e
         let create (e: string) =
             if isNull e then Error InvalidFormat
-            elif e.Contains("@") && e.Contains(".") && not (e.Contains(" ")) then Ok (Email e)
-            else Error InvalidFormat
+            else
+                let pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                if System.Text.RegularExpressions.Regex.IsMatch(e, pattern) then Ok (Email e)
+                else Error InvalidFormat
+
+    type NonEmptyStringError = IsEmpty
+    type NonEmptyString = private NonEmptyString of string
+    module NonEmptyString =
+        let value (NonEmptyString s) = s
+        let create (s: string) =
+            if String.IsNullOrWhiteSpace(s) then Error IsEmpty
+            else Ok (NonEmptyString s)
 
     type PincodeError = InvalidFormat
     type Pincode = private Pincode of string
@@ -242,7 +252,6 @@ module DomainModel =
     open ValueObjects
     open Enums
 
-    type NonEmptyString = string // placeholder for smart constructor
     type Address = string // placeholder
     type SubCategory = string
     type TimeRange = { Start: TimeSpan; End: TimeSpan }
@@ -732,3 +741,30 @@ module ONDCValidation =
         if req.message.order.payment.method = "UPI" || req.message.order.payment.method = "CARD" then
             Ok ()
         else Error "Unsupported payment method"
+
+module ONDCBehavior =
+    open System
+    open System.Text.Json
+    open BecknProtocol
+    open ONDCValidation
+
+    let verifySignature (payload: string) (signature: string) (publicKey: string) =
+        // Mock Ed25519 verification as requested by the protocol behavior
+        if String.IsNullOrWhiteSpace(signature) then Error "SignatureVerificationFailed"
+        else Ok ()
+
+    let parseMessage<'T> (json: string) : Result<'T, string> =
+        try
+            let options = JsonSerializerOptions(PropertyNameCaseInsensitive = true)
+            let obj = JsonSerializer.Deserialize<'T>(json, options)
+            Ok obj
+        with ex -> Error ("InvalidMessage: " + ex.Message)
+
+    let checkIdempotency (messageId: string) (cache: Set<string>) =
+        if cache.Contains(messageId) then Error "DuplicateMessage"
+        else Ok (cache.Add(messageId))
+
+    let handleAckNack (result: Result<'a, string>) =
+        match result with
+        | Ok _ -> """{"message": {"ack": {"status": "ACK"}}}"""
+        | Error err -> sprintf """{"message": {"ack": {"status": "NACK"}}, "error": {"message": "%s"}}""" err

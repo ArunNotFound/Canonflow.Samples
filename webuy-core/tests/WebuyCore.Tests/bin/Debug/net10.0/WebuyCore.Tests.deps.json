@@ -9,7 +9,7 @@
       "WebuyCore.Tests/1.0.0": {
         "dependencies": {
           "FSharp.Core": "10.1.301",
-          "FsCheck.Xunit": "3.3.3",
+          "FsCheck.Xunit": "2.16.6",
           "Microsoft.NET.Test.Sdk": "17.14.1",
           "WebuyCore.Domain": "1.0.0",
           "xunit": "2.9.3"
@@ -18,27 +18,26 @@
           "WebuyCore.Tests.dll": {}
         }
       },
-      "FsCheck/3.3.3": {
+      "FsCheck/2.16.6": {
         "dependencies": {
           "FSharp.Core": "10.1.301"
         },
         "runtime": {
           "lib/netstandard2.0/FsCheck.dll": {
-            "assemblyVersion": "3.3.3.0",
-            "fileVersion": "3.3.3.0"
+            "assemblyVersion": "2.16.6.0",
+            "fileVersion": "2.16.6.0"
           }
         }
       },
-      "FsCheck.Xunit/3.3.3": {
+      "FsCheck.Xunit/2.16.6": {
         "dependencies": {
-          "FSharp.Core": "10.1.301",
-          "FsCheck": "3.3.3",
+          "FsCheck": "2.16.6",
           "xunit.extensibility.execution": "2.9.3"
         },
         "runtime": {
           "lib/netstandard2.0/FsCheck.Xunit.dll": {
-            "assemblyVersion": "3.3.3.0",
-            "fileVersion": "3.3.3.0"
+            "assemblyVersion": "2.16.6.0",
+            "fileVersion": "2.16.6.0"
           }
         }
       },
@@ -425,19 +424,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "FsCheck/3.3.3": {
+    "FsCheck/2.16.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FtJSNzekCwoVTJPLZwK2In1cr9PhIo6WAX/RSM7BL/jQERgnO0111+hdcN14pcog9BByJmqehBrMbjjKpHZULg==",
-      "path": "fscheck/3.3.3",
-      "hashPath": "fscheck.3.3.3.nupkg.sha512"
+      "sha512": "sha512-8yQlt7HgoigIXIoe7ZouNh551rypxp4WtQnqBlpB9a7gf4IkpdMSnEzsnJS/gFmeNtIf9hEJ37celeCq/6FuHA==",
+      "path": "fscheck/2.16.6",
+      "hashPath": "fscheck.2.16.6.nupkg.sha512"
     },
-    "FsCheck.Xunit/3.3.3": {
+    "FsCheck.Xunit/2.16.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Z4EzUvtpoyGeC+8gTt8kGUFuFrda8sQ3cp8q8RAHTuwvDCUb/gpqqBkRMcumveLhBbDXaOjy17v5uHcypPCAig==",
-      "path": "fscheck.xunit/3.3.3",
-      "hashPath": "fscheck.xunit.3.3.3.nupkg.sha512"
+      "sha512": "sha512-Gd8xOmsHCfi5NR3tDWTia8VGc81jgA+ca7n8RCzdPnYUlG1/WbAy2WG9PGM9DFP4ft23JeO7+9xpE/7kqujVBw==",
+      "path": "fscheck.xunit/2.16.6",
+      "hashPath": "fscheck.xunit.2.16.6.nupkg.sha512"
     },
     "FSharp.Core/10.1.301": {
       "type": "package",

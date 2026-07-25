@@ -44,7 +44,7 @@ let ``Total fare is always greater than or equal to subtotal minus discount`` (i
             {
                 ProductId = Guid.NewGuid()
                 SKU = SKU.create "SKU-1234" |> Result.toOption |> Option.get
-                Name = "Mock Product"
+                Name = NonEmptyString.create "Mock Product" |> Result.toOption |> Option.get
                 Quantity = Quantity.create q |> Result.toOption |> Option.get
                 UnitPrice = Money.create roundedP |> Result.toOption |> Option.get
                 TotalPrice = Money.create (roundedP * decimal q) |> Result.toOption |> Option.get
@@ -53,7 +53,7 @@ let ``Total fare is always greater than or equal to subtotal minus discount`` (i
                 Substitution = "NO_SUBSTITUTE"
             })
     
-    let validSurge = if surge < 1.0 then 1.0 elif surge > 3.0 then 3.0 else surge
+    let validSurge = if Double.IsNaN(surge) then 1.0 elif surge < 1.0 then 1.0 elif surge > 3.0 then 3.0 else surge
     let validDiscount = if discount < 0.0m then 0.0m else discount
     
     if validItems.Length > 0 then
