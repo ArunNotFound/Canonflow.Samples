@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "M12HPEAhcEI=",
+  "dgSpecHash": "yyLvYvq2vzE=",
   "success": true,
   "projectFilePath": "/root/repos/github/fsharp/Canonflow.Samples/webuy-core/tests/WebuyCore.Tests/WebuyCore.Tests.fsproj",
   "expectedPackageFiles": [
     "/root/.nuget/packages/coverlet.collector/6.0.4/coverlet.collector.6.0.4.nupkg.sha512",
+    "/root/.nuget/packages/fscheck/3.3.3/fscheck.3.3.3.nupkg.sha512",
+    "/root/.nuget/packages/fscheck.xunit/3.3.3/fscheck.xunit.3.3.3.nupkg.sha512",
     "/root/.nuget/packages/fsharp.core/10.1.301/fsharp.core.10.1.301.nupkg.sha512",
     "/root/.nuget/packages/microsoft.codecoverage/17.14.1/microsoft.codecoverage.17.14.1.nupkg.sha512",
     "/root/.nuget/packages/microsoft.net.test.sdk/17.14.1/microsoft.net.test.sdk.17.14.1.nupkg.sha512",

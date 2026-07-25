@@ -112,3 +112,5 @@
 /root/repos/github/fsharp/Canonflow.Samples/webuy-core/tests/WebuyCore.Tests/obj/Debug/net10.0/WebuyCore.Tests.pdb
 /root/repos/github/fsharp/Canonflow.Samples/webuy-core/tests/WebuyCore.Tests/obj/Debug/net10.0/WebuyCore.Tests.genruntimeconfig.cache
 /root/repos/github/fsharp/Canonflow.Samples/webuy-core/tests/WebuyCore.Tests/obj/Debug/net10.0/ref/WebuyCore.Tests.dll
+/root/repos/github/fsharp/Canonflow.Samples/webuy-core/tests/WebuyCore.Tests/bin/Debug/net10.0/FsCheck.dll
+/root/repos/github/fsharp/Canonflow.Samples/webuy-core/tests/WebuyCore.Tests/bin/Debug/net10.0/FsCheck.Xunit.dll

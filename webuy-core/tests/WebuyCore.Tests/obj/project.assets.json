@@ -8,6 +8,40 @@
           "build/netstandard2.0/coverlet.collector.targets": {}
         }
       },
+      "FsCheck/3.3.3": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "5.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/FsCheck.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/FsCheck.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FsCheck.Xunit/3.3.3": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "5.0.2",
+          "FsCheck": "[3.3.3]",
+          "xunit.extensibility.execution": "[2.4.1, 3.0.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/FsCheck.Xunit.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/FsCheck.Xunit.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "FSharp.Core/10.1.301": {
         "type": "package",
         "compile": {
@@ -534,6 +568,36 @@
         "coverlet.collector.nuspec"
       ]
     },
+    "FsCheck/3.3.3": {
+      "sha512": "FtJSNzekCwoVTJPLZwK2In1cr9PhIo6WAX/RSM7BL/jQERgnO0111+hdcN14pcog9BByJmqehBrMbjjKpHZULg==",
+      "type": "package",
+      "path": "fscheck/3.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fscheck.3.3.3.nupkg.sha512",
+        "fscheck.nuspec",
+        "lib/netstandard2.0/FsCheck.dll",
+        "lib/netstandard2.0/FsCheck.xml",
+        "logo.png"
+      ]
+    },
+    "FsCheck.Xunit/3.3.3": {
+      "sha512": "Z4EzUvtpoyGeC+8gTt8kGUFuFrda8sQ3cp8q8RAHTuwvDCUb/gpqqBkRMcumveLhBbDXaOjy17v5uHcypPCAig==",
+      "type": "package",
+      "path": "fscheck.xunit/3.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fscheck.xunit.3.3.3.nupkg.sha512",
+        "fscheck.xunit.nuspec",
+        "lib/net462/FsCheck.Xunit.dll",
+        "lib/net462/FsCheck.Xunit.xml",
+        "lib/netstandard2.0/FsCheck.Xunit.dll",
+        "lib/netstandard2.0/FsCheck.Xunit.xml",
+        "logo.png"
+      ]
+    },
     "FSharp.Core/10.1.301": {
       "sha512": "FwQFuqOA1+qQnFl6Vqg6piS83ZRuKJqXJQxOM52M5tNarT2XQ/pMvw8fOOlnhcOYvdZyje2PJ8rK/J64ZI729Q==",
       "type": "package",
@@ -1022,6 +1086,7 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "FSharp.Core >= 10.1.301",
+      "FsCheck.Xunit >= 3.3.3",
       "Microsoft.NET.Test.Sdk >= 17.14.1",
       "WebuyCore.Domain >= 1.0.0",
       "coverlet.collector >= 6.0.4",
@@ -1079,6 +1144,11 @@
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
             "target": "Package",
             "version": "[10.1.301, )",
+            "generatePathProperty": true
+          },
+          "FsCheck.Xunit": {
+            "target": "Package",
+            "version": "[3.3.3, )",
             "generatePathProperty": true
           },
           "Microsoft.NET.Test.Sdk": {

@@ -393,6 +393,11 @@
               "version": "[10.1.301, )",
               "generatePathProperty": true
             },
+            "FsCheck.Xunit": {
+              "target": "Package",
+              "version": "[3.3.3, )",
+              "generatePathProperty": true
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.14.1, )",

@@ -9,12 +9,37 @@
       "WebuyCore.Tests/1.0.0": {
         "dependencies": {
           "FSharp.Core": "10.1.301",
+          "FsCheck.Xunit": "3.3.3",
           "Microsoft.NET.Test.Sdk": "17.14.1",
           "WebuyCore.Domain": "1.0.0",
           "xunit": "2.9.3"
         },
         "runtime": {
           "WebuyCore.Tests.dll": {}
+        }
+      },
+      "FsCheck/3.3.3": {
+        "dependencies": {
+          "FSharp.Core": "10.1.301"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FsCheck.dll": {
+            "assemblyVersion": "3.3.3.0",
+            "fileVersion": "3.3.3.0"
+          }
+        }
+      },
+      "FsCheck.Xunit/3.3.3": {
+        "dependencies": {
+          "FSharp.Core": "10.1.301",
+          "FsCheck": "3.3.3",
+          "xunit.extensibility.execution": "2.9.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FsCheck.Xunit.dll": {
+            "assemblyVersion": "3.3.3.0",
+            "fileVersion": "3.3.3.0"
+          }
         }
       },
       "FSharp.Core/10.1.301": {
@@ -399,6 +424,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FsCheck/3.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FtJSNzekCwoVTJPLZwK2In1cr9PhIo6WAX/RSM7BL/jQERgnO0111+hdcN14pcog9BByJmqehBrMbjjKpHZULg==",
+      "path": "fscheck/3.3.3",
+      "hashPath": "fscheck.3.3.3.nupkg.sha512"
+    },
+    "FsCheck.Xunit/3.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z4EzUvtpoyGeC+8gTt8kGUFuFrda8sQ3cp8q8RAHTuwvDCUb/gpqqBkRMcumveLhBbDXaOjy17v5uHcypPCAig==",
+      "path": "fscheck.xunit/3.3.3",
+      "hashPath": "fscheck.xunit.3.3.3.nupkg.sha512"
     },
     "FSharp.Core/10.1.301": {
       "type": "package",
