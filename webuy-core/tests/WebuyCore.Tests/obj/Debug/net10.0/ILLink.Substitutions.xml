@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="WebuyCore.Tests">
+    <resource name="FSharpSignatureData.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationData.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.WebuyCore.Tests" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.WebuyCore.Tests" action="remove"></resource>
+  </assembly>
+</linker>
