@@ -625,3 +625,110 @@ module BusinessRules =
             if (now - d).TotalSeconds < 172800.0 then Ok ()
             else Error "Rating window passed (48h)"
         | _ -> Error "Order must be Delivered to rate"
+
+module BecknProtocol =
+    open System
+
+    type BecknContext = {
+        domain: string
+        action: string
+        core_version: string
+        bap_id: string
+        bap_uri: string
+        bpp_id: string
+        bpp_uri: string
+        transaction_id: string
+        message_id: string
+        timestamp: DateTimeOffset
+    }
+
+    // 6.1 Search Flow
+    type IntentFulfillment = { ``type``: string }
+    type IntentLocation = { lat: float; lng: float }
+    type IntentItem = { descriptor: Map<string, string> }
+    type Intent = { item: IntentItem option; fulfillment: IntentFulfillment option; location: IntentLocation option }
+    type SearchMessage = { intent: Intent }
+    type SearchRequest = { context: BecknContext; message: SearchMessage }
+
+    type CatalogItem = { id: string; name: string; price: decimal; quantity: int; images: string list }
+    type Catalog = { items: CatalogItem list }
+    type OnSearchMessage = { catalog: Catalog }
+    type OnSearchRequest = { context: BecknContext; message: OnSearchMessage }
+
+    // 6.2 Order Flow (Select, Init, Confirm)
+    type SelectItem = { id: string; qty: int }
+    type SelectMessage = { items: SelectItem list }
+    type SelectRequest = { context: BecknContext; message: SelectMessage }
+
+    type QuoteBreakup = { title: string; price: decimal }
+    type Quote = { price: decimal; breakup: QuoteBreakup list }
+    type OnSelectMessage = { quote: Quote }
+    type OnSelectRequest = { context: BecknContext; message: OnSelectMessage }
+
+    type Billing = { name: string; phone: string; address: string }
+    type InitMessage = { billing: Billing; fulfillment: IntentFulfillment }
+    type InitRequest = { context: BecknContext; message: InitMessage }
+
+    type OrderQuote = { id: string; quote: Quote }
+    type OnInitMessage = { order: OrderQuote }
+    type OnInitRequest = { context: BecknContext; message: OnInitMessage }
+
+    type PaymentRef = { method: string; status: string }
+    type ConfirmOrder = { id: string; payment: PaymentRef }
+    type ConfirmMessage = { order: ConfirmOrder }
+    type ConfirmRequest = { context: BecknContext; message: ConfirmMessage }
+
+    type OrderStatusRef = { id: string; status: string }
+    type OnConfirmMessage = { order: OrderStatusRef }
+    type OnConfirmRequest = { context: BecknContext; message: OnConfirmMessage }
+
+    // 6.3 Track & Cancel Flows
+    type TrackLocation = { lat: float; lng: float; eta_minutes: int }
+    type OnTrackMessage = { tracking: TrackLocation }
+    type OnTrackRequest = { context: BecknContext; message: OnTrackMessage }
+
+    type CancelMessage = { order_id: string; reason: string }
+    type CancelRequest = { context: BecknContext; message: CancelMessage }
+
+    // 6.4 Rating & Support
+    type RatingMessage = { order_id: string; rating: float }
+    type RatingRequest = { context: BecknContext; message: RatingMessage }
+    
+    type SupportMessage = { order_id: string; query: string }
+    type SupportRequest = { context: BecknContext; message: SupportMessage }
+    type SupportResponseInfo = { chat_url: string; phone: string }
+    type OnSupportMessage = { support: SupportResponseInfo }
+    type OnSupportRequest = { context: BecknContext; message: OnSupportMessage }
+
+module ONDCValidation =
+    open System
+    open BecknProtocol
+    open ValueObjects
+    open DomainModel
+
+    type ValidationError = string
+
+    let validateContext (ctx: BecknContext) =
+        try
+            let t = Guid.Parse(ctx.transaction_id)
+            let m = Guid.Parse(ctx.message_id)
+            Ok (TransactionId t, MessageId m)
+        with _ -> Error "Invalid Context IDs"
+
+    let validateSearch (req: SearchRequest) =
+        match req.message.intent.location with
+        | Some loc -> 
+            match GeoCoord.create loc.lat loc.lng with
+            | Ok coord -> Ok coord
+            | Error _ -> Error "Invalid GeoCoord in Search"
+        | None -> Error "Location is required for Search"
+
+    let validateInit (req: InitRequest) =
+        match PhoneNumber.create req.message.billing.phone with
+        | Ok phone -> Ok phone
+        | Error _ -> Error "Invalid Billing Phone"
+
+    let validateConfirm (req: ConfirmRequest) =
+        if req.message.order.payment.method = "UPI" || req.message.order.payment.method = "CARD" then
+            Ok ()
+        else Error "Unsupported payment method"
